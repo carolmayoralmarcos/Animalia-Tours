@@ -1,17 +1,20 @@
-require("dotenv").config();
 const express = require('express');
 const { connectDB } = require("./src/utils/db")
 const cors = require('cors');
 const server = express();
-connectDB();
 
-server.use(cors());
+const env = require('dotenv')
+env.config();
+
 const cloudinary = require("cloudinary").v2
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_API_KEY,
     api_secret: process.env.CLOUD_API_SECRET
 })
+
+connectDB();
+server.use(cors());
 server.use(express.json());
 
 const routeAnimal = require('./src/api/routes/animal.routes');
@@ -29,5 +32,5 @@ server.use('/api/users', routeUser);
 const PORT = process.env.PORT;
 
 server.listen(PORT, () => {
-    console.log(`Server runnind on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
