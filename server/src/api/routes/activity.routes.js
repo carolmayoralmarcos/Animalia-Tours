@@ -1,13 +1,13 @@
-// const express = require('express');
-// const { getAllActivities, getActivitybyId, newActivity, deleteActivity, updateActivity } = require('../controllers/activity.controller');
-// const upload = require('../../middleware/upload');
+const express = require('express');
+const { getAllActivities, getActivitybyId, newActivity, deleteActivity, updateActivity } = require('../controllers/activity.controller');
+const upload = require('../../middleware/upload');
 
-// const routeActivity = express.Router();
+const routeActivity = express.Router();
 
-// routeActivity.get('/all', getAllActivities);
-// routeActivity.get('/:id', getActivitybyId);
-// routeActivity.post('/new', upload.single('image'), newActivity);
-// routeActivity.delete('/delete/:id', deleteActivity);
-// routeActivity.put('/update/:id', updateActivity);
+routeActivity.get('/all', getAllActivities);
+routeActivity.get('/:id', getActivitybyId);
+routeActivity.post('/new', upload.single('image'), newActivity);
+routeActivity.delete('/delete/:id', deleteActivity);
+routeActivity.put('/update/:id', updateActivity);
 
-// module.exports = routeActivity;
+module.exports = routeActivity;

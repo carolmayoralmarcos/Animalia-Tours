@@ -1,5 +1,7 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user.model');
-const { deleteFile } = require('../../utils/deleteFileCloud')
+
+
 
 const getAllUser = async (req, res) => {
     try {
@@ -27,21 +29,22 @@ const getUserbyId = async (req, res) => {
 const createUser = async (req, res) => {
     try {
         const newUser = new User(req.body);
-        const findUser = await User.find({ name: newUser.name });
+        const findUser = await User.find({ email: newUser.email });
 
         if (findUser.length === 0) {
-            if (req.hasOwnProperty('file')) {
-                newUser.photo = req.file.path;
-            }
+
+            // "Encrypt" password before saving user to database
+            newUser.password = bcrypt.hashSync(newUser.password, 10);
+
             const createdUser = await newUser.save();
-            return res.status(201).json({ success: true, data: createdUser });
+            return res.status(200).json({ success: true, data: createdUser })
         } else {
-            return res.status(200).json({ success: false, data: 'User already exists!' });
+            return res.status(201).json({ success: false, data: 'User already exists!' })
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
     }
-}
+};
 
 const deleteUser = async (req, res) => {
     try {
@@ -51,7 +54,7 @@ const deleteUser = async (req, res) => {
             if (!deletedUser) {
                 return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
             } else {
-                deleteFile(deletedUser.photo);
+
                 return res.status(200).json({ success: true, message: 'User deleted successfully!', data: deletedUser });
             }
         } else {
