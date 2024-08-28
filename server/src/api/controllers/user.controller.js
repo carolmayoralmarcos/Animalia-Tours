@@ -1,14 +1,13 @@
-const bcrypt = require('bcrypt');
 const User = require('../models/user.model');
-
-
+const bcrypt = require('bcrypt');
+const { generateToken } = require('../../utils/jwt')
 
 const getAllUser = async (req, res) => {
     try {
-        const allUser = await User.find();
-        res.status(200).json({ success: true, data: allUser });
+        const allUser = await User.find().populate('pets');
+        return res.status(200).json({ success: true, data: allUser });
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 };
 
@@ -17,16 +16,16 @@ const getUserbyId = async (req, res) => {
         const { id } = req.params;
         const filteredUser = await User.findById(id);
         if (!filteredUser) {
-            res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
         } else {
-            res.status(200).json({ success: true, data: filteredUser });
+            return res.status(200).json({ success: true, data: filteredUser });
         }
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 }
 
-const createUser = async (req, res) => {
+const newUser = async (req, res) => {
     try {
         const newUser = new User(req.body);
         const findUser = await User.find({ email: newUser.email });
@@ -84,35 +83,78 @@ const updateUser = async (req, res) => {
     }
 };
 
-//autenticación
+//Authentication
 const login = async (req, res) => {
     try {
-        const user = req.body;
-        const userByEmail = await User.find({ email: user.email })
+        const loggedUser = new User(req.body);
+        const userByEmail = await User.find({ email: loggedUser.email });
+
         if (userByEmail.length !== 0) {
-            if (bcrypt.compareSync(user.password, userByEmail[0].password)) {      
-                const data = { id: userByEmail[0]._id, email: userByEmail[0].email } 
-                const token = generateToken(data)                                   //JWT Ejecutar función de crear Token (1 nuevo con cada login)
-                return res.status(200).json({ message: token })                     //JWT en el message devuelve el token (text4)
+            if (bcrypt.compareSync(loggedUser.password, userByEmail[0].password)) {
+                // Create JWT and return it
+                const data = { id: userByEmail[0]._id, email: userByEmail[0].email }
+                const token = generateToken(data)
+                return res.status(200).json({ success: true, data: data, username: userByEmail[0].name, token: token, role: userByEmail[0].role })
 
             } else {
-                return res.status(200).json({ message: "La contraseña no coincide" })   
+                return res.status(201).json({ success: false, data: 'Passwords do not match :(' })
             }
         } else {
-            return res.status(200).json({ message: "El email no existe " })             //JWT (
+            return res.status(201).json({ success: false, data: 'Email does NOT exists!' })
         }
     } catch (error) {
-        console.log(error)
+        return res.status(400).json({ success: false, data: error.message });
     }
 }
 
-//Autorizacion
-const getProfile = (req, res) => {
-    console.log("estoy en el perfil")
-    console.log(req.dataUser)
-    return res.json({                                                                  
-        name: req.dataUser.name,
-        role: req.dataUser.role,
-    })
-}
-module.exports = { getAllUser, getUserbyId, createUser, deleteUser, updateUser, login, getProfile };
+//Authorization
+const getProfile = async (req, res) => {
+    try {
+        const loggedUser = req.userData;
+        return res.status(201).json({ success: true, message: 'You are authorized!', data: { name: loggedUser.name, email: loggedUser.email, role: loggedUser.role } })
+    } catch (error) {
+        return res.status(400).json({ success: false, data: error.message });
+    }
+};
+
+const addPetToUser = async (req, res) => {
+    try {
+        const { idU, idP } = req.params;
+
+        const modifiedUser = await User.findByIdAndUpdate(
+            idU,
+            { $push: { pets: idP } },
+            { new: true }
+        );
+
+        if (!modifiedUser) {
+            return res.status(200).json({ success: false, message: 'User does NOT exist!' })
+        } else {
+            return res.status(201).json({ success: true, data: modifiedUser })
+        }
+    } catch (error) {
+        return res.status(400).json({ success: false, data: error.message });
+    }
+};
+
+const removePetfromUser = async (req, res) => {
+    try {
+        const { idU, idP } = req.params;
+
+        const modifiedUser = await User.findByIdAndUpdate(
+            idU,
+            { $pull: { pets: idP } },
+            { new: true }
+        );
+
+        if (!modifiedUser) {
+            return res.status(200).json({ success: false, message: 'User does NOT exist!' })
+        } else {
+            return res.status(201).json({ success: true, data: modifiedUser })
+        }
+    } catch (error) {
+        return res.status(400).json({ success: false, data: error.message });
+    }
+};
+
+module.exports = { getAllUser, getUserbyId, newUser, deleteUser, updateUser, login, getProfile, addPetToUser, removePetfromUser };

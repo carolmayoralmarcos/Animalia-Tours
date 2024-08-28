@@ -4,20 +4,12 @@ const Schema = mongoose.Schema;
 const reservationSchema = new Schema({
     name: { type: String, require: true, unique: true },
     status: { type: String, require: true, enum: ['pending', 'confirmed', 'cancelled', 'completed', 'No-show', 'Rescheduled', 'Awaiting Payment', 'Expired'], default: 'pending' },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    activity: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Activity',
-        required: true
-    },
+    user: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+    activity: { type: Schema.Types.ObjectId, ref: 'activities', required: true },
 },
     {
         collection: 'reservations',
-        timestamps: true // createdAt + updatedAt
+        timestamps: true
     }
 );
 

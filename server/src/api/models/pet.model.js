@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const petSchema = new Schema({
     name: { type: String, require: true },
-    type: { type: String, require: true, enum: ['cat', 'dog'] }
+    type: { type: String, require: true, enum: ['cat', 'dog', 'rabbit'] }
 },
     {
         collection: 'pets',
-        timestamps: true // createdAt + updatedAt
+        timestamps: true
     }
 );
 

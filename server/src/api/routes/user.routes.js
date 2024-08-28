@@ -1,16 +1,17 @@
 const express = require('express');
-const { getAllUser, getUserbyId, createUser, deleteUser, updateUser, login, getProfile } = require('../controllers/user.controller');
-const upload = require('../../middleware/upload');
+const { getAllUser, getUserbyId, newUser, deleteUser, updateUser, login, getProfile, addPetToUser, removePetfromUser } = require('../controllers/user.controller');
+const { isAuth, isAdmin } = require('../../middleware/auth');
 
 const routeUser = express.Router();
 
 routeUser.get('/all', getAllUser);
 routeUser.get('/:id', getUserbyId);
-routeUser.post('/new', upload.single('photo'), createUser);
-routeUser.delete('/delete/:id', deleteUser);
+routeUser.post('/new', newUser);
+routeUser.delete('/delete/:id', [isAdmin], deleteUser);
 routeUser.put('/update/:id', updateUser);
 routeUser.post("/login", login);
 routeUser.get("/profile", [isAuth], getProfile);
-
+routeUser.put("/addPet/:idU/:idP", addPetToUser);
+routeUser.put("/removePet/:idU/:idP", removePetfromUser);
 
 module.exports = routeUser;

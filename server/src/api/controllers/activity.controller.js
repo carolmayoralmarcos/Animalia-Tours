@@ -3,24 +3,24 @@ const { deleteFile } = require('../../utils/deleteFileCloud')
 
 const getAllActivities = async (req, res) => {
     try {
-        const allActivities = await Activity.find(); // .populate('city_id')
-        res.status(200).json({ success: true, data: allActivities });
+        const allActivities = await Activity.find().populate('city_id');
+        return res.status(200).json({ success: true, data: allActivities });
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 };
 
 const getActivitybyId = async (req, res) => {
     try {
         const { id } = req.params;
-        const filteredActivity = await Activity.findById(id); // .populate('city_id')
+        const filteredActivity = await Activity.findById(id).populate('city_id');
         if (!filteredActivity) {
-            res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
         } else {
-            res.status(200).json({ success: true, data: filteredActivity });
+            return res.status(200).json({ success: true, data: filteredActivity });
         }
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 }
 
