@@ -1,6 +1,5 @@
 const City = require('../models/city.model');
 
-
 const getAllCities = async (req, res) => {
     try {
         const allCities = await City.find();
@@ -39,7 +38,6 @@ const newCity = async (req, res) => {
         return res.status(400).json({ success: false, data: error.message });
     }
 }
-
 
 const deleteCity = async (req, res) => {
     try {
