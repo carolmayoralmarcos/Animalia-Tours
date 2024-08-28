@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const reservationSchema = new Schema({
     name: { type: String, require: true, unique: true },
     status: { type: String, require: true, enum: ['pending', 'confirmed', 'cancelled', 'completed', 'No-show', 'Rescheduled', 'Awaiting Payment', 'Expired'], default: 'pending' },
     user: {

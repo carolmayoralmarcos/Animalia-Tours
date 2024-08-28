@@ -1,13 +1,12 @@
 const express = require('express');
-const { getAllReservations, getReservationbyId, createReservation, deleteReservation, updateReservation } = require('../controllers/philo.controller');
-const upload = require('../../middleware/upload');
+const { getAllReservations, getReservationbyId, newReservation, deleteReservation, updateReservation } = require('../controllers/reservation.controller');
 
-const routeReservations = express.Router();
+const routeReservation = express.Router();
 
-routeReservations.get('/all', getAllReservations);
-routeReservations.get('/:id', getReservationbyId);
-routeReservations.post('/new', upload.single('photo'), createReservation);
-routeReservations.delete('/delete/:id', deleteReservation);
-routeReservations.put('/update/:id', updateReservation);
+routeReservation.get('/all', getAllReservations);
+routeReservation.get('/:id', getReservationbyId);
+routeReservation.post('/new', newReservation);
+routeReservation.delete('/delete/:id', deleteReservation);
+routeReservation.put('/update/:id', updateReservation);
 
-module.exports = routeReservations;
+module.exports = routeReservation;
