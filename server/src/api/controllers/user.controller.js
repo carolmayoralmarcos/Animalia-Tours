@@ -84,4 +84,35 @@ const updateUser = async (req, res) => {
     }
 };
 
-module.exports = { getAllUser, getUserbyId, createUser, deleteUser, updateUser };
+//autenticación
+const login = async (req, res) => {
+    try {
+        const user = req.body;
+        const userByEmail = await User.find({ email: user.email })
+        if (userByEmail.length !== 0) {
+            if (bcrypt.compareSync(user.password, userByEmail[0].password)) {      
+                const data = { id: userByEmail[0]._id, email: userByEmail[0].email } 
+                const token = generateToken(data)                                   //JWT Ejecutar función de crear Token (1 nuevo con cada login)
+                return res.status(200).json({ message: token })                     //JWT en el message devuelve el token (text4)
+
+            } else {
+                return res.status(200).json({ message: "La contraseña no coincide" })   
+            }
+        } else {
+            return res.status(200).json({ message: "El email no existe " })             //JWT (
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//Autorizacion
+const getProfile = (req, res) => {
+    console.log("estoy en el perfil")
+    console.log(req.dataUser)
+    return res.json({                                                                  
+        name: req.dataUser.name,
+        role: req.dataUser.role,
+    })
+}
+module.exports = { getAllUser, getUserbyId, createUser, deleteUser, updateUser, login, getProfile };
