@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllReservations, getReservationbyId, createReservation, deleteReservation, updateReservation } = require('../controllers/philo.controller');
+const { getAllReservations, getReservationbyId, createReservation, deleteReservation, updateReservation } = require('../controllers/reservation.controller');
 const upload = require('../../middleware/upload');
 
 const routeReservations = express.Router();
