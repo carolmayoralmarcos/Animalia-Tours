@@ -23,7 +23,7 @@ const routeActivity = require('./src/api/routes/activity.routes');
 const routeReservation = require('./src/api/routes/reservation.routes');
 const routeUser = require("./src/api/routes/user.routes")
 
-server.use('/api/animals', routePet);
+server.use('/api/pets', routePet);
 server.use('/api/cities', routeCity);
 server.use('/api/activities', routeActivity);
 server.use('/api/reservations', routeReservation);

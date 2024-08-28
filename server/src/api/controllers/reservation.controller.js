@@ -1,5 +1,4 @@
 const Reservation = require('../models/reservation.model');
-const { deleteFile } = require('../../utils/deleteFileCloud')
 
 const getAllReservations = async (req, res) => {
     try {
@@ -24,7 +23,7 @@ const getReservationbyId = async (req, res) => {
     }
 }
 
-const createReservation = async (req, res) => {
+const newReservation = async (req, res) => {
     try {
         const newReservation = new Reservation(req.body);
         const findReservation = await Reservation.find({ name: newReservation.name });
@@ -51,7 +50,6 @@ const deleteReservation = async (req, res) => {
             if (!deletedReservation) {
                 return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
             } else {
-                deleteFile(deletedReservation.photo);
                 return res.status(200).json({ success: true, message: 'Reservation deleted successfully!', data: deletedReservation });
             }
         } else {
@@ -81,4 +79,4 @@ const updateReservation = async (req, res) => {
     }
 };
 
-module.exports = { getAllReservations, getReservationbyId, createReservation, deleteReservation, updateReservation };
+module.exports = { getAllReservations, getReservationbyId, newReservation, deleteReservation, updateReservation };
