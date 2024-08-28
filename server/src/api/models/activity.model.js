@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const activitySchema = new Schema({
     name: { type: String, require: true, unique: true },
     description: { type: String, require: true },
     image: { type: String, require: true },
@@ -18,5 +18,5 @@ const userSchema = new Schema({
     }
 );
 
-const User = mongoose.model('activities', userSchema);
-module.exports = User;
+const Activity = mongoose.model('activities', activitySchema);
+module.exports = Activity;
