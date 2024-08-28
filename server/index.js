@@ -17,13 +17,13 @@ connectDB();
 server.use(cors());
 server.use(express.json());
 
-const routeAnimal = require('./src/api/routes/animal.routes');
+const routePet = require('./src/api/routes/pet.routes');
 const routeCity = require('./src/api/routes/city.routes');
 const routeActivity = require('./src/api/routes/activity.routes');
 const routeReservation = require('./src/api/routes/reservation.routes');
 const routeUser = require("./src/api/routes/user.routes")
 
-server.use('/api/animals', routeAnimal);
+server.use('/api/animals', routePet);
 server.use('/api/cities', routeCity);
 server.use('/api/activities', routeActivity);
 server.use('/api/reservations', routeReservation);
