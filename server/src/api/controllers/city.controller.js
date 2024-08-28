@@ -1,4 +1,4 @@
-const Philosopher = require('../models/philo.model');
+const City = require('../models/philo.model');
 const { deleteFile } = require('../../utils/deleteFileCloud')
 
 const getAllPhilos = async (req, res) => {
