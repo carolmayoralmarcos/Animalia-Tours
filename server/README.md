@@ -2,35 +2,35 @@
 
 ## Endpoints MVP
 
-### Animales
+### Animales (Daniela / Carolina)
 1. getAll
 2. getAnimalbyId
 3. newAnimal
 4. updateAnimal
 5. deleteAnimal
 
-### Ciudades
+### Ciudades (Carolina)
 1. getAll
 2. getCitybyId
 3. newCity
 4. updateCity
 5. deleteCity
 
-### Actividades
+### Actividades (Haritz)
 1. getAll
 2. getActivitybyId
 3. newActivity (con Cloudinary)
 4. updateActivity
 5. deleteActivity
 
-### Reservas
+### Reservas (Monica)
 1. getAll
 2. getReservationbyId
 3. newReservation (con Auth)
 4. updateReservation
 5. deleteReservation
 
-### Usuarios
+### Usuarios (Aleida)
 1. getAll
 2. getUserbyId
 3. newUser (con Auth -> rol = user)
