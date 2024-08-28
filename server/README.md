@@ -2,12 +2,12 @@
 
 ## Endpoints MVP
 
-### Animales (Daniela / Carolina)
+### Mascotas (Daniela / Carolina)
 1. getAll
-2. getAnimalbyId
-3. newAnimal
-4. updateAnimal
-5. deleteAnimal
+2. getPetbyId
+3. newPet
+4. updatePet
+5. deletePet
 
 ### Ciudades (Carolina)
 1. getAll
