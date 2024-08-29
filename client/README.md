@@ -35,6 +35,8 @@
 2. useRedirection
 3. Router
 4. PrivateRouter
-5. ModifyActivity (Con Monica)
+5. UpdateActivity (Con Monica)
 6. Cities (con Carol)
+7. NewCity
+8. UpdateCity
 
