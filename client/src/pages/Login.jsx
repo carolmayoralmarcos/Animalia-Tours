@@ -9,10 +9,7 @@ function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-
     const handleLogin = async () => {
-
-       
 
         try {
             const response = await fetch('http://localhost:5000/api/login', {
@@ -47,7 +44,7 @@ function Login() {
             <Form>
                 <Form.Group className="mb-3" controlId="formUsername">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setEmail(e.target.value)} />
+                    <Form.Control type="text" placeholder="Enter username" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPassword">
