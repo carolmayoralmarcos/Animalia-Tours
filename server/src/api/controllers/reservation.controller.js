@@ -12,7 +12,7 @@ const getAllReservations = async (req, res) => {
 const getReservationbyId = async (req, res) => {
     try {
         const { id } = req.params;
-        const filteredReservation = await Reservation.findById(id).populate('user', 'activity');
+        const filteredReservation = await Reservation.findById(id).populate('user').populate('activity');
         if (!filteredReservation) {
             return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
         } else {
