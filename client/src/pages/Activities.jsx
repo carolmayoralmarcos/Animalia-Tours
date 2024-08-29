@@ -1,11 +1,11 @@
 import React from 'react';
 
-function UpdateCity() {
+function Activities() {
     return (
         <div className='container content'>
-            <h1>UpdateCity</h1>
+            <h1>Activities</h1>
         </div>
     );
 }
 
-export default UpdateCity;
+export default Activities;
