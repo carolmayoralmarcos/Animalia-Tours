@@ -79,4 +79,19 @@ const updateReservation = async (req, res) => {
     }
 };
 
-module.exports = { getAllReservations, getReservationbyId, newReservation, deleteReservation, updateReservation };
+const getReservationsByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params; 
+        const userReservations = await Reservation.find({ user: userId }).populate('user').populate('activity');
+
+        if (userReservations.length === 0) {
+            return res.status(200).json({ success: false, data: 'No reservations found for this user.' });
+        } else {
+            return res.status(200).json({ success: true, data: userReservations });
+        }
+    } catch (error) {
+        return res.status(400).json({ success: false, data: error.message });
+    }
+};
+
+module.exports = { getAllReservations, getReservationbyId, newReservation, deleteReservation, updateReservation, getReservationsByUserId };
