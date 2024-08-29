@@ -9,10 +9,11 @@ function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
+    const handleLogin = async (e) => {
 
+        e.preventDefault(); // Prevenir la recarga de la página
         try {
-            const response = await fetch('http://localhost:5000/api/login', {
+            const response = await fetch('http://localhost:5000/api/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -20,20 +21,25 @@ function Login() {
                 body: JSON.stringify({ email, password })
             });
 
-            
+            const data = await response.json(); 
+            console.log(data);
 
             if (!response.ok) {
-                setError('Login failed. Please check your credentials.');
+                const errorData = await response.json();
+                setError(errorData.data ||'Login failed. Please check your credentials.');
                 throw new Error('Login failed');
             }
-
-            const data = await response.json();
-            console.log(data);
             
-            localStorage.setItem('token', data.token);
-            navigate('/user');                             
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                navigate('/profile');     
+            } else {
+                setError('Token not provided. Please try again.');
+            }
+                
         } catch (error) {
             console.error('Login failed', error);
+            setError('An error occurred. Please try again later.');
         }
     };
 
@@ -41,18 +47,18 @@ function Login() {
         <Container className="mt-5">
             <h1 className="mb-4">Login</h1>
             {error && <Alert variant="danger">{error}</Alert>}
-            <Form>
-                <Form.Group className="mb-3" controlId="formUsername">
+            <Form onSubmit={handleLogin}>
+                <Form.Group className="mb-3" controlId="formEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Form.Control type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="primary" onClick={handleLogin}>
+                <Button variant="primary" type="submit">
                     Login
                 </Button>
             </Form>

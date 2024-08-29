@@ -29,6 +29,9 @@ const newCity = async (req, res) => {
         const findCity = await City.find({ name: newCity.name });
 
         if (findCity.length === 0) {
+            if (req.hasOwnProperty('file')) {
+                newCity.image = req.file.path;
+            }
             const createdCity = await newCity.save();
             return res.status(201).json({ success: true, data: createdCity });
         } else {
