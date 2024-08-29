@@ -4,20 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 
 function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async () => {
+
         try {
             const response = await fetch('http://localhost:5000/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ email, password })
             });
+
+            
 
             if (!response.ok) {
                 setError('Login failed. Please check your credentials.');
@@ -25,6 +28,8 @@ function Login() {
             }
 
             const data = await response.json();
+            console.log(data);
+            
             localStorage.setItem('token', data.token);
             navigate('/user');                             
         } catch (error) {
@@ -38,8 +43,8 @@ function Login() {
             {error && <Alert variant="danger">{error}</Alert>}
             <Form>
                 <Form.Group className="mb-3" controlId="formUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="text" placeholder="Enter username" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPassword">
