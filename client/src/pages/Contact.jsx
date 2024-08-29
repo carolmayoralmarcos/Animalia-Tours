@@ -1,4 +1,3 @@
-// src/pages/Contact.js
 import React, { useState } from 'react';
 
 
@@ -64,7 +63,7 @@ export default function Contact() {
                         />
                     </div>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-warning btn-lg">
+                        <button type="submit" className="btn btn-primary btn-lg">
                             Enviar
                         </button>
                     </div>
