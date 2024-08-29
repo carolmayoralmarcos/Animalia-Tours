@@ -1,5 +1,5 @@
 export const getprofile = async (token) => {
-    const response = await fetch('http://localhost:5000/api/users/profile', {
+    const response = await fetch('http://localhost:5000/api/users/get/profile', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

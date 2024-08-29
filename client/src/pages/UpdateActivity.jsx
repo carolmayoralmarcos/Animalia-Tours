@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Swal from 'sweetalert2'
-import handleGetbyId from '../utils/handleGetbyId';
+import getElementbyId from '../utils/getElementbyId';
 
 const UpdateActivity = () => {
     const { id, collection } = useParams();
@@ -23,7 +23,7 @@ const UpdateActivity = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const info = await handleGetbyId(id, collection);
+                const info = await getElementbyId(id, collection);
                 if (info && info.data) {
                     const { _v, ...rest } = info.data; // Elimina _v al desestructurar
                     setActivityData(rest);
