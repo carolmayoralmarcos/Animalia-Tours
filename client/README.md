@@ -31,12 +31,12 @@
 
 
 ### Haritz
-1. SearchBar
-2. useRedirection
-3. Router
-4. PrivateRouter
-5. UpdateActivity (Con Monica)
-6. Cities (con Carol)
-7. NewCity
-8. UpdateCity
+- [ ] 1. SearchBar
+- [x] 2. useRedirection
+- [x] 3. Router
+- [ ] 4. PrivateRouter
+- [ ] 5. UpdateActivity (Con Monica)
+- [x] 6. Cities (con Carol)
+- [ ] 7. NewCity
+- [ ] 8. UpdateCity
 
