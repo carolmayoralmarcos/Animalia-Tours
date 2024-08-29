@@ -28,10 +28,11 @@ function Cities() {
 
     return (
         <div className="container">
-            <div className="d-flex">
+            <div className="d-flex flex-wrap my-5 justify-content-between">
                 {cities.map((city, index) => {
                     return (
                         <Card key={index} style={{ width: '20rem' }}>
+                            <Card.Img variant="top" src={city.image} />
                             <Card.Body>
                                 <Card.Title>{city.name}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">{city.description}</Card.Subtitle>

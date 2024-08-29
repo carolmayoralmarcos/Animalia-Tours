@@ -40,3 +40,6 @@
 - [x] 6. Cities (con Carol)
 - [ ] 7. NewCity
 - [ ] 8. UpdateCity
+- [ ] 9. fetchAllElements
+- [ ] 10. getElementbyId
+- [x] 11. Cities with images
