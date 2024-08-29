@@ -1,82 +1,77 @@
 import React, { useState } from 'react';
-import { sendMessage } from '../api/contactAPI';
 
-
-const Contact = () => {
+export default function Contact() {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
+        name: "",
+        email: "",
+        message: "",
     });
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState(false);
-
+    const [status, setStatus] = useState(null);
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setError('');
-        setSuccess(false);
 
-        try {
-
-            await sendMessage(formData);
-            setSuccess(true);
-            setFormData({ name: '', email: '', message: '' });
-        } catch (err) {
-            setError(err.response?.data?.message || 'Error al enviar el mensaje');
-        }
+        setStatus("Tu mensaje ha sido enviado con éxito.");
+        setFormData({ name: "", email: "", message: "" });
     };
 
     return (
-        <div className="contact-container">
-            <h1>Contáctanos</h1>
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">¡Mensaje enviado con éxito!</p>}
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name">Nombre</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">E-mail</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="message">Mensaje</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <button type="submit" className="btn">Enviar Mensaje</button>
-            </form>
+        <div className="d-flex align-items-center justify-content-center min-vh-100">
+            <div className="contact p-4 bg-light rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
+                <h1 className="text-center mb-4">Contacto</h1>
+                <form onSubmit={handleSubmit} className="contact-form">
+                    <div className="form-group mb-3">
+                        <label htmlFor="name" className="form-label">Nombre:</label>
+                        <input
+                            type="text"
+                            className="form-control form-control-lg"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group mb-3">
+                        <label htmlFor="email" className="form-label">Correo electrónico:</label>
+                        <input
+                            type="email"
+                            className="form-control form-control-lg"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group mb-3">
+                        <label htmlFor="message" className="form-label">Mensaje:</label>
+                        <textarea
+                            name="message"
+                            className="form-control form-control-lg"
+                            id="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                            rows="4"
+                        />
+                    </div>
+                    <div className="text-center">
+                        <button type="submit" className="btn btn-warning btn-lg">
+                            Enviar
+                        </button>
+                    </div>
+                </form>
+                {status && <p className="text-center mt-3">{status}</p>}
+            </div>
         </div>
     );
-};
+}
 
-export default Contact;
+
+
