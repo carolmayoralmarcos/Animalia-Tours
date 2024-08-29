@@ -8,6 +8,7 @@
 - [x] 2. hook getrandomactivities ok na na na ok
 - [ ] 3. cart (cartContext)
 - [x] 4. Login ok ok ok ok ok Pendiente Swal
+  <!-- - [ ] 5. Update Activity ok pendiente actualizar utils/handleGetbyId.js -->
 
 ### Daniela
 
