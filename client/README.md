@@ -7,8 +7,8 @@
 - [ ] 1. Hero (carrusel) ok pte pte pte pte
 - [x] 2. hook getrandomactivities ok na na na ok
 - [ ] 3. cart (cartContext)
-- [x] 4. Login ok ok ok ok ok Pendiente Swal
-- [ ] 5. UpdateActivity
+- [x] 4. Login ok ok ok ok ok
+- [ ] 5. UpdateActivity ok Pendiente utils/handleGetbyId.js
 
 ### Daniela
 
