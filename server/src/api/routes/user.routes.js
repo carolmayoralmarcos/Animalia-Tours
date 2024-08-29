@@ -10,7 +10,7 @@ routeUser.post('/new', newUser);
 routeUser.delete('/delete/:id', [isAdmin], deleteUser);
 routeUser.put('/update/:id', updateUser);
 routeUser.post("/login", login);
-routeUser.get("/profile", [isAuth], getProfile);
+routeUser.get("/get/profile", [isAuth], getProfile);
 routeUser.put("/addPet/:idU/:idP", addPetToUser);
 routeUser.put("/removePet/:idU/:idP", removePetfromUser);
 
