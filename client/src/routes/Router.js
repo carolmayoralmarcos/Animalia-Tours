@@ -21,6 +21,7 @@ import UserProfile from '../pages/UserProfile';
 import Register from '../pages/Register';
 import Cart from '../pages/Cart';
 import Contact from '../pages/Contact';
+import About from '../pages/About';
 
 function Router() {
 
@@ -44,6 +45,7 @@ function Router() {
                 {/* <Route path="/users" element={<Layout><UsersPage /></Layout>} /> */}
                 <Route path="/users" element={<Layout><Cart /></Layout>} />
                 <Route path="/contact" element={<Layout><Contact /></Layout>} />
+                <Route path="/about" element={<Layout><About /></Layout>} />
                 <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
         </BrowserRouter>
