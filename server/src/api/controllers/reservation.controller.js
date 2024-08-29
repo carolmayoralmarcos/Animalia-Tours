@@ -2,24 +2,24 @@ const Reservation = require('../models/reservation.model');
 
 const getAllReservations = async (req, res) => {
     try {
-        const allReservations = await Reservation.find();
-        res.status(200).json({ success: true, data: allReservations });
+        const allReservations = await Reservation.find().populate('user').populate('activity');
+        return res.status(200).json({ success: true, data: allReservations });
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 };
 
 const getReservationbyId = async (req, res) => {
     try {
         const { id } = req.params;
-        const filteredReservation = await Reservation.findById(id);
+        const filteredReservation = await Reservation.findById(id).populate('user').populate('activity');
         if (!filteredReservation) {
-            res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
         } else {
-            res.status(200).json({ success: true, data: filteredReservation });
+            return res.status(200).json({ success: true, data: filteredReservation });
         }
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 }
 

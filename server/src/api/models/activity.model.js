@@ -14,7 +14,7 @@ const activitySchema = new Schema({
 },
     {
         collection: 'activities',
-        timestamps: true // createdAt + updatedAt
+        timestamps: true
     }
 );
 

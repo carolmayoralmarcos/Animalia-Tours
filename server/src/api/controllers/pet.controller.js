@@ -2,24 +2,24 @@ const Pet = require('../models/pet.model');
 
 const getAllPets = async (req, res) => {
     try {
-        const allPets = await Pet.find(); // .populate('city_id')
-        res.status(200).json({ success: true, data: allPets });
+        const allPets = await Pet.find();
+        return res.status(200).json({ success: true, data: allPets });
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 };
 
 const getPetbyId = async (req, res) => {
     try {
         const { id } = req.params;
-        const filteredPet = await Pet.findById(id); // .populate('city_id')
+        const filteredPet = await Pet.findById(id);
         if (!filteredPet) {
-            res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
         } else {
-            res.status(200).json({ success: true, data: filteredPet });
+            return res.status(200).json({ success: true, data: filteredPet });
         }
     } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
+        return res.status(400).json({ success: false, data: error.message });
     }
 }
 
