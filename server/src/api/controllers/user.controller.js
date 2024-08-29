@@ -14,7 +14,7 @@ const getAllUser = async (req, res) => {
 const getUserbyId = async (req, res) => {
     try {
         const { id } = req.params;
-        const filteredUser = await User.findById(id);
+        const filteredUser = await User.findById(id).populate('pets');
         if (!filteredUser) {
             return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
         } else {
