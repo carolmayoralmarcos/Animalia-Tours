@@ -34,8 +34,8 @@ function Router() {
                 {/* <Route path="/view/activity/:id" element={<Layout><ViewActivity /></Layout>} />
                 <Route path="/view/city/:id" element={<Layout><ViewCity /></Layout>} /> */}
                 {/* <Route path="/update/:collection/:id" element={<PrivateRoute role="client"><Layout><UpdateElement /></Layout></PrivateRoute>} /> */}
-                <Route path="/update/activity/:id" element={<Layout><UpdateActivity /></Layout>} />
-                <Route path="/update/city/:id" element={<Layout><UpdateCity /></Layout>} />
+                <Route path="/update/activities/:id" element={<Layout><UpdateActivity /></Layout>} />
+                <Route path="/update/cities/:id" element={<Layout><UpdateCity /></Layout>} />
                 <Route path="/new/city" element={<Layout><NewCity /></Layout>} />
                 <Route path="/new/activity" element={<Layout><NewActivity /></Layout>} />
                 <Route path="/register" element={<Layout><Register /></Layout>} />
