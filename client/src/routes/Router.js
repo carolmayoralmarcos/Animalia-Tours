@@ -20,6 +20,7 @@ import UserProfile from '../pages/UserProfile';
 //import UsersPage from '../pages/Users';
 import Register from '../pages/Register';
 import Cart from '../pages/Cart';
+import Contact from '../pages/Contact';
 
 function Router() {
 
@@ -42,6 +43,7 @@ function Router() {
                 <Route path="/profile" element={<Layout><UserProfile /></Layout>} />
                 {/* <Route path="/users" element={<Layout><UsersPage /></Layout>} /> */}
                 <Route path="/users" element={<Layout><Cart /></Layout>} />
+                <Route path="/contact" element={<Layout><Contact /></Layout>} />
                 <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
         </BrowserRouter>
