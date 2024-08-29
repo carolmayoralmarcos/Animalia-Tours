@@ -4,26 +4,27 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 //import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import getAllElements from '../utils/getAllElements';
 
 function Cities() {
+    const collection = 'cities';
     const [cities, setCities] = useState([]);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/api/cities/all')
-            .then((res) => res.json())
-            .then((res) => setCities(res.data))
-            .catch(err => {
-                setError(err);
-                console.log(error);
-            });
-    }, [error]);
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        var res = getAllElements(collection);
+        res.then((info) => {
+            setCities(info.data);
+        })
+            .catch((error) => {
+                console.error(`Could not get data: ${error}`);
+            })
+    }, []);
+
     const handleClick = (ev) => {
         const id = ev.target.id;
-        navigate(`/view/city/${id}`);
+        navigate(`/view/cities/${id}`);
     }
 
     return (

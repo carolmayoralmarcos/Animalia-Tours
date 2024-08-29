@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Swal from 'sweetalert2'
-import handleGetbyId from '../utils/handleGetbyId';
+import handleGetbyId from '../utils/getElementbyId';
 
 const UpdateCity = () => {
     const { id, collection } = useParams();

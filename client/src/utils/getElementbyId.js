@@ -1,7 +1,7 @@
-async function getAllElements(collection) {
+async function getElementbyId(id, collection) {
 
     try {
-        const res = await fetch(`http://localhost:5000/api/${collection}/all`, {
+        const res = await fetch(`http://localhost:5000/api/${collection}/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -17,4 +17,4 @@ async function getAllElements(collection) {
 
 };
 
-export default getAllElements;
+export default getElementbyId;

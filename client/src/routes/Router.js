@@ -6,7 +6,7 @@ import Activities from '../pages/Activities';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Cities from '../pages/Cities';
-//import ViewElement from '../pages/ViewElement';
+import ViewElement from '../pages/ViewElement';
 //import ViewActivity from '../pages/ViewActivity';
 //import ViewCity from '../pages/ViewCity';
 //import UpdateElement from '../pages/UpdateElement';
@@ -31,7 +31,7 @@ function Router() {
                 <Route path="/" element={<Layout><Home /></Layout>} />
                 <Route path="/activities" element={<Layout><Activities /></Layout>} />
                 <Route path="/cities" element={<Layout><Cities /></Layout>} />
-                {/* <Route path="/view/:collection/:id" element={<Layout><ViewElement /></Layout>} /> */}
+                <Route path="/view/:collection/:id" element={<Layout><ViewElement /></Layout>} />
                 {/* <Route path="/view/activity/:id" element={<Layout><ViewActivity /></Layout>} />
                 <Route path="/view/city/:id" element={<Layout><ViewCity /></Layout>} /> */}
                 {/* <Route path="/update/:collection/:id" element={<PrivateRoute role="client"><Layout><UpdateElement /></Layout></PrivateRoute>} /> */}
