@@ -7,10 +7,10 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (activity) => {                  
     setCart((prevCart) => {
-      const existingActivity = prevCart.find((item) => item.id === activity.id);
+      const existingActivity = prevCart.find((item) => item._id === activity._id);
       if (existingActivity) {
         return prevCart.map((item) =>
-          item.id === activity.id ? { ...item, quantity: item.quantity + 1 } : item
+          item._id === activity._id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
         return [...prevCart, { ...activity, quantity: 1 }];
