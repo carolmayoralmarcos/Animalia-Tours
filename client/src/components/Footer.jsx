@@ -1,14 +1,15 @@
 import React from 'react';
+import "../styles/styles.css"
 
 function Footer() {
     return (
-        <footer className="bg-info opacity-25 text-center text-lg-start">
+        <footer>
 
 
 
-            <div className="text-center p-3" style={{ backgroundColor: 'info p-2 bg-opacity-25' }}>
-                © 2024 Copyright:
-                <p className="text-dark bg-opacity-25">Todos los derechos reservados a Carolina, Monica, Daniela, Haritz y Aleida</p>
+            <div className="textfooter" >
+                Todos los derechos reservados a Carolina, Monica, Daniela, Haritz y Aleida  © 2024 Copyright
+
             </div>
         </footer>
     );
