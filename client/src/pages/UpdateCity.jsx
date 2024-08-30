@@ -8,7 +8,8 @@ import Swal from 'sweetalert2'
 import handleGetbyId from '../utils/getElementbyId';
 
 const UpdateCity = () => {
-    const { id, collection } = useParams();
+    const { id } = useParams();
+    const collection = 'cities';
     const navigate = useNavigate();
 
     const [updatedCity, setCityData] = useState({});
@@ -41,16 +42,16 @@ const UpdateCity = () => {
                 var updatedID = info.data._id;
 
                 Swal.fire({
-                    title: "City updated successfully!",
-                    text: "Do you want to see the result?",
+                    title: "Ciudad actualizada correctamente",
+                    text: "¿Quieres ver el resultado?",
                     icon: "success",
                     showDenyButton: true,
                     confirmButtonColor: "#3085d6",
                     denyButtonColor: "#d33",
-                    confirmButtonText: "Yes, please."
+                    confirmButtonText: "Sí, por favor."
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        navigate(`/view/city/${updatedID}`);
+                        navigate(`/view/cities/${updatedID}`);
                     } else if (result.isDenied) {
                         navigate('/cities');
                     }
@@ -61,7 +62,7 @@ const UpdateCity = () => {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Something went wrong!",
+                    text: "¡Algo ha ido mal!",
                     footer: err.hasOwnProperty("message") ? err.message : err
                 });
                 console.log('There was an error', err);
@@ -75,17 +76,17 @@ const UpdateCity = () => {
     }
 
     return (
-        <div className="content">
+        <div className="container content my-5">
             <h1 className="mb-5">Actualizando Ciudad: {updatedCity.name}</h1>
             <Form method="get" onSubmit={updateElement} onChange={handleChange}>
                 <Row className="mb-3">
                     <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Nombre</Form.Label>
                         <Form.Control id="name" type="text" value={updatedCity.name} required />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control id="description" type="text" value={updatedCity.description} required />
+                        <Form.Label>Descripción</Form.Label>
+                        <Form.Control as="textarea" rows={3} id="description" type="text" value={updatedCity.description} required />
                     </Form.Group>
                 </Row>
                 <Button variant="primary" type="submit">
