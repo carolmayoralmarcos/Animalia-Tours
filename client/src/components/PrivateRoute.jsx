@@ -27,7 +27,7 @@ function PrivateRoute({ children, role }) {
     }
 
     setTimeout(() => {
-        if (userRole !== role && userRole !== 'admin') {
+        if (userRole !== role) {
             return <Navigate to="/login" />;
         }
     }, 250);
