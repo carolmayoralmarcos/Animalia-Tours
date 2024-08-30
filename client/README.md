@@ -51,6 +51,6 @@
 - [x] 7. Button component
 - [x] 8. NewCity
 - [x] 9. UpdateCity
-- [ ] 10. Logout
-- [ ] 11. ViewElement con switch
+- [x] 10. Logout
+- [x] 11. ViewElement varios
 
