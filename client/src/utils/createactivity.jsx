@@ -1,10 +1,7 @@
 export const createactivity = async (activityData) => {
     const response = await fetch('http://localhost:5000/api/activities/new', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(activityData)
+        body: activityData
     });
 
     if (!response) {
