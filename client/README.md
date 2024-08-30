@@ -43,7 +43,7 @@
 - [ ] 1. SearchBar
 - [x] 2. useRedirection
 - [x] 3. Router
-- [ ] 4. PrivateRoute
+- [x] 4. PrivateRoute
 - [x] 5. Cities (con Carol)
 - [x] 6. deleteElement
 - [x] 7. Button component

@@ -31,11 +31,11 @@ function Router() {
                 <Routes>
                     <Route path="/" element={<Layout><Home /></Layout>} />
                     <Route path="/activities" element={<Layout><Activities /></Layout>} />
-                    <Route path="/cities" element={<PrivateRoute role="admin"><Layout><Cities /></Layout></PrivateRoute>} />
+                    <Route path="/cities" element={<Layout><Cities /></Layout>} />
                     <Route path="/view/:collection/:id" element={<Layout><ViewElement /></Layout>} />
                     {/* <Route path="/update/:collection/:id" element={<PrivateRoute role="client"><Layout><UpdateElement /></Layout></PrivateRoute>} /> */}
                     <Route path="/update/activities/:id" element={<Layout><UpdateActivity /></Layout>} />
-                    <Route path="/update/cities/:id" element={<Layout><UpdateCity /></Layout>} />
+                    <Route path="/update/cities/:id" element={<PrivateRoute role="admin"><Layout><UpdateCity /></Layout></PrivateRoute>} />
                     <Route path="/new/city" element={<PrivateRoute role="admin"><Layout><NewCity /></Layout></PrivateRoute>} />
                     <Route path="/new/activity" element={<Layout><NewActivity /></Layout>} />
                     <Route path="/register" element={<Layout><Register /></Layout>} />
