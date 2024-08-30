@@ -14,7 +14,7 @@ export default function Cart() {
 
   const handleConfirmReservations = () => {
     
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("token");
 
     if (!userId) {
       console.error("No user ID found. Please log in.");
@@ -61,15 +61,20 @@ export default function Cart() {
       </h2>
 
       <ul>
-        {cart.map((item, index) => (
-          <li 
-            key={index}>
-            {item.name} - {item.quantity} x {item.price} = ${item.quantity * parseFloat(item.price.replace("$", ""))}
-            <button className="btn btn-danger" onClick={() => removeFromCart(index)}>
-              Eliminar <FaTrashAlt />
-            </button>
-          </li>
-        ))}
+        {cart.map((item, index) => {
+
+          const normalizedPrice = parseFloat(item.price.replace("$", ""));
+
+          return (
+            <li 
+              key={index}>
+              {item.name} - {item.quantity} x ${normalizedPrice} = ${item.quantity * normalizedPrice}
+              <button className="btn btn-danger" onClick={() => removeFromCart(index)}>
+                Eliminar <FaTrashAlt />
+              </button>
+            </li>
+          );
+        })}
       </ul>
         <CalculateTotal cart={cart}/>
         <button className="btn btn-primary" onClick={handleConfirmReservations}>

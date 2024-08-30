@@ -1,16 +1,20 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import Logo from "../Animaliatour.png"
+import '../styles/styles.css'
+
+
+
 
 function Header() {
     return (
-        <Navbar bg="info p-2 text-dark bg-opacity-25" expand="lg">
-            <Navbar.Brand href="#home">
+        <Navbar bg="warning p-2 text-dark bg-opacity-25" expand="lg">
+            <Navbar.Brand href="/home">
                 <img
                     src={Logo}
-                    width="80"
-                    height="80"
-                    className="d-inline-block align-top"
+                    width="90"
+                    height="90"
+                    className="logo"
                     alt=""
 
                 />
