@@ -40,7 +40,7 @@ function Activities() {
                             <p>Price: ${activity.price}</p>
                             <p>Max Users: {activity.max_users}</p>
                             <button onClick={() => addToCart(activity)}>Añadir al Carrito</button>
-                            <button onClick={() => handleClick(activity._id)}>Ver Detalles</button>
+                            <button onClick={() => handleClick(activity.id)}>Ver Detalles</button>
                         </div>
                     ))
                 ) : (
