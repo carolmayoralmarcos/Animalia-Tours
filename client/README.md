@@ -4,14 +4,16 @@
 
 ### Mónica código manejoError pruebasBack pruebasFront develop
 
-- [ ] 1. Hero (carrusel) ok pte pte pte pte
+- [x] 1. Hero (carrusel) ok pte pte pte pte
 - [x] 2. hook getrandomactivities ok na na na ok
-- [ ] 3. cart (cartContext)
+- [x] 3. cart (cartContext)
 - [x] 4. Login ok ok ok ok ok
 - [ ] 5. UpdateActivity ok Pendiente utils/handleGetbyId.js
 - [ ] 6. Añadir Mascota (addPet)
 - [ ] 7. Eliminar Mascota (deletePet)
-- [ ] 8. Página Carrito -> endpoint newReservation (botón Confirmar reserva con popup)
+- [x] 8. Página Carrito
+- [x] 9. Cart endpoint newReservation (botón Confirmar reserva con ok carrito). id=local storage
+- [x] 5. UpdateActivity ok ok ok ok ok
 
 ### Daniela
 
@@ -41,9 +43,12 @@
 - [ ] 1. SearchBar
 - [x] 2. useRedirection
 - [x] 3. Router
-- [x] 4. PrivateRouter
+- [ ] 4. PrivateRoute
 - [x] 5. Cities (con Carol)
-- [ ] 6. NewCity
-- [ ] 7. UpdateCity
-- [ ] 8. deleteElement
-- [ ] 9. Button component
+- [x] 6. deleteElement
+- [x] 7. Button component
+- [x] 8. NewCity
+- [x] 9. UpdateCity
+- [ ] 10. Logout
+- [ ] 11. ViewElement con switch
+

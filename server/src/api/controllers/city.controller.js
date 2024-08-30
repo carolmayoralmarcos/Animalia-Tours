@@ -50,6 +50,7 @@ const deleteCity = async (req, res) => {
             if (!deletedCity) {
                 return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
             } else {
+                deleteFile(deletedCity.image);
                 return res.status(200).json({ success: true, message: 'City deleted successfully!', data: deletedCity });
             }
         } else {

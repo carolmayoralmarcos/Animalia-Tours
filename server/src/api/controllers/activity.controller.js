@@ -51,7 +51,7 @@ const deleteActivity = async (req, res) => {
             if (!deletedActivity) {
                 return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
             } else {
-                deleteFile(deletedActivity.photo);
+                deleteFile(deletedActivity.image);
                 return res.status(200).json({ success: true, message: 'Activity deleted successfully!', data: deletedActivity });
             }
         } else {
