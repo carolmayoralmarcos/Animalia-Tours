@@ -8,7 +8,7 @@
 - [x] 2. hook getrandomactivities ok na na na ok
 - [x] 3. cart (cartContext)
 - [x] 4. Login ok ok ok ok ok
-- [ ] 5. UpdateActivity ok Pendiente utils/handleGetbyId.js
+- [x] 5. UpdateActivity ok ok nuevo utils getElementbyId y nueva ruta <Route path="/update/activities/:id" element={<Layout><UpdateActivity /></Layout>} />
 - [ ] 6. Añadir Mascota (addPet)
 - [ ] 7. Eliminar Mascota (deletePet)
 - [x] 8. Página Carrito
@@ -51,4 +51,3 @@
 - [x] 9. UpdateCity
 - [x] 10. Logout
 - [x] 11. ViewElement varios
-
