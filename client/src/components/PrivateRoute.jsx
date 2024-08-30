@@ -1,19 +1,18 @@
 // PrivateRoute.js
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/styles.css';
 import { Navigate } from 'react-router-dom';
-import handleAuth from '../utils/handleAuth';
 import Spinner from 'react-bootstrap/Spinner';
-import { AuthContext } from '../context/AuthContext';
+import { getprofile } from '../utils/getprofile';
 
 function PrivateRoute({ children, role }) {
 
     const [userRole, setUserRole] = useState('');
-    const { token } = useContext(AuthContext);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (token) {
-            var res = handleAuth(token);
+            var res = getprofile(token);
             res.then((info) => {
                 setUserRole(info.data.role);
             })

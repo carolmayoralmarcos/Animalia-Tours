@@ -17,7 +17,7 @@ const ViewElement = () => {
                 .catch((error) => {
                     console.error(`Could not get data: ${error}`);
                 })
-        }, 2000);
+        }, 1500);
     }, [collection, id]);
 
     if (!data) {

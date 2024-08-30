@@ -45,9 +45,12 @@
 - [ ] 1. SearchBar
 - [x] 2. useRedirection
 - [x] 3. Router
-- [x] 4. PrivateRouter
+- [ ] 4. PrivateRoute
 - [x] 5. Cities (con Carol)
-- [ ] 6. NewCity
-- [ ] 7. UpdateCity
-- [ ] 8. deleteElement
-- [ ] 9. Button component
+- [x] 6. deleteElement
+- [x] 7. Button component
+- [x] 8. NewCity
+- [x] 9. UpdateCity
+- [ ] 10. Logout
+- [ ] 11. ViewElement con switch
+
