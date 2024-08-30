@@ -2,12 +2,12 @@ import React, { useEffect, useState, useContext } from 'react';
 import getAllElements from '../utils/getAllElements';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-
+import { FaShoppingCart, FaTrash } from 'react-icons/fa';
 
 function Activities() {
     const collection = 'activities';
     const [activities, setActivities] = useState([]);
-    const { addToCart } = useContext(CartContext);
+    const { cart, addToCart, removeFromCart } = useContext(CartContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,33 +23,74 @@ function Activities() {
     const handleClick = (id) => {
         navigate(`/view/activities/${id}`);
     };
+
+    const goToShop = () => {
+        navigate('/cart');
+    };
+
+    const removeStickyCart = (indexToRemove) => {
+        // Ensure you are using the correct method from CartContext
+        removeFromCart(indexToRemove);
+    };
+
     return (
-        <div className="activities-container">
-            <h1>Activities</h1>
-            <div className="activities-grid">
-                {Array.isArray(activities) && activities.length > 0 ? (
-                    activities.map(activity => (
-                        <div
-                            key={activity._id}
-                            className="activity-card"
-                        >
-                            <img src={activity.image} alt={activity.name} className="activity-image" />
-                            <h3>{activity.name}</h3>
-                            <p>{activity.description}</p>
-                            <p>Status: {activity.status}</p>
-                            <p>Price: ${activity.price}</p>
-                            <p>Max Users: {activity.max_users}</p>
-                            <button onClick={() => addToCart(activity)}>Añadir al Carrito</button>
-                            <button onClick={() => handleClick(activity._id)}>Ver Detalles</button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No activities available.</p>
-                )}
+        <div className="container-fluid ">
+            {/* Sticky Cart */}
+            <div className="position-fixed bottom-0 end-0 p-3" style={{ width: '300px', zIndex: 1050 }}>
+                <div className="card">
+                    <div className="card-header text-center">
+                        <h5 className="mb-0">Carrito <FaShoppingCart /></h5>
+                    </div>
+                    <ul className="list-group list-group-flush">
+                        {cart.length > 0 ? (
+                            cart.map((item, index) => (
+                                <li key={item._id} className="list-group-item d-flex justify-content-between align-items-center">
+                                    {item.name}
+                                    <button className="btn btn-danger btn-sm" onClick={() => removeStickyCart(index)}>
+                                        <FaTrash />
+                                    </button>
+                                </li>
+                            ))
+                        ) : (
+                            <li className="list-group-item">El carrito está vacío.</li>
+                        )}
+                    </ul>
+                    <div className=" card-body text-center">
+                        <button className="btn btn-primary" onClick={goToShop}> ir a carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div className="row mt-5">
+                <div className="col">
+                    <h1 className="text-center mb-4">Activities</h1>
+                    <div className="row">
+                        {Array.isArray(activities) && activities.length > 0 ? (
+                            activities.map(activity => (
+                                <div key={activity._id} className="col-md-6 mb-4 d-flex align-items-stretch">
+                                    <div className="card h-100">
+                                        <img src={activity.image} alt={activity.name} className="card-img-top" />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{activity.name}</h5>
+                                            <p className="card-text">{activity.description}</p>
+                                            <p className="card-text">Status: {activity.status}</p>
+                                            <p className="card-text">Price: ${activity.price}</p>
+                                            <p className="card-text">Max Users: {activity.max_users}</p>
+                                            <button className="btn btn-primary me-2" onClick={() => addToCart(activity)}>Añadir al Carrito</button>
+                                            <button className="btn btn-secondary" onClick={() => handleClick(activity._id)}>Ver Detalles</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No activities available.</p>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
-
 }
 
 export default Activities;

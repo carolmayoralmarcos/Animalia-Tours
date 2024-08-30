@@ -19,7 +19,7 @@
 
 ### Daniela
 
-1. pagina activities
+1. pagina activities #FFEFC1
 2. pagina About
 3. Register(Con Ale)
 4. Contact (Con Ale)
