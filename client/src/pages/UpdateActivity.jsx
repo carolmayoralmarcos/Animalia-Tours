@@ -4,11 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Swal from 'sweetalert2'
-import handleGetbyId from '../utils/handleGetbyId';
+import Swal from 'sweetalert2';
+import getElementbyId from '../utils/getElementbyId';
 
 const UpdateActivity = () => {
-    const { id, collection } = useParams();
+    const { id, activities } = useParams();         //collection
     const navigate = useNavigate();
     const [updatedActivity, setActivityData] = useState({
         name: '',
@@ -21,11 +21,12 @@ const UpdateActivity = () => {
     });
 
     useEffect(() => {
+        if (id && activities) {                     //collection
         const fetchData = async () => {
             try {
-                const info = await handleGetbyId(id, collection);
+                const info = await getElementbyId(id, activities); //collecton
                 if (info && info.data) {
-                    const { _v, ...rest } = info.data; // Elimina _v al desestructurar
+                    const { _v, ...rest } = info.data; 
                     setActivityData(rest);
                 }
             } catch (error) {
@@ -35,11 +36,15 @@ const UpdateActivity = () => {
 
         fetchData();
 
-    }, [id, collection]); // Elimina updatedActivity._v de las dependencias
+        } else {
+            console.error('Missing collection or id parameter');
+        }
+
+    }, [id, activities]);             //collection
 
     const updateElement = (ev) => {
         ev.preventDefault();
-        fetch(`http:localhost:5000/api/${collection}/update/${id}`, {
+        fetch(`http://localhost:5000/api/${activities}/update/${id}`, {         //collection
             method: "PUT",
             body: JSON.stringify(updatedActivity),
             headers: {
@@ -94,31 +99,31 @@ const UpdateActivity = () => {
                 <Row className="mb-3">
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Name</Form.Label>
-                        <Form.Control id="name" type="text" value={updatedActivity.name} required />
+                        <Form.Control id="name" type="text" value={updatedActivity.name} onChange={handleChange} required />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Description</Form.Label>
-                        <Form.Control id="description" type="text" value={updatedActivity.description} required />
+                        <Form.Control id="description" type="text" value={updatedActivity.description} onChange={handleChange} required />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Status</Form.Label>
-                        <Form.Control id="status" type="text" value={updatedActivity.status} required />
+                        <Form.Control id="status" type="text" value={updatedActivity.status} onChange={handleChange} required />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Max_users</Form.Label>
-                        <Form.Control id="max_users" type="number" value={updatedActivity.max_users} required />
+                        <Form.Control id="max_users" type="number" value={updatedActivity.max_users} onChange={handleChange} required />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Date</Form.Label>
-                        <Form.Control id="date" type="date" value={updatedActivity.date} required />
+                        <Form.Control id="date" type="date" value={updatedActivity.date} onChange={handleChange} required />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Price</Form.Label>
-                        <Form.Control id="price" type="number" value={updatedActivity.price} required />
+                        <Form.Control id="price" type="number" value={updatedActivity.price} onChange={handleChange} required />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>City_id</Form.Label>
-                        <Form.Control id="city_id" type="text" value={updatedActivity.city_id} required />
+                        <Form.Control id="city_id" type="text" value={updatedActivity.city_id} onChange={handleChange} required />
                     </Form.Group>
                 </Row>
                 <Button variant="primary" type="submit">
