@@ -8,7 +8,9 @@ import Swal from 'sweetalert2';
 import getElementbyId from '../utils/getElementbyId';
 
 const UpdateActivity = () => {
-    const { id, activities } = useParams();         //collection
+
+    const { id } = useParams();  
+    const collection = 'activities';       
     const navigate = useNavigate();
     const [updatedActivity, setActivityData] = useState({
         name: '',
@@ -21,10 +23,10 @@ const UpdateActivity = () => {
     });
 
     useEffect(() => {
-        if (id && activities) {                     //collection
+        if (id) {                     
         const fetchData = async () => {
             try {
-                const info = await getElementbyId(id, activities); //collecton
+                const info = await getElementbyId(id, collection); 
                 if (info && info.data) {
                     const { _v, ...rest } = info.data; 
                     setActivityData(rest);
@@ -37,14 +39,14 @@ const UpdateActivity = () => {
         fetchData();
 
         } else {
-            console.error('Missing collection or id parameter');
+            console.error('Missing id parameter');
         }
 
-    }, [id, activities]);             //collection
+    }, [id]);             
 
     const updateElement = (ev) => {
         ev.preventDefault();
-        fetch(`http://localhost:5000/api/${activities}/update/${id}`, {         //collection
+        fetch(`http://localhost:5000/api/activities/update/${id}`, {         
             method: "PUT",
             body: JSON.stringify(updatedActivity),
             headers: {
@@ -68,7 +70,7 @@ const UpdateActivity = () => {
                     confirmButtonText: "Yes, please."
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        navigate(`/view/activity/${updatedID}`);
+                        navigate(`/view/activities/${updatedID}`);          //${updatedID}
                     } else if (result.isDenied) {
                         navigate('/activities');
                     }
