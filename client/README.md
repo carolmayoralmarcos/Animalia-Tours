@@ -9,6 +9,9 @@
 - [ ] 3. cart (cartContext)
 - [x] 4. Login ok ok ok ok ok
 - [ ] 5. UpdateActivity ok Pendiente utils/handleGetbyId.js
+- [ ] 6. Añadir Mascota (addPet)
+- [ ] 7. Eliminar Mascota (deletePet)
+- [ ] 8. Página Carrito -> endpoint newReservation (botón Confirmar reserva con popup)
 
 ### Daniela
 
@@ -16,6 +19,7 @@
 2. pagina About
 3. Register(Con Ale)
 4. Contact (Con Ale)
+5. En Actividades un botón "Añadir al carrito" -> utilizar context
 
 ### Aleida
 
@@ -29,7 +33,8 @@
 1. En utils recoger actividad por ID
 2. crear y hacer pagina ver actividad por id
 3. UserProfile
-4. NewActivity
+4. NewActivity (añadir imagen) -> NO usar JSON, usar Form
+5. Dentro del UserProfile -> Bloque de Reservas (usar endpoint getReservationsbyUserId)
 
 ### Haritz
 
@@ -40,3 +45,5 @@
 - [x] 5. Cities (con Carol)
 - [ ] 6. NewCity
 - [ ] 7. UpdateCity
+- [ ] 8. deleteElement
+- [ ] 9. Button component
