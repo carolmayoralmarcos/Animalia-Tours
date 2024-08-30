@@ -35,46 +35,46 @@ const NewActivity = () => {
 
     return (
         <div className="container content">
-            <h1>Create New Activity</h1>
+            <h1>Crear Nueva Actividad</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Name</label>
+                    <label>Nombre</label>
                     <input type="text" name="name" value={activity.name} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label>Description</label>
+                    <label>Descripción</label>
                     <textarea name="description" value={activity.description} onChange={handleChange} required />
                 </div>
 
                 <div>
-                    <label>Status</label>
+                    <label>Estado</label>
                     <select name="status" value={activity.status} onChange={handleChange}>
-                        <option value="open">Open</option>
-                        <option value="closed">Closed</option>
-                        <option value="full">Full</option>
+                        <option value="open">Abierta</option>
+                        <option value="closed">Cerrada</option>
+                        <option value="full">Llena</option>
                     </select>
                 </div>
                 <div>
-                    <label>Max Users</label>
+                    <label>Usuarios Máximos</label>
                     <input type="number" name="max_users" value={activity.max_users} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label>Date</label>
+                    <label>Fecha</label>
                     <input type="date" name="date" value={activity.date} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label>Price</label>
+                    <label>Precio</label>
                     <input type="number" name="price" value={activity.price} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label>City ID</label>
+                    <label>ID de la Ciudad</label>
                     <input type="text" name="city_id" value={activity.city_id} onChange={handleChange} />
                 </div>
-                <button type="submit">Create Activity</button>
+                <button type="submit">Crear Actividad</button>
             </form>
             {message && <p>{message}</p>}
         </div>
-    );
-};
+    )
+}
 
 export default NewActivity;

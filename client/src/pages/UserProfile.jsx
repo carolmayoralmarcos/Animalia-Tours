@@ -3,10 +3,11 @@ import { getprofile } from '../utils/getprofile';
 
 const UserProfile = () => {
     const [profile, setProfile] = useState(null);
-
+    const token = localStorage.getItem("token");
     useEffect(() => {
+
         const loadUserProfile = async () => {
-            const result = await getprofile("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2Y0MGFkNTU3MTNkOWI3YTIzMzZhMCIsImVtYWlsIjoiaXZhbkBtYWlsLmNvbSIsImlhdCI6MTcyNDk2MTQ3OSwiZXhwIjoxNzI0OTY1MDc5fQ.ry8xDB83hbNhE6xXpUAxaYlQFzBzJADo1ySvh6Oa9Xs");
+            const result = await getprofile(token);
             if (result.success) {
 
                 setProfile(result.data);
@@ -20,26 +21,26 @@ const UserProfile = () => {
     }, []);
 
     if (!profile) {
-        return <p>Failed to load profile. Please try again later.</p>;
+        return <p>No se pudo cargar el perfil. Por favor, inténtalo de nuevo más tarde.</p>;
     }
 
     return (
         <div>
-            <h1>{profile.name}Profile</h1>
-            <p>Name:{profile.name}</p>
+            <h1>Perfil de {profile.name}</h1>
+            <p>Nombre: {profile.name}</p>
             <p>Email: {profile.email}</p>
-            <h2>Pets</h2>
+            <h2>Mascotas</h2>
             <ul>
                 {profile.pets.length > 0 ? (
                     profile.pets.map((pet, index) => (
                         <li key={index}>{pet.name}</li>
                     ))
                 ) : (
-                    <p>You have no registered pets.</p>
+                    <p>No tienes mascotas registradas.</p>
                 )}
             </ul>
         </div>
     );
-};
+}
 
 export default UserProfile;

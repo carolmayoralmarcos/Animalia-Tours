@@ -26,13 +26,14 @@ const ActivityById = () => {
             <h1>{activity.name}</h1>
             <img src={activity.image} alt={activity.name} />
             <p>{activity.description}</p>
-            <p>Status: {activity.status}</p>
-            <p>Max Users: {activity.max_users}</p>
-            <p>Current Users: {activity.current_users}</p>
-            <p>Date: {activity.date}</p>
-            <p>Price: ${activity.price}</p>
-            <p>City: {activity.city_id.name}</p>
+            <p>Estado: {activity.status}</p>
+            <p>Usuarios Máximos: {activity.max_users}</p>
+            <p>Usuarios Actuales: {activity.current_users}</p>
+            <p>Fecha: {activity.date}</p>
+            <p>Precio: ${activity.price}</p>
+            <p>Ciudad: {activity.city_id.name}</p>
         </div>
+
     );
 };
 
