@@ -10,6 +10,7 @@ function Activities() {
     const { cart, addToCart, removeFromCart } = useContext(CartContext);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         getAllElements(collection)
             .then((info) => {
