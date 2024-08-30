@@ -8,10 +8,14 @@
 - [x] 2. hook getrandomactivities ok na na na ok
 - [ ] 3. cart (cartContext)
 - [x] 4. Login ok ok ok ok ok
+<<<<<<< HEAD
 - [ ] 5. UpdateActivity ok Pendiente utils/handleGetbyId.js
 - [ ] 6. Añadir Mascota (addPet)
 - [ ] 7. Eliminar Mascota (deletePet)
 - [ ] 8. Página Carrito -> endpoint newReservation (botón Confirmar reserva con popup)
+=======
+- [x] 5. UpdateActivity ok ok ok ok ok
+>>>>>>> developmoni
 
 ### Daniela
 
