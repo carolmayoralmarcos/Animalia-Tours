@@ -24,9 +24,9 @@ const ViewElement = () => {
         return (
             <div className="container content my-5">
                 <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
+                    <span className="visually-hidden">Cargando...</span>
                 </Spinner>
-                <h1>Searching for element...</h1>
+                <h1>Buscando elemento...</h1>
             </div>)
     }
 
