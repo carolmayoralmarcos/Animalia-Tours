@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/styles.css';
 import { Navigate } from 'react-router-dom';
-import Spinner from 'react-bootstrap/Spinner';
 import { getprofile } from '../utils/getprofile';
 
 function PrivateRoute({ children, role }) {
@@ -14,7 +13,8 @@ function PrivateRoute({ children, role }) {
         if (token) {
             var res = getprofile(token);
             res.then((info) => {
-                setUserRole(info.data.role);
+                const newRole = info.data.role
+                setUserRole(newRole);
             })
                 .catch((error) => {
                     console.error(`Could not get data: ${error}`);
@@ -23,25 +23,22 @@ function PrivateRoute({ children, role }) {
     }, [token])
 
     if (!token) {
+        console.log('Error: No token');
         return <Navigate to="/login" />;
     }
 
-    setTimeout(() => {
-        if (userRole !== role) {
-            return <Navigate to="/login" />;
-        }
-    }, 250);
+    // if (!userRole) {
+    //     console.log('Error: Not defined role');
+    //     return <Navigate to="/login" />;
+    // }
 
-    if (!userRole) {
-        return (
-            <div className="container content">
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
-                <h1>Loading...</h1>
-            </div>)
-    }
+    // if (userRole !== role && userRole !== 'admin') {
+    //     console.log('Error: bad role');
+    //     return <Navigate to="/login" />;
+    // }
+
     return children;
+
 }
 
 export default PrivateRoute;
