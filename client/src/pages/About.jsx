@@ -6,71 +6,81 @@ function About() {
         <Container className="my-5">
             <Row className="mb-4">
                 <Col>
-                    <h1 className="text-center">About Us</h1>
-                    <p className="text-center">Learn more about our company, mission, and values.</p>
+                    <h1 className="text-center">Sobre Nosotros</h1>
+
                 </Col>
             </Row>
 
             <Row className="mb-5">
                 <Col md={6}>
-                    <h2>Our Mission</h2>
+                    <h2>¿Qué es Animalia Tours?</h2>
                     <p>
-                        Our mission is to provide the best services to our customers and ensure their satisfaction.
-                        We believe in quality, innovation, and customer-centricity as the core values that drive us forward.
+                        Si  estás buscando una experiencia única y emocionante, Animalia Tours es la opción perfecta para pasar tiempo de calidad con tu mascota.
+                        Te proponemos un montón de planes para hacer con ella, desde paseos en barca hasta viajes al espacio.
+                        Somos amantes de los animales y sabemos lo dificil que es encontrar actividades para hacer con ellos, por ello, te lo queremos poner un poco más fácil y proponerte diferentes opciones para que puedas elegir la que mejor se adapte a tus necesidades.
+                        Esperamos que disfruteis de la experiencia!!
+
+
+
                     </p>
                 </Col>
                 <Col md={6}>
-                    <Image src="https://via.placeholder.com/500x300" rounded fluid />
+                    <Image src="/assets/spa.jpg" rounded fluid />
                 </Col>
             </Row>
 
             <Row className="mb-5">
                 <Col md={4} className="text-center">
-                    <Image src="https://via.placeholder.com/100" roundedCircle fluid className="mb-3" />
-                    <h4>Quality</h4>
-                    <p>We provide the highest quality products and services to our customers.</p>
+                    <Image src="/assets/surf.jpg" roundedCircle fluid className="mb-3" />
+                    <h4>Viajes</h4>
+                    <p>Programa el viaje de tu vida con tu amigo peludo.</p>
                 </Col>
                 <Col md={4} className="text-center">
-                    <Image src="https://via.placeholder.com/100" roundedCircle fluid className="mb-3" />
-                    <h4>Innovation</h4>
-                    <p>We continuously innovate to stay ahead in the market and offer the best solutions.</p>
+                    <Image src="/assets/cine.jpg" roundedCircle fluid className="mb-3" />
+                    <h4>Plan fin de semana</h4>
+                    <p>¿Quizás una pelicula apta para perritos?</p>
                 </Col>
                 <Col md={4} className="text-center">
-                    <Image src="https://via.placeholder.com/100" roundedCircle fluid className="mb-3" />
-                    <h4>Customer-Centric</h4>
-                    <p>Our customers are at the heart of everything we do, and we strive to meet their needs.</p>
+                    <Image src="/assets/catspa.jpg" roundedCircle fluid className="mb-3" />
+                    <h4>Plan relax</h4>
+                    <p>¿Cansados de tanto trabajo? Vámonos de spa!</p>
                 </Col>
             </Row>
 
             <Row>
                 <Col>
-                    <h2 className="text-center">Our Team</h2>
+                    <h2 className="text-center">Nuestro Equipo</h2>
                     <p className="text-center">
-                        Meet the people behind our success. Our team is composed of dedicated professionals who are passionate about what they do.
+                        Nuestro equipo está compuesto por profesionales dedicados y apasionados por lo que hacen. Pero no solo vivimos para trabajar, tambien nos encanta pasar tiempo libre en compañia de nuestros peludos!
                     </p>
                 </Col>
             </Row>
 
             <Row>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="https://via.placeholder.com/150" roundedCircle fluid className="mb-2" />
-                    <h5>John Doe</h5>
-                    <p>CEO</p>
+                    <Image src="/assets/Haritz.jpeg" roundedCircle fluid className="mb-2" />
+                    <h5>JHaritz</h5>
+                    <p>Desarrollador Fullstack y solucionador de problemas</p>
                 </Col>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="https://via.placeholder.com/150" roundedCircle fluid className="mb-2" />
-                    <h5>Jane Smith</h5>
-                    <p>CTO</p>
+                    <Image src="/assets/carol.jpg" roundedCircle fluid className="mb-2" />
+                    <h5>Carolina</h5>
+                    <p>Desarrolladora Fullstack y la armonia del equipo </p>
                 </Col>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="https://via.placeholder.com/150" roundedCircle fluid className="mb-2" />
-                    <h5>Mike Johnson</h5>
-                    <p>Head of Marketing</p>
+                    <Image src="/assets/MONICA PENACHO.jpg" roundedCircle fluid className="mb-2" />
+                    <h5>Mónica</h5>
+                    <p>Desarrolladora Fullstack y documentadora profesional</p>
                 </Col>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="https://via.placeholder.com/150" roundedCircle fluid className="mb-2" />
-                    <h5>Emily Davis</h5>
-                    <p>Lead Designer</p>
+                    <Image src="/assets/dani.jpg" roundedCircle fluid className="mb-2" />
+                    <h5>Daniela</h5>
+                    <p>Desarrolladora Fullstack y la que pone bonita la web</p>
+                </Col>
+                <Col md={3} className="text-center mb-4">
+                    <Image src="/assets/aleida.jpeg" roundedCircle fluid className="mb-2" />
+                    <h5>Aleida</h5>
+                    <p>Desarrolladora Fullstack y la que pone color a la web</p>
                 </Col>
             </Row>
         </Container>
