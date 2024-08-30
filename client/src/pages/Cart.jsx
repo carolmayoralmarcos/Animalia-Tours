@@ -63,12 +63,11 @@ export default function Cart() {
       <ul>
         {cart.map((item, index) => {
 
-          const normalizedPrice = parseFloat(item.price.replace("$", ""));
-
           return (
             <li 
               key={index}>
-              {item.name} - {item.quantity} x ${normalizedPrice} = ${item.quantity * normalizedPrice}
+            
+              {item.name} - {item.quantity} x ${item.price} = ${item.quantity * item.price}
               <button className="btn btn-danger" onClick={() => removeFromCart(index)}>
                 Eliminar <FaTrashAlt />
               </button>
