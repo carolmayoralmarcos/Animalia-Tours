@@ -4,6 +4,7 @@ import { getprofile } from '../utils/getprofile';
 const UserProfile = () => {
     const [profile, setProfile] = useState(null);
     const [reservations, setReservations] = useState([]);
+    const [petName, setPetName] = useState('');
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -26,6 +27,43 @@ const UserProfile = () => {
         loadUserProfile();
     }, [token]);
 
+
+    const addPet = async () => {
+        const response = await fetch('http://localhost:5000/api/pets/new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: petName })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            alert(`Mascota añadida: ${data.data.name}`);
+            setProfile({ ...profile, pets: [...profile.pets, data.data] });
+        } else {
+            alert(`Error: ${data.data}`);
+        }
+    };
+
+
+    const deletePet = async (petId) => {
+        const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
+            method: 'DELETE',
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            alert(`Mascota eliminada: ${data.data.name}`);
+            setProfile({
+                ...profile,
+                pets: profile.pets.filter(pet => pet._id !== petId)
+            });
+        } else {
+            alert(`Error: ${data.data}`);
+        }
+    };
+
     if (!profile) {
         return <p>No se pudo cargar el perfil. Por favor, inténtalo de nuevo más tarde.</p>;
     }
@@ -39,13 +77,23 @@ const UserProfile = () => {
             <ul>
                 {profile.pets.length > 0 ? (
                     profile.pets.map((pet, index) => (
-                        <li key={index}>{pet.name}</li>
+                        <li key={index}>
+                            {pet.name}
+                            <button onClick={() => deletePet(pet._id)}>Eliminar Mascota</button>
+                        </li>
                     ))
                 ) : (
                     <p>No tienes mascotas registradas.</p>
                 )}
             </ul>
 
+            <input
+                type="text"
+                value={petName}
+                onChange={(e) => setPetName(e.target.value)}
+                placeholder="Nombre de la nueva mascota"
+            />
+            <button onClick={addPet}>Añadir Mascota</button>
             <h2>Reservas</h2>
             <div>
                 {reservations.length > 0 ? (
