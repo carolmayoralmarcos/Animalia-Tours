@@ -40,7 +40,7 @@
 
 ### Haritz
 
-- [ ] 1. SearchBar
+- [x] 1. SearchBar
 - [x] 2. useRedirection
 - [x] 3. Router
 - [x] 4. PrivateRoute

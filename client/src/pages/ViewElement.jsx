@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import getElementbyId from '../utils/getElementbyId';
 import Spinner from 'react-bootstrap/Spinner';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
+import getActivitiesbyCity from '../utils/getActivitiesbyCity';
 import { CartContext } from '../context/CartContext';
+import { ActionButton } from '../components/ActionButton';
 
 const ViewElement = () => {
     const { id, collection } = useParams();
 
     const [data, setData] = useState(null);
+    const [activities, setActivities] = useState(null);
     const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
     const navigate = useNavigate();
@@ -22,17 +25,43 @@ const ViewElement = () => {
                 .catch((error) => {
                     console.error(`Could not get data: ${error}`);
                 })
-        }, 1000);
+        }, 750);
     }, [collection, id]);
 
-    if (!data) {
-        return (
-            <div className="container content my-5">
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Cargando...</span>
-                </Spinner>
-                <h1>Buscando elemento...</h1>
-            </div>)
+    useEffect(() => {
+        setTimeout(() => {
+            if (collection === 'cities' && data !== null) {
+                var res = getActivitiesbyCity(data._id);
+                res.then((info) => {
+                    setActivities(info.data);
+                })
+                    .catch((error) => {
+                        console.error(`Could not get data: ${error}`);
+                    })
+            }
+        }, 1000);
+    }, [collection, data]);
+
+    if (collection === 'cities') {
+        if (!data || !activities) {
+            return (
+                <div className="container content my-5">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Cargando...</span>
+                    </Spinner>
+                    <h1>Buscando elemento...</h1>
+                </div>)
+        }
+    } else {
+        if (!data) {
+            return (
+                <div className="container content my-5">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Cargando...</span>
+                    </Spinner>
+                    <h1>Buscando elemento...</h1>
+                </div>)
+        }
     }
 
     const goToShop = () => {
@@ -59,6 +88,26 @@ const ViewElement = () => {
                 </div>
             </div>
             {/* AQUÍ VAN LAS ACTIVIDADES */}
+            <div className="container content my-5">
+                <h2>Actividades disponibles en {data.name}</h2>
+                {activities.map((activity, index) =>
+                (
+                    <div key={index} className="row g-0 my-5">
+                        <div className="col-md-3">
+                            <img src={activity.image} className="rounded" alt="Element" style={{ maxHeight: '200px', maxWidth: '250px' }} />
+                        </div>
+                        <div className="col-md-9">
+                            <div className="card-body ms-5">
+                                <h3>{activity.name}</h3>
+                                <h5>Precio - {activity.price}€</h5>
+                                <p>{activity.description}</p>
+                                <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} delay={0} type="primary" />
+                            </div>
+                        </div>
+                    </div>
+                )
+                )}
+            </div>
         </div>
     ) : (
         <div className="container-fluid ">
@@ -99,7 +148,7 @@ const ViewElement = () => {
                             <h1>{data.name}</h1>
                             <h3>Precio - {data.price}€</h3>
                             <br></br>
-                            <h4><a href={`/view/cities/${data.city_id._id}`}>{data.city_id.name}</a></h4>
+                            <h4><Link to={`/view/cities/${data.city_id._id}`}>{data.city_id.name}</Link></h4>
                             <br></br>
                             <p>{data.description}</p>
                             <br></br>
@@ -110,7 +159,7 @@ const ViewElement = () => {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         </div>
     );
 
