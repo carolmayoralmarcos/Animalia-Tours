@@ -17,7 +17,7 @@ function PrivateRoute({ children, role }) {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
-        if (token) {
+        if (token !== null) {
             var res = getprofile(token);
             res.then((info) => {
                 setUserRole(info.data);
@@ -26,7 +26,7 @@ function PrivateRoute({ children, role }) {
                     console.error(`Could not get data: ${error}`);
                 })
         }
-    }, [])
+    }, [token])
 
     if (token === null) {
         MySwal.fire({

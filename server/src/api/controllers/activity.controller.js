@@ -15,7 +15,7 @@ const getActivitybyId = async (req, res) => {
         const { id } = req.params;
         const filteredActivity = await Activity.findById(id).populate('city_id');
         if (!filteredActivity) {
-            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
         } else {
             return res.status(200).json({ success: true, data: filteredActivity });
         }
@@ -29,7 +29,7 @@ const getActivitiesByCityId = async (req, res) => {
         const { cityId } = req.params;
         const filteredActivities = await Activity.find({ city_id: cityId }).populate('city_id');
         if (!filteredActivities) {
-            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
         } else {
             return res.status(200).json({ success: true, data: filteredActivities });
         }
@@ -50,7 +50,7 @@ const newActivity = async (req, res) => {
             const createdActivity = await newActivity.save();
             return res.status(201).json({ success: true, data: createdActivity });
         } else {
-            return res.status(200).json({ success: false, data: 'Activity already exists!' });
+            return res.status(200).json({ success: false, data: '¡La Actividad ya existe!' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -63,13 +63,13 @@ const deleteActivity = async (req, res) => {
         if (id) {
             const deletedActivity = await Activity.findByIdAndDelete(id);
             if (!deletedActivity) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
                 deleteFile(deletedActivity.image);
-                return res.status(200).json({ success: true, message: 'Activity deleted successfully!', data: deletedActivity });
+                return res.status(200).json({ success: true, message: 'Actividad eliminada correctamente.', data: deletedActivity });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -83,12 +83,12 @@ const updateActivity = async (req, res) => {
         if (id) {
             const updatedActivity = await Activity.findByIdAndUpdate(id, updateBody, { new: true }).populate('city_id');;
             if (!updatedActivity) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
-                return res.status(200).json({ success: true, message: 'Activity updated successfully!', data: updatedActivity });
+                return res.status(200).json({ success: true, message: '¡Actividad actualizada correctamente!', data: updatedActivity });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });

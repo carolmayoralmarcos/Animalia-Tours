@@ -16,7 +16,7 @@ const getUserbyId = async (req, res) => {
         const { id } = req.params;
         const filteredUser = await User.findById(id).populate('pets');
         if (!filteredUser) {
-            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
         } else {
             return res.status(200).json({ success: true, data: filteredUser });
         }
@@ -38,7 +38,7 @@ const newUser = async (req, res) => {
             const createdUser = await newUser.save();
             return res.status(200).json({ success: true, data: createdUser })
         } else {
-            return res.status(201).json({ success: false, data: 'User already exists!' })
+            return res.status(201).json({ success: false, data: 'Ya existe un usuario con ese email.' })
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -51,13 +51,13 @@ const deleteUser = async (req, res) => {
         if (id) {
             const deletedUser = await User.findByIdAndDelete(id);
             if (!deletedUser) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
 
-                return res.status(200).json({ success: true, message: 'User deleted successfully!', data: deletedUser });
+                return res.status(200).json({ success: true, message: 'Usuario eliminado correctamente.', data: deletedUser });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -71,12 +71,12 @@ const updateUser = async (req, res) => {
         if (id) {
             const updatedUser = await User.findByIdAndUpdate(id, updateBody, { new: true });
             if (!updatedUser) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
-                return res.status(200).json({ success: true, message: 'User updated successfully!', data: updatedUser });
+                return res.status(200).json({ success: true, message: '¡Usuario actualizado correctamente!', data: updatedUser });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -97,10 +97,10 @@ const login = async (req, res) => {
                 return res.status(200).json({ success: true, data: data, username: userByEmail[0].name, token: token, role: userByEmail[0].role })
 
             } else {
-                return res.status(201).json({ success: false, data: 'Passwords do not match :(' })
+                return res.status(201).json({ success: false, data: 'Las contraseñas no coinciden :(' })
             }
         } else {
-            return res.status(201).json({ success: false, data: 'Email does NOT exists!' })
+            return res.status(201).json({ success: false, data: 'El email no existe, lo sentimos.' })
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -112,7 +112,7 @@ const getProfile = async (req, res) => {
     try {
         const loggedUser = req.userData;
         const filteredUser = await User.findById(loggedUser._id).populate('pets');
-        return res.status(201).json({ success: true, message: 'You are authorized!', data: filteredUser });
+        return res.status(201).json({ success: true, message: '¡Estás autorizado!', data: filteredUser });
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
     }
@@ -129,7 +129,7 @@ const addPetToUser = async (req, res) => {
         );
 
         if (!modifiedUser) {
-            return res.status(200).json({ success: false, message: 'User does NOT exist!' })
+            return res.status(200).json({ success: false, message: '¡El usuario NO existe!!' })
         } else {
             return res.status(201).json({ success: true, data: modifiedUser })
         }
@@ -149,7 +149,7 @@ const removePetfromUser = async (req, res) => {
         );
 
         if (!modifiedUser) {
-            return res.status(200).json({ success: false, message: 'User does NOT exist!' })
+            return res.status(200).json({ success: false, message: '¡El usuario NO existe!' })
         } else {
             return res.status(201).json({ success: true, data: modifiedUser })
         }
