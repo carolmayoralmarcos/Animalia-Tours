@@ -1,4 +1,4 @@
-function HeroCarouselImage({image, text}) {
+function CarouselImage({image, text}) {
     return (
         <img
 
@@ -11,4 +11,4 @@ function HeroCarouselImage({image, text}) {
         />
     )
 }
-export default HeroCarouselImage;
+export default CarouselImage;
