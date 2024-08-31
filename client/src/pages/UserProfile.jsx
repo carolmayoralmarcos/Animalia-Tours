@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { getprofile } from '../utils/getprofile';
 
 const UserProfile = () => {
@@ -28,25 +29,79 @@ const UserProfile = () => {
         loadUserProfile();
     }, [token]);
 
-    const deletePet = async (petId) => {
-        const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
-            method: 'DELETE',
-        });
+    const removePetFromUser = async (userId, petId) => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/users/removePet/${userId}/${petId}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
 
-        const data = await response.json();
-        if (data.success) {
-            alert(`Mascota eliminada: ${data.data.name}`);
+            const data = await response.json();
+
+            if (!data.success) {
+                throw new Error(data.message || 'Failed to remove pet from user');
+            }
+
+            return data;
+
+        } catch (error) {
+            console.error('Error removing pet from user:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.message || 'Something went wrong!',
+            });
+            return null;
+        }
+    };
+
+    const deletePet = async (petId) => {
+        try {
+
+            const removeResponse = await removePetFromUser(profile._id, petId);
+            if (!removeResponse) return;
+
+
+            const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            const data = await response.json();
+            if (!data.success) {
+                throw new Error(data.data);
+            }
+
+            Swal.fire({
+                title: 'Mascota eliminada',
+                text: `La mascota ${data.data.name} ha sido eliminada con éxito.`,
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
+
+
             setProfile({
                 ...profile,
                 pets: profile.pets.filter(pet => pet._id !== petId)
             });
-        } else {
-            alert(`Error: ${data.data}`);
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: `No se pudo eliminar la mascota: ${error.message}`,
+                confirmButtonText: 'Aceptar'
+            });
         }
     };
 
     if (!profile) {
         return <p>No se pudo cargar el perfil. Por favor, inténtalo de nuevo más tarde.</p>;
+
     }
 
     return (
