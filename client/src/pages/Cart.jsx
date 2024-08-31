@@ -4,24 +4,27 @@ import { FaShoppingCart, FaTrashAlt } from "react-icons/fa";
 import CalculateTotal from "../components/CalculateTotal";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 
 export default function Cart() {
 
   const { cart, removeFromCart } = useContext(CartContext);
-
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleConfirmReservations = () => {
 
-    const userId = localStorage.getItem("token");
+    // const userId = localStorage.getItem("token");
 
-    if (!userId) {
-      console.error("No user ID found. Please log in.");
+    if (!user) {
+      console.error("No user found. Please log in.");
       return;
     }
 
-    cart.forEach((item) => {
+    const userId = user.id;
+
+    const reservationPromises = cart.map((item) => {    //const reservationData
       const reservationData = {
         name: `Reservation for ${item.name}`,
         status: "confirmed",
@@ -29,29 +32,49 @@ export default function Cart() {
         activity: item._id
       };
 
-      fetch("http://localhost:5000/api/reservations", {
+    console.log("Sending reservation data:", reservationData);
+
+     return fetch("http://localhost:5000/api/reservations/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(reservationData),
-      })
-        .then(response => response.json())
+     })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json()
+        })
+
         .then(data => {
-          if (data.success) {
-            console.log("Reservation created:", data.data);
-          } else {
+          if (!data.success) {
             console.error("Error creating reservation:", data.data);
+            return null;
+          } else {
+            console.log("Reservation created:", data.data);
+            return data.data;
           }
         })
         .catch(err => {
           console.error("Error with reservation request:", err);
+          return null;
         });
     });
 
+     // Wait for all reservations to be created before navigating
+    Promise.all(reservationPromises).then((reservations) => {
+      const successfulReservations = reservations.filter(res => res !== null);
+      if (successfulReservations.length > 0) {
+        console.log("All reservations confirmed:", successfulReservations);
+        navigate("/profile");
+      } else {
+        console.error("Failed to create any reservations.");
+      }
+    });
+};
 
-    navigate("/profile");
-  };
 
   return (
     <div className="cart">
@@ -75,10 +98,14 @@ export default function Cart() {
           );
         })}
       </ul>
+      <div>
       <CalculateTotal cart={cart} />
-      <button className="btn btn-primary" onClick={handleConfirmReservations}>
-        Reserva Confirmada
-      </button>
+      </div>
+      <div>
+        <button className="btn btn-primary" onClick={handleConfirmReservations}>
+          Reserva Confirmada
+        </button>
+      </div>
     </div>
   );
 }
