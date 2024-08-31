@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import { ActionButton } from '../components/ActionButton';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +13,10 @@ import SearchBar from '../components/SearchBar';
 function Cities() {
     const collection = 'cities';
     const [cities, setCities] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [OGcities, setOGCities] = useState([]);
+    const [cityNames, setCityNames] = useState([]);
+
+    //const [searchTerm, setSearchTerm] = useState('');
 
     const navigate = useNavigate();
 
@@ -20,6 +24,8 @@ function Cities() {
         var res = getAllElements(collection);
         res.then((info) => {
             setCities(info.data);
+            setOGCities(info.data);
+            setCityNames(info.data.map((city) => city.name));
         })
             .catch((error) => {
                 console.error(`Could not get data: ${error}`);
@@ -54,10 +60,25 @@ function Cities() {
         });
     }
 
+    const handleSearch = (ev) => {
+        ev.preventDefault();
+        const name = ev.target.search.value;
+        const filteredCity = OGcities.filter((city) => city.name === name);
+        if (name === '') {
+            setCities(OGcities);
+        } else {
+            setCities(filteredCity);
+        }
+        console.log(filteredCity);
+    }
+
     return (
-        <div className="container my-5">
+        <div className="container">
             <div className="my-5">
-                <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+                <Form method="get" onSubmit={handleSearch}>
+                    <SearchBar suggestions={cityNames} />
+                    <Button variant="secondary" type="submit">Buscar</Button>
+                </Form>
             </div>
             <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="success" />
             <div className="d-flex flex-wrap my-3">
@@ -67,7 +88,7 @@ function Cities() {
                             <Card.Img variant="top" src={city.image} style={{ maxHeight: '300px' }} />
                             <Card.Body>
                                 <Card.Title>{city.name}</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">{city.description}</Card.Subtitle>
+                                <Card.Subtitle className="mb-2 text-muted">{city.description.substring(0, 100) + "..."}</Card.Subtitle>
                                 <Accordion defaultActiveKey="1">
                                     <Accordion.Item eventKey="0">
                                         <Accordion.Header>Acciones</Accordion.Header>
