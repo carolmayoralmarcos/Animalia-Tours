@@ -50,4 +50,5 @@
 - [x] 8. NewCity
 - [x] 9. UpdateCity
 - [x] 10. Logout
-- [x] 11. ViewElement varios
+- [x] 11. ViewElement with Carrito feature
+- [ ] 12. List of Activities in ViewCity
