@@ -4,16 +4,15 @@
 
 ### Mónica código manejoError pruebasBack pruebasFront develop
 
-- [x] 1. Hero (carrusel) ok pte pte pte pte
+- [xpte] 1. Hero (carrusel) ok pte pte pte pte
 - [x] 2. hook getrandomactivities ok na na na ok
 - [x] 3. cart (cartContext)
 - [x] 4. Login ok ok ok ok ok
-- [x] 5. UpdateActivity ok ok nuevo utils getElementbyId y nueva ruta <Route path="/update/activities/:id" element={<Layout><UpdateActivity /></Layout>} />
-- [ ] 6. Añadir Mascota (addPet)
-- [ ] 7. Eliminar Mascota (deletePet)
+- [x] 5. UpdateActivity: updated due to new utils getElementbyId and new route <Route path="/update/activities/:id" element={<Layout><UpdateActivity /></Layout>} />
+- [x] 6. Revisar Añadir Mascota (addPet)
+- [x] 7. Revisar Eliminar Mascota (deletePet)
 - [x] 8. Página Carrito
 - [x] 9. Cart endpoint newReservation (botón Confirmar reserva con ok carrito). id=local storage
-- [x] 5. UpdateActivity ok ok ok ok ok
 
 ### Daniela
 
