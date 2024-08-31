@@ -7,10 +7,8 @@ function About() {
             <Row className="mb-4">
                 <Col>
                     <h1 className="text-center">Sobre Nosotros</h1>
-
                 </Col>
             </Row>
-
             <Row className="mb-5">
                 <Col md={6}>
                     <h2>¿Qué es Animalia Tours?</h2>
@@ -25,27 +23,11 @@ function About() {
                     </p>
                 </Col>
                 <Col md={6}>
-                    <Image src="/assets/spa.jpg" rounded fluid />
+                    <Image src="/assets/spa.jpg" className="principabout" />
                 </Col>
             </Row>
 
-            <Row className="mb-5">
-                <Col md={4} className="text-center">
-                    <Image src="/assets/surf.jpg" roundedCircle fluid className="mb-3" />
-                    <h4>Viajes</h4>
-                    <p>Programa el viaje de tu vida con tu amigo peludo.</p>
-                </Col>
-                <Col md={4} className="text-center">
-                    <Image src="/assets/cine.jpg" roundedCircle fluid className="mb-3" />
-                    <h4>Plan fin de semana</h4>
-                    <p>¿Quizás una pelicula apta para perritos?</p>
-                </Col>
-                <Col md={4} className="text-center">
-                    <Image src="/assets/catspa.jpg" roundedCircle fluid className="mb-3" />
-                    <h4>Plan relax</h4>
-                    <p>¿Cansados de tanto trabajo? Vámonos de spa!</p>
-                </Col>
-            </Row>
+
 
             <Row>
                 <Col>
@@ -56,24 +38,24 @@ function About() {
                 </Col>
             </Row>
 
-            <Row>
+            <Row className='equipo'>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="/assets/Haritz.jpeg" roundedCircle fluid className="mb-2" />
+                    <Image src="/assets/Haritz.jpeg" roundedCircle fluid className="mb-3" />
                     <h5>JHaritz</h5>
                     <p>Desarrollador Fullstack y solucionador de problemas</p>
                 </Col>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="/assets/carol.jpg" roundedCircle fluid className="mb-2" />
+                    <Image src="/assets/carol.jpg" roundedCircle fluid className="mb-3" />
                     <h5>Carolina</h5>
                     <p>Desarrolladora Fullstack y la armonia del equipo </p>
                 </Col>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="/assets/MONICA PENACHO.jpg" roundedCircle fluid className="mb-2" />
+                    <Image src="/assets/MONICA PENACHO.jpg" roundedCircle fluid className="mb-3" />
                     <h5>Mónica</h5>
                     <p>Desarrolladora Fullstack y documentadora profesional</p>
                 </Col>
                 <Col md={3} className="text-center mb-4">
-                    <Image src="/assets/dani.jpg" roundedCircle fluid className="mb-2" />
+                    <Image src="/assets/daniela.jpg" roundedCircle fluid className="mb-3" />
                     <h5>Daniela</h5>
                     <p>Desarrolladora Fullstack y la que pone bonita la web</p>
                 </Col>

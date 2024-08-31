@@ -66,3 +66,81 @@ div.textfooter {
     border-radius: 5px;
     /* Bordes redondeados para el enlace activo */
 }
+
+/* Estilos generales */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h1,
+h2,
+h4,
+h5 {
+    margin: 25px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+/* Estilos específicos para imágenes y columnas */
+img {
+    width: 150px;
+    /* Tamaño fijo para todas las imágenes */
+    height: 150px;
+    /* Mantener el círculo perfecto */
+    object-fit: cover;
+    /* Ajusta la imagen dentro del contenedor circular */
+    border-radius: 50%;
+    /* Hace que la imagen sea circular */
+    margin-bottom: 1rem;
+    /* Espacio debajo de la imagen */
+    border: 3px solid #fff;
+    /* Borde opcional alrededor de las imágenes */
+}
+
+/* Estilo para la imagen con proporciones mantenidas */
+.principabout {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    /* Se asegura de que la imagen no exceda el tamaño del contenedor */
+    border-radius: 10px;
+    /* Borde opcional si deseas redondear las esquinas */
+}
+
+
+.equipo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    /* Espacio entre las columnas */
+}
+
+.col-md-3 {
+    flex: 0 0 calc(20% - 20px);
+    /* Ajusta el ancho de las columnas */
+    max-width: calc(20% - 20px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .col-md-3 {
+        flex: 0 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .col-md-3 {
+        flex: 0 0 calc(100% - 20px);
+        max-width: calc(100% - 20px);
+    }
+}
