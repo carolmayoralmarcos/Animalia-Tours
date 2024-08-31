@@ -32,6 +32,7 @@ function Header() {
                     <Nav.Link as={Link} to="/userProfile">Perfil</Nav.Link>
                     <Nav.Link as={Link} to="/cart">Carrito</Nav.Link>
 
+
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
