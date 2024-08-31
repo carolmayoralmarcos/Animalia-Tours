@@ -24,6 +24,20 @@ const getActivitybyId = async (req, res) => {
     }
 }
 
+const getActivitiesByCityId = async (req, res) => {
+    try {
+        const { cityId } = req.params;
+        const filteredActivities = await Activity.find({ city_id: cityId }).populate('city_id');
+        if (!filteredActivities) {
+            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+        } else {
+            return res.status(200).json({ success: true, data: filteredActivities });
+        }
+    } catch (error) {
+        return res.status(400).json({ success: false, data: error.message });
+    }
+}
+
 const newActivity = async (req, res) => {
     try {
         const newActivity = new Activity(req.body);
@@ -81,4 +95,4 @@ const updateActivity = async (req, res) => {
     }
 };
 
-module.exports = { getAllActivities, getActivitybyId, newActivity, deleteActivity, updateActivity };
+module.exports = { getAllActivities, getActivitybyId, newActivity, deleteActivity, updateActivity, getActivitiesByCityId };
