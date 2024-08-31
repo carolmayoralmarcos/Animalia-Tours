@@ -46,57 +46,109 @@ const NewActivity = () => {
         const result = await createactivity(formData);
 
         if (result.success) {
-            setMessage(`Activity created succesfully: ${result.data.name}`);
+            setMessage(`Activity created successfully: ${result.data.name}`);
         } else {
             setMessage(`Error: ${result.error}`);
         }
     };
 
     return (
-        <div className="container content">
-            <h1>Crear Nueva Actividad</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
+        <div className="container mt-5 mb-5">
+            <h1 className="mb-4">Crear Nueva Actividad</h1>
+            <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+                <div className="form-group mb-3">
                     <label>Nombre</label>
-                    <input type="text" name="name" value={activity.name} onChange={handleChange} required />
+                    <input
+                        type="text"
+                        name="name"
+                        value={activity.name}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
                 </div>
-                <div>
+                <div className="form-group mb-3">
                     <label>Imagen</label>
-                    <input type="file" name="image" onChange={handleImageChange} accept="image/*" required />
+                    <input
+                        type="file"
+                        name="image"
+                        onChange={handleImageChange}
+                        accept="image/*"
+                        className="form-control"
+                        required
+                    />
                 </div>
-                <div>
+                <div className="form-group mb-3">
                     <label>Descripción</label>
-                    <textarea name="description" value={activity.description} onChange={handleChange} required />
+                    <textarea
+                        name="description"
+                        value={activity.description}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
                 </div>
-                <div>
+                <div className="form-group mb-3">
                     <label>Estado</label>
-                    <select name="status" value={activity.status} onChange={handleChange}>
+                    <select
+                        name="status"
+                        value={activity.status}
+                        onChange={handleChange}
+                        className="form-select"
+                    >
                         <option value="open">Abierta</option>
                         <option value="closed">Cerrada</option>
                         <option value="full">Llena</option>
                     </select>
                 </div>
-                <div>
+                <div className="form-group mb-3">
                     <label>Usuarios Máximos</label>
-                    <input type="number" name="max_users" value={activity.max_users} onChange={handleChange} required />
+                    <input
+                        type="number"
+                        name="max_users"
+                        value={activity.max_users}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
                 </div>
-                <div>
+                <div className="form-group mb-3">
                     <label>Fecha</label>
-                    <input type="date" name="date" value={activity.date} onChange={handleChange} required />
+                    <input
+                        type="date"
+                        name="date"
+                        value={activity.date}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
                 </div>
-                <div>
+                <div className="form-group mb-3">
                     <label>Precio</label>
-                    <input type="number" name="price" value={activity.price} onChange={handleChange} required />
+                    <input
+                        type="number"
+                        name="price"
+                        value={activity.price}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
                 </div>
-                <div>
+                <div className="form-group mb-4">
                     <label>ID de la Ciudad</label>
-                    <input type="text" name="city_id" value={activity.city_id} onChange={handleChange} />
+                    <input
+                        type="text"
+                        name="city_id"
+                        value={activity.city_id}
+                        onChange={handleChange}
+                        className="form-control"
+                    />
                 </div>
-                <button type="submit">Crear Actividad</button>
+                <button type="submit" className="btn btn-primary">Crear Actividad</button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <div className="alert alert-info mt-4">{message}</div>}
         </div>
-    )
+    );
 }
 
 export default NewActivity;

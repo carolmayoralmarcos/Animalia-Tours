@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getprofile } from '../utils/getprofile';
 
 const UserProfile = () => {
     const [profile, setProfile] = useState(null);
     const [reservations, setReservations] = useState([]);
-    const [petName, setPetName] = useState('');
     const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadUserProfile = async () => {
@@ -26,26 +27,6 @@ const UserProfile = () => {
 
         loadUserProfile();
     }, [token]);
-
-
-    const addPet = async () => {
-        const response = await fetch('http://localhost:5000/api/pets/new', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: petName })
-        });
-
-        const data = await response.json();
-        if (data.success) {
-            alert(`Mascota añadida: ${data.data.name}`);
-            setProfile({ ...profile, pets: [...profile.pets, data.data] });
-        } else {
-            alert(`Error: ${data.data}`);
-        }
-    };
-
 
     const deletePet = async (petId) => {
         const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
@@ -69,45 +50,53 @@ const UserProfile = () => {
     }
 
     return (
-        <div>
-            <h1>Perfil de {profile.name}</h1>
-            <p>Nombre: {profile.name}</p>
-            <p>Email: {profile.email}</p>
-            <h2>Mascotas</h2>
-            <ul>
-                {profile.pets.length > 0 ? (
-                    profile.pets.map((pet, index) => (
-                        <li key={index}>
-                            {pet.name}
-                            <button onClick={() => deletePet(pet._id)}>Eliminar Mascota</button>
-                        </li>
-                    ))
-                ) : (
-                    <p>No tienes mascotas registradas.</p>
-                )}
-            </ul>
-
-            <input
-                type="text"
-                value={petName}
-                onChange={(e) => setPetName(e.target.value)}
-                placeholder="Nombre de la nueva mascota"
-            />
-            <button onClick={addPet}>Añadir Mascota</button>
-            <h2>Reservas</h2>
-            <div>
-                {reservations.length > 0 ? (
-                    reservations.map((reservation, index) => (
-                        <div key={index}>
-                            <p>Actividad: {reservation.name}</p>
-                            <p>Estado: {reservation.status}</p>
-                            <p>Fecha de creación: {new Date(reservation.createdAt).toLocaleDateString()}</p>
-                            <p>Fecha de última actualización: {new Date(reservation.updatedAt).toLocaleDateString()}</p>
+        <div className="container mt-5">
+            <div className="row">
+                <div className="col-md-8 offset-md-2">
+                    <div className="card">
+                        <div className="card-header">
+                            <h1>Perfil de {profile.name}</h1>
                         </div>
-                    ))
-                ) : (
-                    <p>No tienes reservas.</p>
-                )}
+                        <div className="card-body">
+                            <p><strong>Nombre:</strong> {profile.name}</p>
+                            <p><strong>Email:</strong> {profile.email}</p>
+
+                            <h2>Mascotas</h2>
+                            <ul className="list-group mb-3">
+                                {profile.pets.length > 0 ? (
+                                    profile.pets.map((pet, index) => (
+                                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                                            {pet.name}
+                                            <button className="btn btn-danger btn-sm" onClick={() => deletePet(pet._id)}>Eliminar Mascota</button>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <p>No tienes mascotas registradas.</p>
+                                )}
+                            </ul>
+
+                            <button className="btn btn-primary mb-3" onClick={() => navigate('/add-pet')}>Añadir Mascota</button>
+
+                            <h2>Reservas</h2>
+                            <div>
+                                {reservations.length > 0 ? (
+                                    reservations.map((reservation, index) => (
+                                        <div key={index} className="card mb-3">
+                                            <div className="card-body">
+                                                <p><strong>Actividad:</strong> {reservation.name}</p>
+                                                <p><strong>Estado:</strong> {reservation.status}</p>
+                                                <p><strong>Fecha de creación:</strong> {new Date(reservation.createdAt).toLocaleDateString()}</p>
+                                                <p><strong>Fecha de última actualización:</strong> {new Date(reservation.updatedAt).toLocaleDateString()}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No tienes reservas.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
