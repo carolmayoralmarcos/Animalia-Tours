@@ -20,7 +20,8 @@
 2. pagina About
 3. Register(Con Ale)
 4. Contact (Con Ale)
-5. En Actividades un botón "Añadir al carrito" -> utilizar context
+5. En Actividades un botón "Añadir al carrito" -> utilizar context link, añadir el boton modificar linkado updateactivities
+
 
 ### Aleida
 
