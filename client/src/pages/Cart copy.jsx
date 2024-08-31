@@ -4,33 +4,25 @@ import { FaShoppingCart, FaTrashAlt } from "react-icons/fa";
 import CalculateTotal from "../components/CalculateTotal";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-import { getprofile } from "../utils/getprofile";
-// import { UserContext } from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 
 
 export default function Cart() {
 
   const { cart, removeFromCart } = useContext(CartContext);
-  // const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleConfirmReservations = async () => {
+  const handleConfirmReservations = () => {
 
-    const token = localStorage.getItem("token");
+    // const userId = localStorage.getItem("token");
 
-    if (!token) {
+    if (!user) {
       console.error("No user found. Please log in.");
       return;
     }
 
-    const result = await getprofile(token);
-
-    if (!result.success) {
-      console.error("Failed to get user profile:", result.error);
-      return;
-    }
-
-    const userId = result.data._id;
+    const userId = user.id;
 
     const reservationPromises = cart.map((item) => {    //const reservationData
       const reservationData = {
@@ -50,12 +42,12 @@ export default function Cart() {
         body: JSON.stringify(reservationData),
      })
         .then(response => {
-          console.log("API response:", response);
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-          return response.json();
+          return response.json()
         })
+
         .then(data => {
           if (!data.success) {
             console.error("Error creating reservation:", data.data);
@@ -71,6 +63,7 @@ export default function Cart() {
         });
     });
 
+     // Wait for all reservations to be created before navigating
     Promise.all(reservationPromises).then((reservations) => {
       const successfulReservations = reservations.filter(res => res !== null);
       if (successfulReservations.length > 0) {
