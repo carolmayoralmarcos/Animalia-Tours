@@ -34,8 +34,8 @@ function Activities() {
         <div className="container-fluid">
             {/* Sticky Cart */}
             <div className="position-fixed bottom-0 end-0 p-3" style={{ width: '300px', zIndex: 1050 }}>
-                <div className="card">
-                    <div className="card-header text-center">
+                <div className="card shadow-lg rounded">
+                    <div className="card-header text-center bg-primary text-white">
                         <h5 className="mb-0">Carrito <FaShoppingCart /></h5>
                     </div>
                     <ul className="list-group list-group-flush">
@@ -47,45 +47,51 @@ function Activities() {
                                         <FaTrash />
                                     </button>
                                 </li>
-
                             ))
                         ) : (
                             <li className="list-group-item">El carrito está vacío.</li>
                         )}
                     </ul>
                     <Link to="/cart">
-                        <Button variant="warning" className="mt-3">Ver carrito</Button>
+                        <Button variant="primary" className="mt-3 w-100">Ver carrito</Button>
                     </Link>
-
                 </div>
             </div>
 
             <div className="row mt-5">
                 <div className="col">
-                    <h1 className="text-center mb-4">Activities</h1>
+                    <h1 className="text-center mb-4">Actividades</h1>
                     <div className="row">
                         {Array.isArray(activities) && activities.length > 0 ? (
                             activities.map(activity => (
                                 <div key={activity._id} className="col-md-6 mb-4 d-flex align-items-stretch">
-                                    <div className="card h-100 shadow-sm">
-                                        <img src={activity.image} alt={activity.name} className="card-img-top" />
+                                    <div className="card h-100 shadow rounded">
+                                        <img src={activity.image} alt={activity.name} className="card-img-top rounded-top" />
                                         <div className="card-body">
                                             <h5 className="card-title">{activity.name}</h5>
                                             <p className="card-text">{activity.description}</p>
-                                            <p className="card-text">Status: {activity.status}</p>
-                                            <p className="card-text">Price: ${activity.price}</p>
-                                            <p className="card-text">Max Users: {activity.max_users}</p>
+                                            <p className="card-text">Estado: {activity.status}</p>
+                                            <p className="card-text">Precio: ${activity.price}</p>
+                                            <p className="card-text">Máximo de Usuarios: {activity.max_users}</p>
 
-                                            <Button className="btn btn-danger" id={activity._id} onClick={addToCart} > + Añadir</Button>
+                                            <Button
+                                                className="btn btn-primary w-100"
+                                                id={activity._id}
+                                                onClick={() => addToCart(activity)}
+                                            >
+                                                + Añadir
+                                            </Button>
 
-                                            <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} delay={0} type="primary" />
-                                            <ActionButton text="Modificar" path={'/update/activities/' + activity._id} delay={0} type="secondary" />
+                                            <div className="d-flex justify-content-between mt-3">
+                                                <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} delay={0} type="primary" />
+                                                <ActionButton text="Modificar" path={'/update/activities/' + activity._id} delay={0} type="secondary" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             ))
                         ) : (
-                            <p>No activities available.</p>
+                            <p>No hay actividades disponibles.</p>
                         )}
                     </div>
                 </div>
