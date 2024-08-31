@@ -1,146 +1,347 @@
-/* FOOTER */
-
-footer {
-    background-color: #FFEFC1;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    text-align: center;
-}
-
-div.textfooter {
-    padding: 10px;
-    color: black;
-    text-align: center;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.navbar-brand {
-
-    padding: 0;
-    margin: 0;
-    display: block;
-}
-
-/* Estilo general para los enlaces de navegación */
-.navbar-nav .nav-link {
-    color: #333;
-    /* Color del texto por defecto */
-    font-size: 16px;
-    /* Tamaño de la fuente */
-    font-weight: 500;
-    /* Peso de la fuente */
-    padding: 10px 15px;
-    /* Espaciado interno */
-    transition: color 0.3s ease, background-color 0.3s ease;
-    /* Transiciones suaves para cambios de color */
-}
-
-/* Estilo cuando se pasa el ratón sobre el enlace */
-.navbar-nav .nav-link:hover,
-
-.navbar-nav .nav-link:focus {
-    color: #0056b3;
-    /* Color del texto al pasar el ratón o al tener el foco */
-    background-color: rgba(0, 0, 0, 0.1);
-    /* Fondo al pasar el ratón */
-    border-radius: 5px;
-    /* Bordes redondeados */
-}
-
-/* Estilo activo (cuando el enlace está seleccionado) */
-.navbar-nav .nav-link.active {
-    color: #f4a564;
-    /* Color del texto activo */
-    background-color: #f7f9fb;
-    /* Fondo del enlace activo */
-    border-radius: 5px;
-    /* Bordes redondeados para el enlace activo */
-}
-
-/* Estilos generales */
-.container {
+/*About*/
+/* Contenedor general */
+.about-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-color: #f9f9f9;
 }
 
-.text-center {
+/* Encabezado */
+.about-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+
+/* Contenido de la sección "Sobre Nosotros" */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.about-text {
+    flex: 1;
+    padding-right: 2rem;
+    text-align: justify;
+}
+
+.about-text h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Sección de equipo */
+.about-team {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 4rem;
+}
+
+.about-team h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.about-team p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Miembros del equipo */
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.team-member {
+    text-align: center;
+    margin-bottom: 2rem;
+    flex-basis: 20%;
+    max-width: 200px;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.team-member h5 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Activities */
+/* Container and layout styles */
+.container {
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+}
+
+.activities {
+    margin-top: 3rem;
     text-align: center;
 }
 
-h1,
-h2,
-h4,
-h5 {
-    margin: 25px;
+.activities-title {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
 }
 
-p {
-    margin-bottom: 20px;
+/* Sticky cart styles */
+.sticky-cart {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+    width: 300px;
+    z-index: 1050;
 }
 
-/* Estilos específicos para imágenes y columnas */
-img {
-    width: 150px;
-    /* Tamaño fijo para todas las imágenes */
-    height: 150px;
-    /* Mantener el círculo perfecto */
-    object-fit: cover;
-    /* Ajusta la imagen dentro del contenedor circular */
-    border-radius: 50%;
-    /* Hace que la imagen sea circular */
-    margin-bottom: 1rem;
-    /* Espacio debajo de la imagen */
-    border: 3px solid #fff;
-    /* Borde opcional alrededor de las imágenes */
+.cart-card {
+    background-color: #FFF9E3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
 }
 
-/* Estilo para la imagen con proporciones mantenidas */
-.principabout {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    /* Se asegura de que la imagen no exceda el tamaño del contenedor */
-    border-radius: 10px;
-    /* Borde opcional si deseas redondear las esquinas */
+.cart-header {
+    background-color: #fff;
+    color: #333;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
+.cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-.equipo {
+.cart-item {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    /* Espacio entre las columnas */
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
 }
 
-.col-md-3 {
-    flex: 0 0 calc(20% - 20px);
-    /* Ajusta el ancho de las columnas */
-    max-width: calc(20% - 20px);
-    box-sizing: border-box;
+.cart-item.empty {
+    text-align: center;
 }
 
+.remove-button {
+    background-color: transparent;
+    border: none;
+    color: #d9534f;
+    cursor: pointer;
+}
+
+.view-cart-button {
+    display: block;
+    text-align: center;
+    background-color: #FDB988;
+    color: #fff;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Activities grid styles */
+.activities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+.activity-card {
+    background-color: #FFF9E3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.activity-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.activity-details {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.activity-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.activity-description {
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.activity-status,
+.activity-price,
+.activity-users {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.add-to-cart-button {
+    background-color: #FDB988;
+    color: #fff;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
+    margin-bottom: 1rem;
+    align-self: center;
+}
+
+.add-to-cart-button:hover {
+    background-color: #DFC5BA;
+}
+
+.activity-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-actions a {
+    background-color: #FDB988;
+    color: #fff;
+    padding: 0.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+.activity-actions a:last-child {
+    margin-right: 0;
+}
+
+.no-activities {
+    color: #333;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
-    .col-md-3 {
-        flex: 0 0 calc(50% - 20px);
-        max-width: calc(50% - 20px);
+
+    /* About Section */
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text {
+        padding-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .team-member {
+        flex-basis: 45%;
+        max-width: none;
+    }
+
+    /* Activities Section */
+    .activities-grid {
+        grid-template-columns: 1fr;
+
+    }
+
+    .add-to-cart-button {
+        width: 100%;
     }
 }
 
-@media (max-width: 576px) {
-    .col-md-3 {
-        flex: 0 0 calc(100% - 20px);
-        max-width: calc(100% - 20px);
+@media (max-width: 480px) {
+
+    /* About Section */
+    .about-header h1 {
+        font-size: 2rem;
+    }
+
+    .about-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-text p {
+        font-size: 0.9rem;
+    }
+
+    .team-member h5 {
+        font-size: 1rem;
+    }
+
+    .team-member p {
+        font-size: 0.8rem;
+    }
+
+    /* Activities Section */
+    .activities-title {
+        font-size: 1.5rem;
+    }
+
+    .activity-title {
+        font-size: 1rem;
+    }
+
+    .activity-description {
+        font-size: 0.9rem;
+    }
+
+    .add-to-cart-button {
+        font-size: 0.9rem;
+    }
+
+    .activity-actions a {
+        font-size: 0.9rem;
     }
 }
