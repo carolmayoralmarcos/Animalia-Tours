@@ -111,7 +111,8 @@ const login = async (req, res) => {
 const getProfile = async (req, res) => {
     try {
         const loggedUser = req.userData;
-        return res.status(201).json({ success: true, message: 'You are authorized!', data: loggedUser });
+        const filteredUser = await User.findById(loggedUser._id).populate('pets');
+        return res.status(201).json({ success: true, message: 'You are authorized!', data: filteredUser });
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
     }
