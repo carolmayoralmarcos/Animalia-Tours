@@ -7,10 +7,12 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import getAllElements from '../utils/getAllElements';
 import deleteElement from '../utils/deleteElement';
+import SearchBar from '../components/SearchBar';
 
 function Cities() {
     const collection = 'cities';
     const [cities, setCities] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const navigate = useNavigate();
 
@@ -54,12 +56,15 @@ function Cities() {
 
     return (
         <div className="container my-5">
-            <ActionButton className="content" text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="success" />
+            <div className="my-5">
+                <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+            </div>
+            <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="success" />
             <div className="d-flex flex-wrap my-3">
                 {cities.map((city, index) => {
                     return (
                         <Card className="my-4 mx-4" key={index} style={{ width: '20rem' }}>
-                            <Card.Img variant="top" src={city.image} />
+                            <Card.Img variant="top" src={city.image} style={{ maxHeight: '300px' }} />
                             <Card.Body>
                                 <Card.Title>{city.name}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">{city.description}</Card.Subtitle>
@@ -67,11 +72,12 @@ function Cities() {
                                     <Accordion.Item eventKey="0">
                                         <Accordion.Header>Acciones</Accordion.Header>
                                         <Accordion.Body>
-                                            <div className='action-buttons'>
+                                            <div className='action-buttons mb-3'>
                                                 <ActionButton text="Ver detalles" path={'/view/cities/' + city._id} delay={0} type="primary" />
                                                 <ActionButton text="Modificar" path={'/update/cities/' + city._id} delay={0} type="secondary" />
-                                                <Button className="btn btn-danger" id={city._id} onClick={handleDelete} >Eliminar</Button>
                                             </div>
+                                            <Button className="btn btn-danger" id={city._id} onClick={handleDelete} >Eliminar</Button>
+
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
