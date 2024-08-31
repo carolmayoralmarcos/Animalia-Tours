@@ -31,51 +31,51 @@ function Activities() {
     };
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={{ backgroundColor: '#FFEFC1', minHeight: '100vh', padding: '2rem' }}>
             {/* Sticky Cart */}
             <div className="position-fixed bottom-0 end-0 p-3" style={{ width: '300px', zIndex: 1050 }}>
-                <div className="card shadow-lg rounded">
-                    <div className="card-header text-center bg-primary text-white">
+                <div className="card shadow-lg rounded border-0" style={{ backgroundColor: '#FFF9E3' }}>
+                    <div className="card-header text-center bg-white text-dark border-0">
                         <h5 className="mb-0">Carrito <FaShoppingCart /></h5>
                     </div>
                     <ul className="list-group list-group-flush">
                         {cart.length > 0 ? (
                             cart.map((item, index) => (
-                                <li key={item._id} className="list-group-item d-flex justify-content-between align-items-center">
+                                <li key={item._id} className="list-group-item d-flex justify-content-between align-items-center border-0" style={{ backgroundColor: '#FFEFC1' }}>
                                     {item.name}
-                                    <button className="btn btn-danger btn-sm" onClick={() => removeStickyCart(index)}>
+                                    <button className="btn btn-outline-danger btn-sm" onClick={() => removeStickyCart(index)}>
                                         <FaTrash />
                                     </button>
                                 </li>
                             ))
                         ) : (
-                            <li className="list-group-item">El carrito está vacío.</li>
+                            <li className="list-group-item border-0 text-center" style={{ backgroundColor: '#FFEFC1' }}>El carrito está vacío.</li>
                         )}
                     </ul>
                     <Link to="/cart">
-                        <Button variant="primary" className="mt-3 w-100">Ver carrito</Button>
+                        <Button variant="outline-dark" className="mt-3 w-100">Ver carrito</Button>
                     </Link>
                 </div>
             </div>
 
             <div className="row mt-5">
                 <div className="col">
-                    <h1 className="text-center mb-4">Actividades</h1>
+                    <h1 className="text-center mb-4 text-dark">Actividades</h1>
                     <div className="row">
                         {Array.isArray(activities) && activities.length > 0 ? (
                             activities.map(activity => (
                                 <div key={activity._id} className="col-md-6 mb-4 d-flex align-items-stretch">
-                                    <div className="card h-100 shadow rounded">
+                                    <div className="card h-100 shadow-sm rounded border-0" style={{ backgroundColor: '#FFF9E3' }}>
                                         <img src={activity.image} alt={activity.name} className="card-img-top rounded-top" />
                                         <div className="card-body">
-                                            <h5 className="card-title">{activity.name}</h5>
-                                            <p className="card-text">{activity.description}</p>
-                                            <p className="card-text">Estado: {activity.status}</p>
-                                            <p className="card-text">Precio: ${activity.price}</p>
-                                            <p className="card-text">Máximo de Usuarios: {activity.max_users}</p>
+                                            <h5 className="card-title text-dark">{activity.name}</h5>
+                                            <p className="card-text text-muted">{activity.description}</p>
+                                            <p className="card-text text-dark">Estado: {activity.status}</p>
+                                            <p className="card-text text-dark">Precio: ${activity.price}</p>
+                                            <p className="card-text text-dark">Máximo de Usuarios: {activity.max_users}</p>
 
                                             <Button
-                                                className="btn btn-primary w-100"
+                                                className="btn btn-outline-dark w-100"
                                                 id={activity._id}
                                                 onClick={() => addToCart(activity)}
                                             >
@@ -83,15 +83,15 @@ function Activities() {
                                             </Button>
 
                                             <div className="d-flex justify-content-between mt-3">
-                                                <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} delay={0} type="primary" />
-                                                <ActionButton text="Modificar" path={'/update/activities/' + activity._id} delay={0} type="secondary" />
+                                                <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} delay={0} type="outline-dark" />
+                                                <ActionButton text="Modificar" path={'/update/activities/' + activity._id} delay={0} type="outline-secondary" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             ))
                         ) : (
-                            <p>No hay actividades disponibles.</p>
+                            <p className="text-center text-dark">No hay actividades disponibles.</p>
                         )}
                     </div>
                 </div>
