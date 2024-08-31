@@ -1,24 +1,24 @@
-import React, { useContext } from "react";             
-import "../App.css";                 
-import { FaShoppingCart, FaTrashAlt } from "react-icons/fa"; 
+import React, { useContext } from "react";
+import "../App.css";
+import { FaShoppingCart, FaTrashAlt } from "react-icons/fa";
 import CalculateTotal from "../components/CalculateTotal";
-import { CartContext } from "../context/CartContext";      
-import { useNavigate } from "react-router-dom"; 
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Cart() {
 
   const { cart, removeFromCart } = useContext(CartContext);
-  
+
   const navigate = useNavigate();
 
   const handleConfirmReservations = () => {
-    
+
     const userId = localStorage.getItem("token");
 
     if (!userId) {
       console.error("No user ID found. Please log in.");
-      return; 
+      return;
     }
 
     cart.forEach((item) => {
@@ -36,28 +36,28 @@ export default function Cart() {
         },
         body: JSON.stringify(reservationData),
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          console.log("Reservation created:", data.data);
-        } else {
-          console.error("Error creating reservation:", data.data);
-        }
-      })
-      .catch(err => {
-        console.error("Error with reservation request:", err);
-      });
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            console.log("Reservation created:", data.data);
+          } else {
+            console.error("Error creating reservation:", data.data);
+          }
+        })
+        .catch(err => {
+          console.error("Error with reservation request:", err);
+        });
     });
 
-    
-    navigate("/profile"); 
+
+    navigate("/profile");
   };
-   
+
   return (
     <div className="cart">
- 
+
       <h2 className="carrito">
-        <FaShoppingCart /> 
+        <FaShoppingCart />
       </h2>
 
       <ul>
@@ -66,7 +66,7 @@ export default function Cart() {
           const normalizedPrice = parseFloat(item.price.replace("$", ""));
 
           return (
-            <li 
+            <li
               key={index}>
               {item.name} - {item.quantity} x ${normalizedPrice} = ${item.quantity * normalizedPrice}
               <button className="btn btn-danger" onClick={() => removeFromCart(index)}>
@@ -76,10 +76,10 @@ export default function Cart() {
           );
         })}
       </ul>
-        <CalculateTotal cart={cart}/>
-        <button className="btn btn-primary" onClick={handleConfirmReservations}>
+      <CalculateTotal cart={cart} />
+      <button className="btn btn-primary" onClick={handleConfirmReservations}>
         Reserva Confirmada
       </button>
-  </div>
+    </div>
   );
 }
