@@ -61,30 +61,34 @@ function Activities() {
             <div className="row mt-5">
                 <div className="col">
                     <h1 className="text-center mb-4 text-dark">Actividades</h1>
-                    <div className="row">
+                    <div className="row row-cols-1 row-cols-md-2 g-5">
                         {Array.isArray(activities) && activities.length > 0 ? (
                             activities.map(activity => (
-                                <div key={activity._id} className="col-md-6 mb-4 d-flex align-items-stretch">
-                                    <div className="card h-100 shadow-sm rounded border-0" style={{ backgroundColor: '#FFF9E3' }}>
-                                        <img src={activity.image} alt={activity.name} className="card-img-top rounded-top" />
-                                        <div className="card-body">
+                                <div key={activity._id} className="col mb-4 d-flex">
+                                    <div className="card h-100 shadow-sm rounded border-0 d-flex flex-column" style={{ backgroundColor: '#FFF9E3' }}>
+                                        <img src={activity.image} alt={activity.name} className="card-img-top rounded-top" style={{ objectFit: 'cover', height: '200px' }} />
+                                        <div className="card-body d-flex flex-column">
                                             <h5 className="card-title text-dark">{activity.name}</h5>
                                             <p className="card-text text-muted">{activity.description}</p>
                                             <p className="card-text text-dark">Estado: {activity.status}</p>
                                             <p className="card-text text-dark">Precio: ${activity.price}</p>
                                             <p className="card-text text-dark">Máximo de Usuarios: {activity.max_users}</p>
 
-                                            <Button
-                                                className="btn btn-outline-dark w-100"
-                                                id={activity._id}
-                                                onClick={() => addToCart(activity)}
-                                            >
-                                                + Añadir
-                                            </Button>
+                                            <div className="mt-auto">
+                                                <Button
+                                                    className="btn btn-primary w-100 mb-2"
+                                                    size="md"
+                                                    id={activity._id}
+                                                    onClick={() => addToCart(activity)}
+                                                >
+                                                    + Añadir al carrito
+                                                </Button>
 
-                                            <div className="d-flex justify-content-between mt-3">
-                                                <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} delay={0} type="outline-dark" />
-                                                <ActionButton text="Modificar" path={'/update/activities/' + activity._id} delay={0} type="outline-secondary" />
+                                                <div className="d-flex justify-content-between">
+                                                    <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} delay={0} type="outline-dark" size="md" />
+                                                    <ActionButton text="Modificar" path={'/update/activities/' + activity._id} delay={0} type="outline-secondary" size="md" />
+                                                    <ActionButton text="Añadir actividad" path={'/new/activity/'} delay={0} type="outline-secondary" size="md" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
