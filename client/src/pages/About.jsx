@@ -41,7 +41,7 @@ function About() {
             <Row className='equipo'>
                 <Col md={3} className="text-center mb-4">
                     <Image src="/assets/Haritz.jpeg" roundedCircle fluid className="mb-3" />
-                    <h5>JHaritz</h5>
+                    <h5>Haritz</h5>
                     <p>Desarrollador Fullstack y solucionador de problemas</p>
                 </Col>
                 <Col md={3} className="text-center mb-4">
