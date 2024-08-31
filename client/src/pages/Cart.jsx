@@ -5,6 +5,7 @@ import CalculateTotal from "../components/CalculateTotal";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { getprofile } from "../utils/getprofile";
+import Swal from 'sweetalert2';
 // import { UserContext } from "../context/UserContext";
 
 
@@ -20,6 +21,11 @@ export default function Cart() {
 
     if (!token) {
       console.error("No user found. Please log in.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No user found. Please log in.",
+    });
       return;
     }
 
@@ -27,6 +33,11 @@ export default function Cart() {
 
     if (!result.success) {
       console.error("Failed to get user profile:", result.error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to get user profile.",
+    });
       return;
     }
 

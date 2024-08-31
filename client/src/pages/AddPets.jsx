@@ -3,35 +3,87 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'; //*
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { getprofile } from '../utils/getprofile';
+import ViewElement from './ViewElement';
 
 const NewPet = () => {
 
     const navigate = useNavigate();
-
     const [namePet, setName] = useState('');
     const [typePet, setType] = useState('');
+    const collection = 'pets';
 
-    const createElement = (ev) => {
+    const createElement = async (ev) => {
         ev.preventDefault();
 
-        const formData = new FormData();
-        formData.append('name', namePet);
-        formData.append('type', typePet);
+        const token = localStorage.getItem("token");
+        if (!token) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No user found. Please log in.",
+            });
+            return;
+        }
+
+        const result = await getprofile(token);
+        if (!result.success) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Failed to get user profile.",
+            });
+            return;
+        }
+
+        // if (result && result.data && result.data._id) {
+            
+        const userId = result.data._id;
+           
+        // } else {
+        //     console.error("Error: result.data._id is undefined");
+            
+        // }
+        
+        const petData = {
+            name: namePet,
+            type: typePet,
+        };
 
 
-        fetch(`http://localhost:5000/api/pets/new`, {
+        try {
+         
+            const petResponse = await fetch(`http://localhost:5000/api/pets/new`, {
             method: "POST",
-            body: formData,
-        })
-            .then(response => response.json())
-            .then((info) => {
-                if (!info.success) {
-                    throw new Error(info.data);
-                }
-                var id = info.data._id;
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(petData),
+            });
+
+            const petDataResponse = await petResponse.json();
+
+            if (!petDataResponse.success) {
+                throw new Error(petDataResponse.data);
+            }
+
+            const petId = petDataResponse.data._id;
+
+            const userResponse = await fetch(`http://localhost:5000/api/users/addPet/${userId}/${petId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+       
+
+            const userData = await userResponse.json();
+
+            if (!userData.success) {
+                throw new Error(userData.data || 'Unknown error occurred');
+            }
 
                 Swal.fire({
                     title: "Elemento creado.",
@@ -43,15 +95,18 @@ const NewPet = () => {
                     confirmButtonText: "Sí, por favor."
                 })
                     .then((result) => {
-                        if (result.isConfirmed) {
-                            navigate(`/view/pets/${id}`);
-                        } else if (result.isDenied) {
-                            navigate('/profile');
+                    if (result.isConfirmed) {
+                        if (petId) {
+                            navigate(`/view/pets/${petId}`);
+                        } else {
+                            console.error("Pet ID is undefined");
                         }
-                    });
-            })
+                    } else if (result.isDenied) {
+                        navigate('/profile');
+                    }
+                });
 
-            .catch(err => {
+        } catch (err) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -59,7 +114,7 @@ const NewPet = () => {
                     footer: err.hasOwnProperty("message") ? err.message : err
                 });
                 console.log('There was an error', err);
-            })
+        }
     };
 
     return (
