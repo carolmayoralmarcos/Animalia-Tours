@@ -14,7 +14,7 @@ const getReservationbyId = async (req, res) => {
         const { id } = req.params;
         const filteredReservation = await Reservation.findById(id).populate('user').populate('activity');
         if (!filteredReservation) {
-            return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
         } else {
             return res.status(200).json({ success: true, data: filteredReservation });
         }
@@ -35,7 +35,7 @@ const newReservation = async (req, res) => {
             const createdReservation = await newReservation.save();
             return res.status(201).json({ success: true, data: createdReservation });
         } else {
-            return res.status(200).json({ success: false, data: 'Reservation already exists!' });
+            return res.status(200).json({ success: false, data: 'Esta reserva ya existe :(' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -48,12 +48,12 @@ const deleteReservation = async (req, res) => {
         if (id) {
             const deletedReservation = await Reservation.findByIdAndDelete(id);
             if (!deletedReservation) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
-                return res.status(200).json({ success: true, message: 'Reservation deleted successfully!', data: deletedReservation });
+                return res.status(200).json({ success: true, message: 'Reserva eliminada correctamente.', data: deletedReservation });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -67,12 +67,12 @@ const updateReservation = async (req, res) => {
         if (id) {
             const updatedReservation = await Reservation.findByIdAndUpdate(id, updateBody, { new: true });
             if (!updatedReservation) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
-                return res.status(200).json({ success: true, message: 'Reservation updated successfully!', data: updatedReservation });
+                return res.status(200).json({ success: true, message: '¡Reserva actualizada correctamente!', data: updatedReservation });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -81,11 +81,11 @@ const updateReservation = async (req, res) => {
 
 const getReservationsByUserId = async (req, res) => {
     try {
-        const { userId } = req.params; 
+        const { userId } = req.params;
         const userReservations = await Reservation.find({ user: userId }).populate('user').populate('activity');
 
         if (userReservations.length === 0) {
-            return res.status(200).json({ success: false, data: 'No reservations found for this user.' });
+            return res.status(200).json({ success: false, data: 'Este usuario no tiene ninguna reserva.' });
         } else {
             return res.status(200).json({ success: true, data: userReservations });
         }

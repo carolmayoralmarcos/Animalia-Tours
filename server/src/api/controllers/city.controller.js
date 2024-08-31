@@ -14,7 +14,7 @@ const getCityById = async (req, res) => {
         const { id } = req.params;
         const filteredCity = await City.findById(id);
         if (!filteredCity) {
-            res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+            res.status(202).json({ success: false, data: 'Ese ID no existe.' });
         } else {
             res.status(200).json({ success: true, data: filteredCity });
         }
@@ -35,7 +35,7 @@ const newCity = async (req, res) => {
             const createdCity = await newCity.save();
             return res.status(201).json({ success: true, data: createdCity });
         } else {
-            return res.status(200).json({ success: false, data: 'City already exists!' });
+            return res.status(200).json({ success: false, data: '¡La ciudad ya existe!' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -48,13 +48,13 @@ const deleteCity = async (req, res) => {
         if (id) {
             const deletedCity = await City.findByIdAndDelete(id);
             if (!deletedCity) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
                 deleteFile(deletedCity.image);
-                return res.status(200).json({ success: true, message: 'City deleted successfully!', data: deletedCity });
+                return res.status(200).json({ success: true, message: 'Ciudad eliminada correctamente.', data: deletedCity });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
@@ -68,12 +68,12 @@ const updateCity = async (req, res) => {
         if (id) {
             const updatedCity = await City.findByIdAndUpdate(id, updateBody, { new: true });
             if (!updatedCity) {
-                return res.status(202).json({ success: false, data: 'That ID does NOT exist.' });
+                return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
             } else {
-                return res.status(200).json({ success: true, message: 'City updated successfully!', data: updatedCity });
+                return res.status(200).json({ success: true, message: '¡Ciudad actualizada correctamente!', data: updatedCity });
             }
         } else {
-            return res.status(202).json({ success: false, data: 'You have to define an ID' });
+            return res.status(202).json({ success: false, data: 'Tienes que definir un ID.' });
         }
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
