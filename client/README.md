@@ -4,7 +4,7 @@
 
 ### Mónica código manejoError pruebasBack pruebasFront develop
 
-- [xpte] 1. Hero (carrusel) ok pte pte pte pte
+- [x] 1. Hero (carrusel) ok pte pte pte pte
 - [x] 2. hook getrandomactivities ok na na na ok
 - [x] 3. cart (cartContext)
 - [x] 4. Login ok ok ok ok ok
@@ -12,7 +12,8 @@
 - [x] 6. Revisar Añadir Mascota (addPet)
 - [x] 7. Revisar Eliminar Mascota (deletePet)
 - [x] 8. Página Carrito
-- [x] 9. Cart endpoint newReservation (botón Confirmar reserva con ok carrito). id=local storage
+- [pte prueba] 9. Cart endpoint newReservation (botón Confirmar reserva con ok carrito). id=local storage
+- [x] 9. Home Carrusel con 3 fotos fijas
 
 ### Daniela
 
@@ -21,7 +22,6 @@
 3. Register(Con Ale)
 4. Contact (Con Ale)
 5. En Actividades un botón "Añadir al carrito" -> utilizar context link, añadir el boton modificar linkado updateactivities
-
 
 ### Aleida
 
