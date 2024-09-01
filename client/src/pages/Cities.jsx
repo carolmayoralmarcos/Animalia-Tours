@@ -80,7 +80,7 @@ function Cities() {
                     <Button variant="secondary" type="submit">Buscar</Button>
                 </Form>
             </div>
-            <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="success" />
+            <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="custom" />
             <div className="d-flex flex-wrap my-3">
                 {cities.map((city, index) => {
                     return (
@@ -91,13 +91,13 @@ function Cities() {
                                 <Card.Subtitle className="mb-2 text-muted">{city.description.substring(0, 100) + "..."}</Card.Subtitle>
                                 <Accordion defaultActiveKey="1">
                                     <Accordion.Item eventKey="0">
-                                        <Accordion.Header>Acciones</Accordion.Header>
+                                        <Accordion.Header>Ver opciones</Accordion.Header>
                                         <Accordion.Body>
                                             <div className='action-buttons mb-3'>
                                                 <ActionButton text="Ver detalles" path={'/view/cities/' + city._id} delay={0} type="primary" />
                                                 <ActionButton text="Modificar" path={'/update/cities/' + city._id} delay={0} type="secondary" />
                                             </div>
-                                            <Button className="btn btn-danger" id={city._id} onClick={handleDelete} >Eliminar</Button>
+                                            <Button className="btn btn-custom" id={city._id} onClick={handleDelete} >Eliminar</Button>
 
                                         </Accordion.Body>
                                     </Accordion.Item>

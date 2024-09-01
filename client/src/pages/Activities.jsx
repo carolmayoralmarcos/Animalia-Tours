@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
 import { ActionButton } from '../components/ActionButton';
+import Button from 'react-bootstrap/Button'; // Importa Button desde react-bootstrap
 
 function Activities() {
     const collection = 'activities';
@@ -57,27 +58,32 @@ function Activities() {
 
             <div className="activities">
                 <h1 className="activities-title">Actividades</h1>
+                <hr></hr>
                 <div className="activities-grid">
                     {Array.isArray(activities) && activities.length > 0 ? (
                         activities.map(activity => (
                             <div key={activity._id} className="activity-card">
                                 <img src={activity.image} alt={activity.name} className="activity-image" />
-                                <div className="activity-details">
+                                <div className="activity-details d-flex flex-column">
                                     <h5 className="activity-title">{activity.name}</h5>
                                     <p className="activity-description">{activity.description}</p>
                                     <p className="activity-status">Estado: {activity.status}</p>
                                     <p className="activity-price">Precio: ${activity.price}</p>
                                     <p className="activity-users">Máximo de Usuarios: {activity.max_users}</p>
 
-                                    <button className="add-to-cart-button" onClick={() => addToCart(activity)}>
-                                        + Añadir al carrito
-                                    </button>
-
-                                    <div className="activity-actions">
-                                        <ActionButton text="Ver detalles" path={'/view/activities/' + activity._id} />
-                                        <ActionButton text="Modificar" path={'/update/activities/' + activity._id} />
-                                        <ActionButton text="Añadir actividad" path={'/new/activity/'} />
+                                    <div className="activity-actions mt-auto d-flex justify-content-between">
+                                        <Button
+                                            className="btn-custom  me-2"
+                                            onClick={() => addToCart(activity)}
+                                            disabled={cart.some(item => item._id === activity._id)}
+                                        >
+                                            Añadir al carrito
+                                        </Button>
+                                        <ActionButton className="w-100 me-2" text="Ver detalles" path={'/view/activities/' + activity._id} />
+                                        <ActionButton className="w-100 me-2" text="Modificar" path={'/update/activities/' + activity._id} />
+                                        <ActionButton className="w-100" text="Añadir actividad" path={'/new/activity/'} />
                                     </div>
+
                                 </div>
                             </div>
                         ))
@@ -86,6 +92,7 @@ function Activities() {
                     )}
                 </div>
             </div>
+            <hr></hr>
         </div>
     );
 }

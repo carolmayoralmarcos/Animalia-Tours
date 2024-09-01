@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+/*action button*/
+.btn-custom {
+    background-color: #f5e8e8;
+    border-color: #f5e8e8;
+    color: black;
+    height: 2rem;
+
+
+}
+
+.btn-custom:hover {
+    background-color: #e67e93;
+    border-color: #e67e93;
+}
+
+
+
 /*About*/
 /* Contenedor general */
 .about-container {
@@ -136,14 +161,14 @@
 }
 
 .cart-card {
-    background-color: #FFF9E3;
+    background-color: #f0f0f0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 1rem;
 }
 
 .cart-header {
-    background-color: #fff;
+
     color: #333;
     padding: 0.5rem;
     text-align: center;
@@ -177,7 +202,7 @@
 .view-cart-button {
     display: block;
     text-align: center;
-    background-color: #FDB988;
+    background-color: #ff91a4;
     color: #fff;
     padding: 0.5rem;
     margin-top: 1rem;
@@ -350,11 +375,11 @@
 /* cities */
 
 .accordion-button {
-    background-color: #ff91a4
+    background-color: #f5e8e8;
 }
 
 .accordion-button:hover {
-    background-color: #ff91a4
+    background-color: #f0f0f0;
 }
 
 /* Estilo general para las cards */
