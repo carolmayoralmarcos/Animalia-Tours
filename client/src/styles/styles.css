@@ -510,3 +510,12 @@ body {
 .contact {
     background-color: #fbdbdb;
 }
+
+/* 
+FOOTER */
+
+footer {
+    text-align: center;
+    height: 50px;
+    background-color: #FFEFC1;
+}

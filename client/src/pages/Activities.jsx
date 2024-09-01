@@ -71,6 +71,7 @@ function Activities() {
                                     <p className="activity-price">Precio: ${activity.price}</p>
                                     <p className="activity-users">Máximo de Usuarios: {activity.max_users}</p>
 
+
                                     <div className="activity-actions mt-auto d-flex justify-content-between">
                                         <Button
                                             className="btn-custom  me-2"
