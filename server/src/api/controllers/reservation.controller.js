@@ -28,12 +28,13 @@ const newReservation = async (req, res) => {
         console.log("Request body:", req.body);
         
         const newReservation = new Reservation(req.body);    
-        const { user, activity } = req.body;
+        const { user, activity} = req.body;
 
         console.log("User ID:", user);
         console.log("Activity ID:", activity);
+       
 
-        const findReservation = await Reservation.find ({ user: user, activity: activity });
+        const findReservation = await Reservation.find ({ user: user, activity: activity});
 
         if (findReservation.length === 0) {
             const createdReservation = await newReservation.save();
