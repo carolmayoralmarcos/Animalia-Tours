@@ -34,15 +34,15 @@ function Router() {
                     <Route path="/cities" element={<Layout><Cities /></Layout>} />
                     <Route path="/view/activities/:id" element={<Layout><ViewActivity /></Layout>} />
                     <Route path="/view/:collection/:id" element={<Layout><ViewElement /></Layout>} />
-                    <Route path="/update/activities/:id" element={<Layout><UpdateActivity /></Layout>} />
+                    <Route path="/update/activities/:id" element={<PrivateRoute role="admin"><Layout><UpdateActivity /></Layout></PrivateRoute>} />
                     <Route path="/update/cities/:id" element={<PrivateRoute role="admin"><Layout><UpdateCity /></Layout></PrivateRoute>} />
                     <Route path="/new/city" element={<PrivateRoute role="admin"><Layout><NewCity /></Layout></PrivateRoute>} />
-                    <Route path="/new/activity" element={<Layout><NewActivity /></Layout>} />
+                    <Route path="/new/activity" element={<PrivateRoute role="admin"><Layout><NewActivity /></Layout></PrivateRoute>} />
                     <Route path="/register" element={<Layout><Register /></Layout>} />
                     <Route path="/login" element={<Layout><Login /></Layout>} />
                     <Route path="/logout" element={<Layout><Logout /></Layout>} />
-                    <Route path="/profile" element={<Layout><UserProfile /></Layout>} />
-                    <Route path="/add-pet" element={<Layout><AddPets /></Layout>} />
+                    <Route path="/profile" element={<PrivateRoute role="user"><Layout><UserProfile /></Layout></PrivateRoute>} />
+                    <Route path="/add-pet" element={<PrivateRoute role="user"><Layout><AddPets /></Layout></PrivateRoute>} />
                     <Route path="/cart" element={<Layout><Cart /></Layout>} />
                     <Route path="/contact" element={<Layout><Contact /></Layout>} />
                     <Route path="/about" element={<Layout><About /></Layout>} />

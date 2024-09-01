@@ -1,11 +1,24 @@
 import React from 'react';
 import CarouselInterval from '../components/Hero';
+import HomeActivities from '../components/HomeActivities';
+
 
 function Home() {
     return (
-
-        <CarouselInterval />
-
+        <div className='home'>
+            <div className='home-carousel'>
+                <CarouselInterval />
+            </div>
+            <div className='home-activities my-5'>
+                <HomeActivities />
+            </div>
+            <div className='home-register my-5'>
+                <h2>Aquí va el registro</h2>
+            </div>
+            <div className='home-register my-5'>
+                <h2>Aquí va el apartado de Ciudades con el buscador</h2>
+            </div>
+        </div>
     );
 }
 

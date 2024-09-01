@@ -56,70 +56,72 @@ const Register = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6">
-                    <div className="card">
-                        <div className="card-body">
-                            <h2 className="card-title text-center">Crea tu usuario</h2>
-                            {error && <div className="alert alert-danger">{error}</div>}
-                            {success && <div className="alert alert-success">¡Se ha registrado correctamente! Redirigiendo al login...</div>}
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="username">Nombre</label>
-                                    <input
-                                        type="text"
-                                        id="username"
-                                        name="username"
-                                        className="form-control"
-                                        value={formData.username}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">E-mail</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        className="form-control"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="password">Contraseña</label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        className="form-control"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="confirmPassword">Confirmar Contraseña</label>
-                                    <input
-                                        type="password"
-                                        id="confirmPassword"
-                                        name="confirmPassword"
-                                        className="form-control"
-                                        value={formData.confirmPassword}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <button type="submit" className="btn btn-primary btn-block">Registrarse</button>
-                            </form>
-                        </div>
+        <div className="d-flex align-items-center justify-content-center min-vh-100">
+            <div className="contact p-4  rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
+                <div className="register">
+
+                    <div className="card-body-register">
+                        <h2 className="text-center mb-3">Crea tu usuario</h2>
+                        {error && <div className="alert alert-danger">{error}</div>}
+                        {success && <div className="alert alert-success">¡Se ha registrado correctamente! Redirigiendo al login...</div>}
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group m-3">
+                                <label htmlFor="username">Nombre</label>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    className="form-control "
+                                    value={formData.username}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group m-3 ">
+                                <label htmlFor="email">E-mail</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className="form-control"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group m-3">
+                                <label htmlFor="password">Contraseña</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    className="form-control"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group m-3">
+                                <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    className="form-control "
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" className="btn btn-custom align-self-center">Registrarse</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
     );
 };
 
