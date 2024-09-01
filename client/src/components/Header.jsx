@@ -27,7 +27,6 @@ function Header() {
                     <Nav.Link as={Link} to="/activities">Actividades</Nav.Link>
                     <Nav.Link as={Link} to="/cities">Ciudades</Nav.Link>
                     <Nav.Link as={Link} to="/contact">Contacto</Nav.Link>
-                    <Nav.Link as={Link} to="/register">Registro</Nav.Link>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
                     <Nav.Link as={Link} to="/cart">Carrito</Nav.Link>
