@@ -6,10 +6,28 @@ import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { getprofile } from "../utils/getprofile";
 import Swal from 'sweetalert2';
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      getprofile(token).then(userData => {
+        if (userData.success) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      }).catch(() => setIsLoggedIn(false));
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   const handleConfirmReservations = async () => {
     const token = localStorage.getItem("token");
@@ -17,10 +35,12 @@ export default function Cart() {
     if (!token) {
       console.error("No user found. Please log in.");
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "No user found. Please log in.",
-    });
+        icon: "warning",
+        title: "Not Logged In",
+        text: "Please log in to confirm your reservation.",
+      }).then(() => {
+        navigate("/login"); 
+      });
       return;
     }
 

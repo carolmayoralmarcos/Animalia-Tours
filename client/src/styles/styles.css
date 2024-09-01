@@ -506,6 +506,17 @@ body {
     background-color: #f0f0f0;
 }
 
+.input-group-append {
+    margin-left: 10px;
+    margin-top: 8px;
+    /* Adjust the margin value as needed */
+}
+
+.d-flex {
+    justify-content: stretch;
+    /* Adjust the spacing as needed */
+}
+
 /* CONTACTO */
 .contact {
     background-color: #fbdbdb;
