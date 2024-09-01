@@ -1,10 +1,12 @@
 import React from 'react';
-import CarouselInterval from '../components/Hero';
+import Hero from '../components/Hero';
 
 function Home() {
     return (
+        <div>
+            <Hero />
+        </div>
 
-        <CarouselInterval />
 
     );
 }
