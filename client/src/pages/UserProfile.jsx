@@ -135,51 +135,32 @@ const UserProfile = () => {
 
     const deletePet = async (petId) => {
         try {
-            const result = await Swal.fire({
-                title: '¿Estás seguro?',
-                text: "No podrás revertir esto una vez confirmado.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, eliminarla!',
-                cancelButtonText: 'No, cancelar!',
-                reverseButtons: true
+            const removeResponse = await removePetFromUser(profile._id, petId);
+            if (!removeResponse) return;
+
+            const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
             });
 
-            if (result.isConfirmed) {
-                const removeResponse = await removePetFromUser(profile._id, petId);
-                if (!removeResponse) return;
-
-                const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
-
-                const data = await response.json();
-                if (!data.success) {
-                    throw new Error(data.data);
-                }
-
-                Swal.fire({
-                    title: 'Mascota eliminada',
-                    text: `La mascota ${data.data.name} ha sido eliminada con éxito.`,
-                    icon: 'success',
-                    confirmButtonText: 'Aceptar'
-                });
-
-                setProfile({
-                    ...profile,
-                    pets: profile.pets.filter(pet => pet._id !== petId)
-                });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire({
-                    title: 'Cancelado',
-                    text: 'La mascota está a salvo :)',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
+            const data = await response.json();
+            if (!data.success) {
+                throw new Error(data.data);
             }
+
+            Swal.fire({
+                title: 'Mascota eliminada',
+                text: `La mascota ${data.data.name} ha sido eliminada con éxito.`,
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
+
+            setProfile({
+                ...profile,
+                pets: profile.pets.filter(pet => pet._id !== petId)
+            });
 
         } catch (error) {
             Swal.fire({
@@ -191,71 +172,70 @@ const UserProfile = () => {
         }
     };
 
-
     if (!profile) {
         return <p>No se pudo cargar el perfil. Por favor, inténtalo de nuevo más tarde.</p>;
     }
 
     return (
-        <div className="d-flex align-items-left justify-content-center min-vh-100">
-            <div className="UserProfile p-4  rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
-                <div className="Profile">
-                    <div className="card-header">
-                        <h1 className="text-left mb-4">Perfil de {profile.name}</h1>
-                    </div>
-                    <div className="card-body">
-                        <p><strong>Nombre:</strong> {profile.name}</p>
-                        <p><strong>Email:</strong> {profile.email}</p>
+        <div className="d-flex align-items-center justify-content-center min-vh-100" >
+            <div className="UserProfile p-4 rounded shadow-sm" style={{ maxWidth: '900px', width: '100%', backgroundColor: '#fbdbdb' }}>
+                <div className="cardProfile-header-User text-center">
+                    <h1 className="mb-4">Perfil de{profile.name}</h1>
+                </div>
+                <hr></hr>
+                <div className="card-body-User text-left">
+                    <p><strong>Nombre:</strong> {profile.name}</p>
+                    <p><strong>Email:</strong> {profile.email}</p>
+                    <hr></hr>
 
-                        <h2>Mascotas</h2>
-                        <ul className="text-left mb-3">
-                            {profile.pets.length > 0 ? (
-                                profile.pets.map((pet, index) => (
-                                    <li key={index} className="list-group-item d-flex flex-column align-items-start">
-                                        <span><strong>Nombre:</strong> {pet.name}</span>
-                                        <span><strong>Tipo:</strong> {pet.type}</span>
-                                        <div className="mt-2">
+                    <h2>Mascotas</h2>
+                    <ul className="d-flex">
+                        {profile.pets.length > 0 ? (
+                            profile.pets.map((pet, index) => (
+                                <li key={index} className="list-group-item d-flex justify-content-start align-items-center">
+                                    <span>{pet.name}</span>
+                                    <div>
+                                        <div className='m-4'>
                                             <button
-                                                className="btn btn-custom mb-3 mx-2"
-                                                onClick={() => handleModifyPet(pet._id, pet.name, pet.type)}
-                                            >
-                                                Modificar Mascota
-                                            </button>
-                                            <button
-                                                className="btn btn-custom mb-3"
+                                                className="btn btn-custom m-4"
+
                                                 onClick={() => deletePet(pet._id)}
-                                            >
+                                                style={{ marginLeft: '10px' }}>
                                                 Eliminar Mascota
                                             </button>
-                                        </div>
-                                    </li>
-                                ))
-                            ) : (
-                                <p>No tienes mascotas registradas.</p>
-                            )}
-                        </ul>
 
+                                            <button className="btn btn-custom m-4" onClick={() => navigate('/add-pet')}>Añadir Mascota</button>
 
-
-                        <button className="btn btn-custom mb-3" onClick={() => navigate('/add-pet')}>Añadir Mascota</button>
-
-                        <h2>Reservas</h2>
-                        <div>
-                            {reservations.length > 0 ? (
-                                reservations.map((reservation, index) => (
-                                    <div key={index} className="card mb-3">
-                                        <div className="card-body">
-                                            <p><strong>Actividad:</strong> {reservation.name}</p>
-                                            <p><strong>Estado:</strong> {reservation.status}</p>
-                                            <p><strong>Fecha de creación:</strong> {new Date(reservation.createdAt).toLocaleDateString()}</p>
-                                            <p><strong>Fecha de última actualización:</strong> {new Date(reservation.updatedAt).toLocaleDateString()}</p>
                                         </div>
                                     </div>
-                                ))
-                            ) : (
-                                <p>No tienes reservas.</p>
-                            )}
-                        </div>
+
+                                </li>
+
+                            ))
+                        ) : (
+                            <p>No tienes mascotas registradas.</p>
+                        )}
+
+
+
+                    </ul>
+                    <hr></hr>
+                    <h2>Reservas</h2>
+                    <div>
+                        {reservations.length > 0 ? (
+                            reservations.map((reservation, index) => (
+                                <div key={index} className="card-User m-4" style={{ maxWidth: '100%' }}>
+                                    <div className="card-User-body text-left">
+                                        <p><strong>Actividad:</strong> {reservation.name}</p>
+                                        <p><strong>Estado:</strong> {reservation.status}</p>
+                                        <p><strong>Fecha de creación:</strong> {new Date(reservation.createdAt).toLocaleDateString()}</p>
+                                        <p><strong>Fecha de última actualización:</strong> {new Date(reservation.updatedAt).toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No tienes reservas.</p>
+                        )}
                     </div>
                 </div>
             </div>
