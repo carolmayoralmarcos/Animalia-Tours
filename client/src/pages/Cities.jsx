@@ -75,17 +75,20 @@ function Cities() {
             <div className="d-flex flex-column align-items-left my-5">
                 <Form method="get" onSubmit={handleSearch} className="d-flex justify-content-left">
                     <SearchBar suggestions={cityNames} />
-                    <Button variant="btn btn-custom" type="submit" className="ml-2">Buscar</Button>
+                    <div class="input-group-append">
+                        <Button variant="btn btn-custom" type="submit" className="ml-2">Buscar</Button>
+                    </div>
                 </Form>
             </div>
             <div className='d-flex flex-wrap my-4 mx-4'>
                 <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="custom" className="ml-2" />
             </div>
-            <div className="d-flex flex-wrap my-3">
+
+            <div className="d-flex flex-wrap">
                 {cities.map((city, index) => {
                     return (
-                        <Card className="my-4 mx-4" key={index} style={{ width: '20rem' }}>
-                            <Card.Img variant="top" src={city.image} style={{ maxHeight: '300px' }} />
+                        <Card className="my-4 mx-4" key={index} style={{ width: '35rem' }}>
+                            <Card.Img variant="top" src={city.image} style={{ maxHeight: '1000px' }} />
                             <Card.Body>
                                 <Card.Title>{city.name}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">{city.description.substring(0, 100) + "..."}</Card.Subtitle>
@@ -96,8 +99,9 @@ function Cities() {
                                             <div className='action-buttons mb-3'>
                                                 <ActionButton text="Ver detalles" path={'/view/cities/' + city._id} delay={0} type="primary" />
                                                 <ActionButton text="Modificar" path={'/update/cities/' + city._id} delay={0} type="secondary" />
+                                                <Button className="btn btn-custom" id={city._id} onClick={handleDelete} >Eliminar</Button>
                                             </div>
-                                            <Button className="btn btn-custom" id={city._id} onClick={handleDelete} >Eliminar</Button>
+
 
                                         </Accordion.Body>
                                     </Accordion.Item>

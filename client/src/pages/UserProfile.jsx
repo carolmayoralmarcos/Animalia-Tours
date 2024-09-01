@@ -105,7 +105,7 @@ const UserProfile = () => {
     }
 
     return (
-        <div className="d-flex align-items-center justify-content-center min-vh-100">
+        <div className="d-flex align-items-left justify-content-center min-vh-100">
             <div className="UserProfile p-4  rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
                 <div className="Profile">
                     <div className="card-header">
