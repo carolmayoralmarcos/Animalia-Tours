@@ -73,3 +73,70 @@
     font-size: 16px;
     padding: 16px 32px;
 }
+
+.home-register {
+
+    max-width: 100%;
+    margin-top: 5rem;
+
+    & .custom-home {
+        display: block;
+        text-decoration: none;
+        max-width: 33%;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #f5e8e8;
+        border-color: #f5e8e8;
+        color: black;
+        font-weight: 700;
+        padding: 20px;
+        border-radius: 5%;
+    }
+}
+
+.custom-home:hover {
+    background-color: #e67e93;
+    border-color: #e67e93;
+    color: white;
+}
+
+.cities-home {
+    max-width: 100%;
+    margin: 5rem 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+
+    /* Activities Section */
+    .activities-grid-home {
+        grid-template-columns: 1fr;
+
+    }
+
+    .home-register {
+        max-width: 100%;
+
+        & .custom-home {
+            max-width: 100%;
+            padding: 20px;
+        }
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    /* Activities Section */
+    .activities-title-home {
+        font-size: 1.5rem;
+    }
+
+    .activity-title-home {
+        font-size: 1rem;
+    }
+
+    .activity-description-home {
+        font-size: 0.9rem;
+    }
+}
