@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
 import { ActionButton } from '../components/ActionButton';
-import Button from 'react-bootstrap/Button'; // Importa Button desde react-bootstrap
+import Button from 'react-bootstrap/Button';
 
 function Activities() {
     const collection = 'activities';
@@ -27,7 +27,7 @@ function Activities() {
     };
 
     const removeStickyCart = (indexToRemove) => {
-        removeFromCart(indexToRemove); // Elimina la actividad del carrito
+        removeFromCart(indexToRemove);
     };
 
     return (
@@ -42,7 +42,7 @@ function Activities() {
                         {cart.length > 0 ? (
                             cart.map((item, index) => (
                                 <li key={item._id} className="cart-item">
-                                    {item.name}
+                                    {item.name} - Cantidad: {item.quantity}
                                     <button className="remove-button" onClick={() => removeStickyCart(index)}>
                                         <FaTrash />
                                     </button>
@@ -71,12 +71,10 @@ function Activities() {
                                     <p className="activity-price">Precio: ${activity.price}</p>
                                     <p className="activity-users">Máximo de Usuarios: {activity.max_users}</p>
 
-
                                     <div className="activity-actions mt-auto d-flex justify-content-between">
                                         <Button
-                                            className="btn-custom  me-2"
+                                            className="btn-custom me-2"
                                             onClick={() => addToCart(activity)}
-                                            disabled={cart.some(item => item._id === activity._id)}
                                         >
                                             Añadir al carrito
                                         </Button>
@@ -84,7 +82,6 @@ function Activities() {
                                         <ActionButton className="w-100 me-2" text="Modificar" path={'/update/activities/' + activity._id} />
                                         <ActionButton className="w-100" text="Añadir actividad" path={'/new/activity/'} />
                                     </div>
-
                                 </div>
                             </div>
                         ))

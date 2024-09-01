@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
+import { ActionButton } from '../components/ActionButton';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -21,22 +22,22 @@ function Login() {
                 body: JSON.stringify({ email, password })
             });
 
-            const data = await response.json(); 
+            const data = await response.json();
             console.log(data);
 
             if (!response.ok) {
                 const errorData = await response.json();
-                setError(errorData.data ||'Login failed. Please check your credentials.');
+                setError(errorData.data || 'Login failed. Please check your credentials.');
                 throw new Error('Login failed');
             }
-            
+
             if (data.token) {
                 localStorage.setItem('token', data.token);
-                navigate('/profile');     
+                navigate('/profile');
             } else {
                 setError('Token not provided. Please try again.');
             }
-                
+
         } catch (error) {
             console.error('Login failed', error);
             setError('An error occurred. Please try again later.');
@@ -61,6 +62,10 @@ function Login() {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
+                <div className="mt-3">
+                    <p>¿No estás registrado?</p>
+                    <ActionButton text="Regístrate aquí" path="/register" />
+                </div>
             </Form>
         </Container>
     );
