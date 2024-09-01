@@ -449,4 +449,11 @@ body {
         width: 100%;
         /* Una card por fila en pantallas muy pequeñas */
     }
+
+}
+
+/* CONTACTO */
+
+.contact {
+    background-color: #ffd4d4;
 }
