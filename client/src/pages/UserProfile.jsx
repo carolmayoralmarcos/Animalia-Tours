@@ -188,7 +188,6 @@ const UserProfile = () => {
                     <p><strong>Email:</strong> {profile.email}</p>
                     <hr></hr>
 
-<<<<<<< HEAD
                     <h2>Mascotas</h2>
                     <ul className="d-flex">
                         {profile.pets.length > 0 ? (
@@ -199,27 +198,6 @@ const UserProfile = () => {
                                         <div className='m-4'>
                                             <button
                                                 className="btn btn-custom m-4"
-=======
-                        <h2>Mascotas</h2>
-                        <ul className="text-left mb-3">
-                            {profile.pets.length > 0 ? (
-                                profile.pets.map((pet, index) => (
-                                    <li key={index} className="list-group-item d-flex align-items-right">
-                                        {pet.name} - {pet.type}
-                                        <button
-                                            className="btn btn-custom mb-3 mx-2"
-                                            onClick={() => handleModifyPet(pet._id, pet.name, pet.type)}
-                                        >
-                                            Modificar Mascota
-                                        </button>
-                                        <button className="btn btn-custom mb-3" onClick={() => deletePet(pet._id)}>Eliminar Mascota</button>
-                                    </li>
-                                ))
-                            ) : (
-                                <p>No tienes mascotas registradas.</p>
-                            )}
-                        </ul>
->>>>>>> ae3bee8a4f8e825ce8e4de21b154580d50174624
 
                                                 onClick={() => deletePet(pet._id)}
                                                 style={{ marginLeft: '10px' }}>
