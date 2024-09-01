@@ -1,6 +1,6 @@
 // SearchBar.jsx
 import React, { useState } from 'react';
-import "../styles/search.css"
+import "../styles/styles.css"
 
 const SearchBar = ({ suggestions }) => {
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);

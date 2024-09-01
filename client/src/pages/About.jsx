@@ -45,7 +45,7 @@ function About() {
                     <p>Desarrolladora Fullstack y documentadora profesional</p>
                 </div>
                 <div className="team-member">
-                    <img src="/assets/daniela.jpg" alt="Daniela" />
+                    <img src="/assets/danii.jpg" alt="Daniela" />
                     <h5>Daniela</h5>
                     <p>Desarrolladora Fullstack y la que pone bonita la web</p>
                 </div>
