@@ -135,33 +135,51 @@ const UserProfile = () => {
 
     const deletePet = async (petId) => {
         try {
-
-            const removeResponse = await removePetFromUser(profile._id, petId);
-            if (!removeResponse) return;
-
-            const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
+            const result = await Swal.fire({
+                title: '¿Estás seguro?',
+                text: "No podrás revertir esto una vez confirmado.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminarla!',
+                cancelButtonText: 'No, cancelar!',
+                reverseButtons: true
             });
 
-            const data = await response.json();
-            if (!data.success) {
-                throw new Error(data.data);
+            if (result.isConfirmed) {
+                const removeResponse = await removePetFromUser(profile._id, petId);
+                if (!removeResponse) return;
+
+                const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                const data = await response.json();
+                if (!data.success) {
+                    throw new Error(data.data);
+                }
+
+                Swal.fire({
+                    title: 'Mascota eliminada',
+                    text: `La mascota ${data.data.name} ha sido eliminada con éxito.`,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+
+                setProfile({
+                    ...profile,
+                    pets: profile.pets.filter(pet => pet._id !== petId)
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    title: 'Cancelado',
+                    text: 'La mascota está a salvo :)',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
             }
-
-            Swal.fire({
-                title: 'Mascota eliminada',
-                text: `La mascota ${data.data.name} ha sido eliminada con éxito.`,
-                icon: 'success',
-                confirmButtonText: 'Aceptar'
-            });
-
-            setProfile({
-                ...profile,
-                pets: profile.pets.filter(pet => pet._id !== petId)
-            });
 
         } catch (error) {
             Swal.fire({
@@ -172,6 +190,7 @@ const UserProfile = () => {
             });
         }
     };
+
 
     if (!profile) {
         return <p>No se pudo cargar el perfil. Por favor, inténtalo de nuevo más tarde.</p>;
@@ -192,21 +211,31 @@ const UserProfile = () => {
                         <ul className="text-left mb-3">
                             {profile.pets.length > 0 ? (
                                 profile.pets.map((pet, index) => (
-                                    <li key={index} className="list-group-item d-flex align-items-right">
-                                        {pet.name} - {pet.type}
-                                        <button
-                                            className="btn btn-custom mb-3 mx-2"
-                                            onClick={() => handleModifyPet(pet._id, pet.name, pet.type)}
-                                        >
-                                            Modificar Mascota
-                                        </button>
-                                        <button className="btn btn-custom mb-3" onClick={() => deletePet(pet._id)}>Eliminar Mascota</button>
+                                    <li key={index} className="list-group-item d-flex flex-column align-items-start">
+                                        <span><strong>Nombre:</strong> {pet.name}</span>
+                                        <span><strong>Tipo:</strong> {pet.type}</span>
+                                        <div className="mt-2">
+                                            <button
+                                                className="btn btn-custom mb-3 mx-2"
+                                                onClick={() => handleModifyPet(pet._id, pet.name, pet.type)}
+                                            >
+                                                Modificar Mascota
+                                            </button>
+                                            <button
+                                                className="btn btn-custom mb-3"
+                                                onClick={() => deletePet(pet._id)}
+                                            >
+                                                Eliminar Mascota
+                                            </button>
+                                        </div>
                                     </li>
                                 ))
                             ) : (
                                 <p>No tienes mascotas registradas.</p>
                             )}
                         </ul>
+
+
 
                         <button className="btn btn-custom mb-3" onClick={() => navigate('/add-pet')}>Añadir Mascota</button>
 
