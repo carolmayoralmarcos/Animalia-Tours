@@ -18,12 +18,12 @@
 
 ### Daniela
 
-1. pagina activities 
+1. pagina activities
 2. pagina About
 3. Register(Con Ale)
 4. Contact (Con Ale)
 5. En Actividades un botón "Añadir al carrito" -> utilizar context link, añadir el boton modificar linkado updateactivities
-6. colores para el cssgris claro: #f0f0f0 , beige suave: #f5e8e8 
+6. colores para el cssgris claro: #f0f0f0 , beige suave: #f5e8e8
 
 ### Aleida
 
@@ -39,6 +39,7 @@
 3. UserProfile
 4. NewActivity (añadir imagen) -> NO usar JSON, usar Form
 5. Dentro del UserProfile -> Bloque de Reservas (usar endpoint getReservationsbyUserId)
+
 - [ ] 6. NewActivity tiene que mostrar la lista de ciudades para elegir en un dropdown en vez de tener que meter el ID a mano.
 
 ### Haritz
@@ -58,21 +59,19 @@
 - [ ] 13. ViewElement also for pets and Reservations
 - [ ] 14. ViewCity show "No hay actividades para esta ciudad todavía, lo sentimos."
 
-
 ## BUGFIXES AND IMPROVEMENTS
 
 - [ ] 1. Profile crashes the server app if no user logged.
 - [ ] 2. Register should not be a separate option in the Header. It should be an internal link from Login.
 - [ ] 3. "Ver Detalle" in ViewVity crashes. We need 2 separate files for clean workaround.
-- [ ] 4. AddPet needs to create link between the new created pet and the user making that action.
+- [moni ] 4. AddPet needs to create link between the new created pet and the user making that action.
 - [ ] 5. deletePet needs to show a confirmation pop-up prior to deletion.
 - [ ] 6. Show only Login when no token. Show only Profile when token.
 - [ ] 7. Show Logout icon at right end only when user is logged.
-- [ ] 8. Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
+- [moni ] 8. Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
 - [ ] 9. Cart icon near to Logout at right end instead of main NavBar?
 - [ ] 10. User should be able to cancel a Reservation in his profile page. Confirmation pop-up needed.
 - [ ] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
-
 
 ## EXTRAS
 
