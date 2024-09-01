@@ -1,4 +1,5 @@
 const City = require('../models/city.model');
+const { deleteFile } = require('../../utils/deleteFileCloud')
 
 const getAllCities = async (req, res) => {
     try {

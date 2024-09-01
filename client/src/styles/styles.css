@@ -451,6 +451,13 @@ body {
         width: 100%;
         /* Una card por fila en pantallas muy pequeñas */
     }
+
+}
+
+/* CONTACTO */
+
+.contact {
+    background-color: #ffd4d4;
 }
 
 /*searchBar cities*/
@@ -497,4 +504,9 @@ body {
 
 .autocomplete-suggestion:hover {
     background-color: #f0f0f0;
+}
+
+/* CONTACTO */
+.contact {
+    background-color: #fbdbdb;
 }
