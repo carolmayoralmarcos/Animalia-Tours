@@ -39,6 +39,7 @@
 3. UserProfile
 4. NewActivity (añadir imagen) -> NO usar JSON, usar Form
 5. Dentro del UserProfile -> Bloque de Reservas (usar endpoint getReservationsbyUserId)
+- [ ] 6. NewActivity tiene que mostrar la lista de ciudades para elegir en un dropdown en vez de tener que meter el ID a mano.
 
 ### Haritz
 
@@ -54,6 +55,8 @@
 - [x] 10. Logout
 - [x] 11. ViewElement with Carrito feature
 - [x] 12. List of Activities in ViewCity
+- [ ] 13. ViewElement also for pets and Reservations
+- [ ] 14. ViewCity show "No hay actividades para esta ciudad todavía, lo sentimos."
 
 
 ## BUGFIXES AND IMPROVEMENTS
