@@ -6,17 +6,12 @@ import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { getprofile } from "../utils/getprofile";
 import Swal from 'sweetalert2';
-// import { UserContext } from "../context/UserContext";
-
 
 export default function Cart() {
-
   const { cart, removeFromCart } = useContext(CartContext);
-  // const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleConfirmReservations = async () => {
-
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -29,19 +24,21 @@ export default function Cart() {
       return;
     }
 
-    const result = await getprofile(token);
+    const userData= await getprofile(token);
+    console.log("User Data:", userData);
 
-    if (!result.success) {
-      console.error("Failed to get user profile:", result.error);
+    if (!userData.success) {
+      console.error("Failed to get user profile:", userData.error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Failed to get user profile.",
     });
       return;
-    }
-
-    const userId = result.data._id;
+    } 
+    
+    const userId = userData.data._id;
+    console.log("User ID:", userId);
 
     const reservationPromises = cart.map((item) => {    //const reservationData
       const reservationData = {
@@ -51,9 +48,9 @@ export default function Cart() {
         activity: item._id
       };
 
-    console.log("Sending reservation data:", reservationData);
+      console.log("Sending reservation data:", reservationData);
 
-     return fetch("http://localhost:5000/api/reservations/new", {
+      return fetch("http://localhost:5000/api/reservations/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,6 +67,11 @@ export default function Cart() {
         .then(data => {
           if (!data.success) {
             console.error("Error creating reservation:", data.data);
+            Swal.fire({
+              icon: "error",
+              title: "Reserva Fallida",
+              text: data.data || "Hubo un problema al crear la reserva.",
+            });
             return null;
           } else {
             console.log("Reservation created:", data.data);
@@ -78,6 +80,11 @@ export default function Cart() {
         })
         .catch(err => {
           console.error("Error with reservation request:", err);
+          Swal.fire({
+            icon: "error",
+            title: "Error de Red",
+            text: "Hubo un problema al conectar con el servidor. Por favor, intenta de nuevo más tarde.",
+          });
           return null;
         });
     });
@@ -86,12 +93,23 @@ export default function Cart() {
       const successfulReservations = reservations.filter(res => res !== null);
       if (successfulReservations.length > 0) {
         console.log("All reservations confirmed:", successfulReservations);
-        navigate("/profile");
+        Swal.fire({
+          icon: "success",
+          title: "Reservations Confirmed",
+          text: "All reservations have been successfully confirmed!",
+        }).then(() => {
+          navigate("/profile");
+        });
       } else {
         console.error("Failed to create any reservations.");
+        Swal.fire({
+          icon: "error",
+          title: "Failed",
+          text: "Failed to create any reservations. Please try again.",
+        });
       }
     });
-};
+  };
 
 
   return (
@@ -107,7 +125,6 @@ export default function Cart() {
           return (
             <li
               key={index}>
-            
               {item.name} - {item.quantity} x ${item.price} = ${item.quantity * item.price}
               <button className="btn btn-danger" onClick={() => removeFromCart(index)}>
                 Eliminar <FaTrashAlt />
@@ -124,6 +141,6 @@ export default function Cart() {
           Reserva Confirmada
         </button>
       </div>
-    </div>
+      </div>
   );
 }
