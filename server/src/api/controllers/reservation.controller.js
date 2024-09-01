@@ -25,13 +25,11 @@ const getReservationbyId = async (req, res) => {
 
 const newReservation = async (req, res) => {
     try {
-        const newReservation = new Reservation(req.body);
-        const findReservation = await Reservation.find({ name: newReservation.name });
+        const newReservation = new Reservation(req.body);    
+        const { user, activity } = req.body;
+        const findReservation = await Reservation.find ({ user: user, activity: activity });
 
         if (findReservation.length === 0) {
-            if (req.hasOwnProperty('file')) {
-                newReservation.photo = req.file.path;
-            }
             const createdReservation = await newReservation.save();
             return res.status(201).json({ success: true, data: createdReservation });
         } else {
