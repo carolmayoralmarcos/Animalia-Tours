@@ -11,6 +11,18 @@ const UserProfile = () => {
 
     useEffect(() => {
         const loadUserProfile = async () => {
+            if (!token) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No Autorizado',
+                    text: 'Por favor, inicie sesión para acceder a su perfil.',
+                    confirmButtonText: 'Aceptar'
+                }).then(() => {
+                    navigate('/login');
+                });
+                return;
+            }
+
             const result = await getprofile(token);
             if (result.success) {
                 setProfile(result.data);
@@ -27,7 +39,7 @@ const UserProfile = () => {
         };
 
         loadUserProfile();
-    }, [token]);
+    }, [token, navigate]);
 
     const removePetFromUser = async (userId, petId) => {
         try {
