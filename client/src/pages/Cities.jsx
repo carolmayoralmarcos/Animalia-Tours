@@ -16,8 +16,6 @@ function Cities() {
     const [OGcities, setOGCities] = useState([]);
     const [cityNames, setCityNames] = useState([]);
 
-    //const [searchTerm, setSearchTerm] = useState('');
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -74,13 +72,15 @@ function Cities() {
 
     return (
         <div className="container">
-            <div className="my-5">
-                <Form method="get" onSubmit={handleSearch}>
+            <div className="d-flex flex-column align-items-left my-5">
+                <Form method="get" onSubmit={handleSearch} className="d-flex justify-content-left">
                     <SearchBar suggestions={cityNames} />
-                    <Button variant="secondary" type="submit">Buscar</Button>
+                    <Button variant="btn btn-custom" type="submit" className="ml-2">Buscar</Button>
                 </Form>
             </div>
-            <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="custom" />
+            <div>
+                <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="custom" className="ml-2" />
+            </div>
             <div className="d-flex flex-wrap my-3">
                 {cities.map((city, index) => {
                     return (
