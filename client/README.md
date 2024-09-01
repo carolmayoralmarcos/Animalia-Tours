@@ -66,8 +66,7 @@ dudas
 - [x] 10. Logout
 - [x] 11. ViewElement with Carrito feature
 - [x] 12. List of Activities in ViewCity
-- [ ] 13. ViewElement also for pets and Reservations
-- [ ] 14. ViewCity show "No hay actividades para esta ciudad todavía, lo sentimos."
+- [x] 13. ViewElement also for pets and Reservations
 
 ## BUGFIXES AND IMPROVEMENTS
 
@@ -82,9 +81,11 @@ dudas
 - [ ] 9. Cart icon near to Logout at right end instead of main NavBar?
 - [ ] 10. User should be able to cancel a Reservation in his profile page. Confirmation pop-up needed.
 - [ ] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
+- [x] 12. City images are not being deleted when city is deleted.
 
 ## EXTRAS
 
 - [ ] 1. Buttons for Activity or City creation / modifying / deletion should appear only if user is admin / provider.
 - [ ] 2. Admin Dashboard is showed when token role is 'admin'. Here every user is shown and deletion allowed after pop-up confirmation.
 - [ ] 3. Admin Dashboard could show every Reservation and change any of them.
+- [ ] 4. Pets collection should allow to add image, genre and description.
