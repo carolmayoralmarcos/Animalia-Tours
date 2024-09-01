@@ -64,7 +64,7 @@ export default function Cart() {
 
     const reservationPromises = cart.map((item) => {    //const reservationData
       const reservationData = {
-        name: `Reservation for ${item.name}`,
+        // name: `Reservation for ${item.name}`,
         status: "confirmed",
         user: userId,
         activity: item._id

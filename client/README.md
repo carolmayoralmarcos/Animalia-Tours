@@ -24,6 +24,7 @@ quick quentions
 - [DISEÑO] 3. The quantity in the cart no longer increases (=1) when clicking multiple times on "add activity," . Decide whether we should remove the control.
 - [MONI CONFIRMAR QUE ESTA OK] 4. AddPets -> The view element is not working. Please let me know if I need to check this myself: http://localhost:3000/view/pets/66d44fb0d334e697d028ca21 error
 - [CAROL] 6. In the profile, I don't see the option to edit pets to view the data and modify it if necessary.
+- [] 7. AddPet should request also de image
 
 ### Daniela
 
