@@ -75,7 +75,6 @@ const UserProfile = () => {
             const removeResponse = await removePetFromUser(profile._id, petId);
             if (!removeResponse) return;
 
-
             const response = await fetch(`http://localhost:5000/api/pets/delete/${petId}`, {
                 method: 'DELETE',
                 headers: {
@@ -95,7 +94,6 @@ const UserProfile = () => {
                 confirmButtonText: 'Aceptar'
             });
 
-
             setProfile({
                 ...profile,
                 pets: profile.pets.filter(pet => pet._id !== petId)
@@ -113,58 +111,58 @@ const UserProfile = () => {
 
     if (!profile) {
         return <p>No se pudo cargar el perfil. Por favor, inténtalo de nuevo más tarde.</p>;
-
     }
 
     return (
-        <div className="d-flex align-items-center justify-content-center min-vh-100">
-            <div className="UserProfile p-4  rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
-                <div className="Profile">
-                    <div className="card-header">
-                        <h1 className="text-left mb-4">Perfil de {profile.name}</h1>
-                    </div>
-                    <div className="card-body">
-                        <p><strong>Nombre:</strong> {profile.name}</p>
-                        <p><strong>Email:</strong> {profile.email}</p>
+        <div className="container mt-5">
+            <div className="row">
+                <div className="col-md-8 offset-md-2">
+                    <div className="card">
+                        <div className="card-header">
+                            <h1>Perfil de {profile.name}</h1>
+                        </div>
+                        <div className="card-body">
+                            <p><strong>Nombre:</strong> {profile.name}</p>
+                            <p><strong>Email:</strong> {profile.email}</p>
 
-                        <h2>Mascotas</h2>
-                        <ul className="text-left mb-3">
-                            {profile.pets.length > 0 ? (
-                                profile.pets.map((pet, index) => (
-                                    <li key={index} className="list-group-item d-flex align-items-right">
-                                        {pet.name}
-                                        <button className="btn btn-custom mb-3 " onClick={() => deletePet(pet._id)}>Eliminar Mascota</button>
-                                    </li>
-                                ))
-                            ) : (
-                                <p>No tienes mascotas registradas.</p>
-                            )}
-                        </ul>
+                            <h2>Mascotas</h2>
+                            <ul className="list-group mb-3">
+                                {profile.pets.length > 0 ? (
+                                    profile.pets.map((pet, index) => (
+                                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                                            {pet.name}
+                                            <button className="btn btn-danger btn-sm" onClick={() => deletePet(pet._id)}>Eliminar Mascota</button>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <p>No tienes mascotas registradas.</p>
+                                )}
+                            </ul>
 
-                        <button className="btn btn-custom mb-3" onClick={() => navigate('/add-pet')}>Añadir Mascota</button>
+                            <button className="btn btn-primary mb-3" onClick={() => navigate('/add-pet')}>Añadir Mascota</button>
 
-                        <h2>Reservas</h2>
-                        <div>
-                            {reservations.length > 0 ? (
-                                reservations.map((reservation, index) => (
-                                    <div key={index} className="card mb-3">
-                                        <div className="card-body">
-                                            <p><strong>Actividad:</strong> {reservation.name}</p>
-                                            <p><strong>Estado:</strong> {reservation.status}</p>
-                                            <p><strong>Fecha de creación:</strong> {new Date(reservation.createdAt).toLocaleDateString()}</p>
-                                            <p><strong>Fecha de última actualización:</strong> {new Date(reservation.updatedAt).toLocaleDateString()}</p>
+                            <h2>Reservas</h2>
+                            <div>
+                                {reservations.length > 0 ? (
+                                    reservations.map((reservation, index) => (
+                                        <div key={index} className="card mb-3">
+                                            <div className="card-body">
+                                                <p><strong>Actividad:</strong> {reservation.name}</p>
+                                                <p><strong>Estado:</strong> {reservation.status}</p>
+                                                <p><strong>Fecha de creación:</strong> {new Date(reservation.createdAt).toLocaleDateString()}</p>
+                                                <p><strong>Fecha de última actualización:</strong> {new Date(reservation.updatedAt).toLocaleDateString()}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No tienes reservas.</p>
-                            )}
+                                    ))
+                                ) : (
+                                    <p>No tienes reservas.</p>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     );
 }
 
