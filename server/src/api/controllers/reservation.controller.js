@@ -25,8 +25,14 @@ const getReservationbyId = async (req, res) => {
 
 const newReservation = async (req, res) => {
     try {
+        console.log("Request body:", req.body);
+        
         const newReservation = new Reservation(req.body);    
         const { user, activity } = req.body;
+
+        console.log("User ID:", user);
+        console.log("Activity ID:", activity);
+
         const findReservation = await Reservation.find ({ user: user, activity: activity });
 
         if (findReservation.length === 0) {

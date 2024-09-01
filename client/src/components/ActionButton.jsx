@@ -20,7 +20,7 @@ export const ActionButton = ({ text, path, delay, type }) => {
                 setButtonClass('btn btn-custom');
                 break;
             case 'secondary':
-                setButtonClass('btn btn-custom'); // Cambia a btn-custom también
+                setButtonClass('btn btn-custom '); // Cambia a btn-custom también
                 break;
             case 'danger':
                 setButtonClass('btn btn-danger');
