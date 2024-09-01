@@ -4,10 +4,10 @@
 
 ### Mónica código manejoError pruebasBack pruebasFront develop
 
-- [x] 1. Hero (carrusel) ok pte pte pte pte
-- [x] 2. hook getrandomactivities ok na na na ok
+- [x] 1. Hero (carrusel)
+- [x] 2. hook getrandomactivities
 - [x] 3. cart (cartContext)
-- [x] 4. Login ok ok ok ok ok
+- [x] 4. Login
 - [x] 5. UpdateActivity: updated due to new utils getElementbyId and new route
 - [x] 6. Revisar Añadir Mascota (addPet)
 - [x] 7. Revisar Eliminar Mascota (deletePet)
@@ -16,15 +16,14 @@
 - [x] 9. Home Carrusel: Not random. Yes 3 fixed images
 - [x] 10. Cart: GetProfile to be used instead of User Context (decode) to get userId from token
 - [x] 11. Link New Pet with user
+- [] 12. Cart control: Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
 
-dudas
+quick quentions
 
-- [] 1. I have removed the name of the reservations model, but the database still keeps historical information.
-- [] 2. In MongoDB, the user does not show the reservations array. Shouldn't it be there, just like we have the pets array?
-- [] 3. The quantity in the cart no longer increases (=1) when clicking multiple times on "add activity," . Decide whether we should remove the control.
-- [] 4. AddPets -> The view element is not working. Please let me know if I need to check this myself: http://localhost:3000/view/pets/66d44fb0d334e697d028ca21 error
-- [] 5. For user Moni, the front end shows that I don't have any pets created, but in the back end, the pet 66d367b5fc0a97e233810133 appears, which is a pet that was deleted.
-- [] 6. In the profile, I don't see the option to edit pets to view the data and modify it if necessary.
+- [MONI] 1. I have removed the name of the reservations model, but the database still keeps historical information.
+- [DISEÑO] 3. The quantity in the cart no longer increases (=1) when clicking multiple times on "add activity," . Decide whether we should remove the control.
+- [MONI CONFIRMAR QUE ESTA OK] 4. AddPets -> The view element is not working. Please let me know if I need to check this myself: http://localhost:3000/view/pets/66d44fb0d334e697d028ca21 error
+- [CAROL] 6. In the profile, I don't see the option to edit pets to view the data and modify it if necessary.
 
 ### Daniela
 
@@ -70,18 +69,19 @@ dudas
 
 ## BUGFIXES AND IMPROVEMENTS
 
-- [ ] 1. Profile crashes the server app if no user logged.
-- [ ] 2. Register should not be a separate option in the Header. It should be an internal link from Login.
-- [ ] 3. "Ver Detalle" in ViewVity crashes. We need 2 separate files for clean workaround.
-- [moni ] 4. AddPet needs to create link between the new created pet and the user making that action.
-- [ ] 5. deletePet needs to show a confirmation pop-up prior to deletion.
-- [ ] 6. Show only Login when no token. Show only Profile when token.
-- [ ] 7. Show Logout icon at right end only when user is logged.
-- [moni ] 8. Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
-- [ ] 9. Cart icon near to Logout at right end instead of main NavBar?
-- [ ] 10. User should be able to cancel a Reservation in his profile page. Confirmation pop-up needed.
-- [ ] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
+- [x] 1. Profile crashes the server app if no user logged.
+- [DISEÑO] 2. Register should not be a separate option in the Header. It should be an internal link from Login.
+- [x] 3. "Ver Detalle" in ViewVity crashes. We need 2 separate files for clean workaround.
+- [x] 4. AddPet needs to create link between the new created pet and the user making that action.
+- [CAROL] 5. deletePet needs to show a confirmation pop-up prior to deletion.
+- [IF DISEÑO] 6. Show only Login when no token. Show only Profile when token.
+- [IF DISEÑO] 7. Show Logout icon at right end only when user is logged.
+- [MONI] 8. Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
+- [DISEÑO] 9. Cart icon near to Logout at right end instead of main NavBar?
+- [CAROL] 10. User should be able to cancel a Reservation in his profile page. Confirmation pop-up needed.
+- [CAROL] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
 - [x] 12. City images are not being deleted when city is deleted.
+- [HARITZ] 13. Home
 
 ## EXTRAS
 
