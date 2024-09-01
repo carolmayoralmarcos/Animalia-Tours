@@ -1,6 +1,7 @@
 import React from 'react';
 import CarouselInterval from '../components/Hero';
 import HomeActivities from '../components/HomeActivities';
+import "../styles/home.css"
 
 
 function Home() {
@@ -9,7 +10,7 @@ function Home() {
             <div className='home-carousel'>
                 <CarouselInterval />
             </div>
-            <div className='home-activities my-5'>
+            <div className='home-activities'>
                 <HomeActivities />
             </div>
             <div className='home-register my-5'>
