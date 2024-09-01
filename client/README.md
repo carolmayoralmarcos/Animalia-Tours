@@ -53,4 +53,26 @@
 - [x] 9. UpdateCity
 - [x] 10. Logout
 - [x] 11. ViewElement with Carrito feature
-- [ ] 12. List of Activities in ViewCity
+- [x] 12. List of Activities in ViewCity
+
+
+## BUGFIXES AND IMPROVEMENTS
+
+- [ ] 1. Profile crashes the server app if no user logged.
+- [ ] 2. Register should not be a separate option in the Header. It should be an internal link from Login.
+- [ ] 3. "Ver Detalle" in ViewVity crashes. We need 2 separate files for clean workaround.
+- [ ] 4. AddPet needs to create link between the new created pet and the user making that action.
+- [ ] 5. deletePet needs to show a confirmation pop-up prior to deletion.
+- [ ] 6. Show only Login when no token. Show only Profile when token.
+- [ ] 7. Show Logout icon at right end only when user is logged.
+- [ ] 8. Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
+- [ ] 9. Cart icon near to Logout at right end instead of main NavBar?
+- [ ] 10. User should be able to cancel a Reservation in his profile page. Confirmation pop-up needed.
+- [ ] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
+
+
+## EXTRAS
+
+- [ ] 1. Buttons for Activity or City creation / modifying / deletion should appear only if user is admin / provider.
+- [ ] 2. Admin Dashboard is showed when token role is 'admin'. Here every user is shown and deletion allowed after pop-up confirmation.
+- [ ] 3. Admin Dashboard could show every Reservation and change any of them.
