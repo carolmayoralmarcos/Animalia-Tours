@@ -82,7 +82,7 @@ quick quentions
 - [CAROL] 10. User should be able to cancel a Reservation in his profile page. Confirmation pop-up needed.
 - [CAROL] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
 - [x] 12. City images are not being deleted when city is deleted.
-- [HARITZ] 13. Home
+- [x] 13. Home responsive
 
 ## EXTRAS
 
