@@ -78,7 +78,7 @@ function Cities() {
                     <Button variant="btn btn-custom" type="submit" className="ml-2">Buscar</Button>
                 </Form>
             </div>
-            <div>
+            <div className='d-flex flex-wrap my-4 mx-4'>
                 <ActionButton text="CREAR NUEVO ELEMENTO" path={'/new/city'} delay={0} type="custom" className="ml-2" />
             </div>
             <div className="d-flex flex-wrap my-3">
