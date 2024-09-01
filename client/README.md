@@ -12,9 +12,19 @@
 - [x] 6. Revisar Añadir Mascota (addPet)
 - [x] 7. Revisar Eliminar Mascota (deletePet)
 - [x] 8. Página Carrito
-- [pte prueba] 9. Cart endpoint newReservation (botón Confirmar reserva con ok carrito). id=local storage
-- [x] 9. Home Carrusel con 3 fotos fijas
-- [ ] 10. User Context Lógica para decodificar o obtener el ID de usuario desde el token
+- [x] 9. Cart endpoint newReservation (button reservation confirmed and create new reservation). id=local storage
+- [x] 9. Home Carrusel: Not random. Yes 3 fixed images
+- [x] 10. Cart: GetProfile to be used instead of User Context (decode) to get userId from token
+- [x] 11. Link New Pet with user
+
+dudas
+
+- [] 1. I have removed the name of the reservations model, but the database still keeps historical information.
+- [] 2. In MongoDB, the user does not show the reservations array. Shouldn't it be there, just like we have the pets array?
+- [] 3. The quantity in the cart no longer increases (=1) when clicking multiple times on "add activity," . Decide whether we should remove the control.
+- [] 4. AddPets -> The view element is not working. Please let me know if I need to check this myself: http://localhost:3000/view/pets/66d44fb0d334e697d028ca21 error
+- [] 5. For user Moni, the front end shows that I don't have any pets created, but in the back end, the pet 66d367b5fc0a97e233810133 appears, which is a pet that was deleted.
+- [] 6. In the profile, I don't see the option to edit pets to view the data and modify it if necessary.
 
 ### Daniela
 
