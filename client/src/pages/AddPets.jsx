@@ -6,14 +6,12 @@ import Col from 'react-bootstrap/Col';
 import Swal from 'sweetalert2';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getprofile } from '../utils/getprofile';
-import ViewElement from './ViewElement';
 
 const NewPet = () => {
 
     const navigate = useNavigate();
     const [namePet, setName] = useState('');
     const [typePet, setType] = useState('');
-    // const collection = 'pets';
 
     const createElement = async (ev) => {
         ev.preventDefault();
@@ -37,26 +35,18 @@ const NewPet = () => {
             });
             return;
         }
-
-        // if (result && result.data && result.data._id) {
             
         const userId = result.data._id;
+
+        console.log(userId)
            
-        // } else {
-        //     console.error("Error: result.data._id is undefined");
-            
-        // }
-        
         const petData = {
             name: namePet,
             type: typePet,
         };
 
-        const profileResult = await getprofile(token);
-
         try {
 
-         
             const petResponse = await fetch(`http://localhost:5000/api/pets/new`, {
             method: "POST",
             headers: {
@@ -87,35 +77,35 @@ const NewPet = () => {
                 throw new Error(userData.data || 'Unknown error occurred');
             }
 
-                Swal.fire({
-                    title: "Elemento creado.",
-                    text: "¿Quieres ver el resultado?",
-                    icon: "success",
-                    showDenyButton: true,
-                    confirmButtonColor: "#3085d6",
-                    denyButtonColor: "#d33",
-                    confirmButtonText: "Sí, por favor."
+            Swal.fire({
+                title: "Elemento creado.",
+                text: "¿Quieres ver el resultado?",
+                icon: "success",
+                showDenyButton: true,
+                confirmButtonColor: "#3085d6",
+                denyButtonColor: "#d33",
+                confirmButtonText: "Sí, por favor."
                 })
-                    .then((result) => {
-                    if (result.isConfirmed) {
-                        if (petId) {
-                            navigate(`/view/pets/${petId}`);
-                        } else {
-                            console.error("Pet ID is undefined");
+            .then((result) => {
+                if (result.isConfirmed) {
+                    if (petId) {
+                        navigate(`/view/pets/${petId}`);
+                    } else {
+                        console.error("Pet ID is undefined");
                         }
-                    } else if (result.isDenied) {
-                        navigate('/profile');
-                    }
-                });
+                } else if (result.isDenied) {
+                    navigate('/profile');
+                }
+             });
 
         } catch (err) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "¡Algo ha ido mal!",
-                    footer: err.hasOwnProperty("message") ? err.message : err
-                });
-                console.log('There was an error', err);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "¡Algo ha ido mal!",
+                footer: err.hasOwnProperty("message") ? err.message : err
+            });
+            console.log('There was an error', err);
         }
     };
 

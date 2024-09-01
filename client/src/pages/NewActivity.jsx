@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createactivity } from '../utils/createactivity';
 
 const NewActivity = () => {
@@ -13,7 +13,26 @@ const NewActivity = () => {
         city_id: ''
     });
 
+    const [cities, setCities] = useState([]);
     const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        const fetchCities = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/cities/all');
+                const data = await response.json();
+                if (data.success) {
+                    setCities(data.data);
+                } else {
+                    setMessage('No se pudieron cargar las ciudades');
+                }
+            } catch (error) {
+                setMessage('Error al obtener las ciudades');
+            }
+        };
+
+        fetchCities();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -46,7 +65,7 @@ const NewActivity = () => {
         const result = await createactivity(formData);
 
         if (result.success) {
-            setMessage(`Activity created successfully: ${result.data.name}`);
+            setMessage(`Actividad creada con éxito: ${result.data.name}`);
         } else {
             setMessage(`Error: ${result.error}`);
         }
@@ -135,14 +154,21 @@ const NewActivity = () => {
                     />
                 </div>
                 <div className="form-group mb-4">
-                    <label>ID de la Ciudad</label>
-                    <input
-                        type="text"
+                    <label>Ciudad</label>
+                    <select
                         name="city_id"
                         value={activity.city_id}
                         onChange={handleChange}
-                        className="form-control"
-                    />
+                        className="form-select"
+                        required
+                    >
+                        <option value="">Selecciona una ciudad</option>
+                        {cities.map((city) => (
+                            <option key={city._id} value={city._id}>
+                                {city.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button type="submit" className="btn btn-primary">Crear Actividad</button>
             </form>
