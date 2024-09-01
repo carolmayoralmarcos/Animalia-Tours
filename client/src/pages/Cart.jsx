@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../App.css";
 import { FaShoppingCart, FaTrashAlt } from "react-icons/fa";
 import CalculateTotal from "../components/CalculateTotal";
@@ -6,8 +6,7 @@ import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { getprofile } from "../utils/getprofile";
 import Swal from 'sweetalert2';
-import { useState } from "react";
-import { useEffect } from "react";
+
 
 export default function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
@@ -30,9 +29,10 @@ export default function Cart() {
   }, []);
 
   const handleConfirmReservations = async () => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
 
-    if (!token) {
+    console.log("isLoggedIn:", isLoggedIn);
+    if (!isLoggedIn) {
       console.error("No user found. Please log in.");
       Swal.fire({
         icon: "warning",
@@ -43,6 +43,8 @@ export default function Cart() {
       });
       return;
     }
+
+    const token = localStorage.getItem("token");
 
     const userData= await getprofile(token);
     console.log("User Data:", userData);
