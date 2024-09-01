@@ -1,4 +1,3 @@
-// LoginPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
@@ -11,7 +10,6 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
-
         e.preventDefault(); // Prevenir la recarga de la página
         try {
             const response = await fetch('http://localhost:5000/api/users/login', {
@@ -45,29 +43,49 @@ function Login() {
     };
 
     return (
-        <Container className="mt-5">
-            <h1 className="mb-4">Login</h1>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={handleLogin}>
-                <Form.Group className="mb-3" controlId="formEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Login
-                </Button>
-                <div className="mt-3">
-                    <p>¿No estás registrado?</p>
-                    <ActionButton text="Regístrate aquí" path="/register" />
+        <div className="d-flex align-items-center justify-content-center min-vh-100">
+            <div className="contact p-4 rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
+                <div className="login">
+                    <div className="card-body-login">
+                        <h2 className="text-center mb-3">Iniciar Sesión</h2>
+                        {error && <div className="alert alert-danger">{error}</div>}
+                        <Form onSubmit={handleLogin}>
+                            <div className="form-group m-3">
+                                <Form.Label htmlFor="email">E-mail</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group m-3">
+                                <Form.Label htmlFor="password">Contraseña</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="d-flex justify-content-center mt-4">
+                                <Button variant="primary" type="submit" className="btn btn-custom">
+                                    Iniciar Sesión
+                                </Button>
+                            </div>
+                        </Form>
+                        <div className="mt-4 text-center">
+                            <p>¿No estás registrado?</p>
+                            <ActionButton text="Regístrate aquí" path="/register" />
+                        </div>
+                    </div>
                 </div>
-            </Form>
-        </Container>
+            </div>
+        </div>
     );
 }
 
