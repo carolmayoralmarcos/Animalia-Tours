@@ -56,7 +56,7 @@
 - [x] 10. Logout
 - [x] 11. ViewElement with Carrito feature
 - [x] 12. List of Activities in ViewCity
-- [ ] 13. ViewElement also for pets and Reservations
+- [x] 13. ViewElement also for pets and Reservations
 - [ ] 14. ViewCity show "No hay actividades para esta ciudad todavía, lo sentimos."
 
 ## BUGFIXES AND IMPROVEMENTS
@@ -78,3 +78,4 @@
 - [ ] 1. Buttons for Activity or City creation / modifying / deletion should appear only if user is admin / provider.
 - [ ] 2. Admin Dashboard is showed when token role is 'admin'. Here every user is shown and deletion allowed after pop-up confirmation.
 - [ ] 3. Admin Dashboard could show every Reservation and change any of them.
+- [ ] 4. Pets collection should allow to add image, genre and description.
