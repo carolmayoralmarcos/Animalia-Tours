@@ -17,10 +17,10 @@ export const ActionButton = ({ text, path, delay, type }) => {
     useEffect(() => {
         switch (type) {
             case 'primary':
-                setButtonClass('btn btn-primary');
+                setButtonClass('btn btn-custom');
                 break;
             case 'secondary':
-                setButtonClass('btn btn-warning');
+                setButtonClass('btn btn-custom'); // Cambia a btn-custom también
                 break;
             case 'danger':
                 setButtonClass('btn btn-danger');
@@ -28,9 +28,11 @@ export const ActionButton = ({ text, path, delay, type }) => {
             case 'success':
                 setButtonClass('btn btn-success');
                 break;
-            default: setButtonClass('btn btn-primary');
+            default:
+                setButtonClass('btn btn-custom'); // Establece btn-custom como el valor predeterminado
         }
     }, [type]);
+
 
 
     return (

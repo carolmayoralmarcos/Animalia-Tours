@@ -18,11 +18,12 @@
 
 ### Daniela
 
-1. pagina activities #FFEFC1
+1. pagina activities 
 2. pagina About
 3. Register(Con Ale)
 4. Contact (Con Ale)
 5. En Actividades un botón "Añadir al carrito" -> utilizar context link, añadir el boton modificar linkado updateactivities
+6. colores para el cssgris claro: #f0f0f0 , beige suave: #f5e8e8 
 
 ### Aleida
 
