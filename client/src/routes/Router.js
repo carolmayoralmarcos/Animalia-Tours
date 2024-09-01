@@ -18,7 +18,7 @@ import UserProfile from '../pages/UserProfile';
 import PrivateRoute from '../components/PrivateRoute';
 //import UsersPage from '../pages/Users';
 import Register from '../pages/Register';
-// import Cart from '../pages/Cart';
+import Cart from '../pages/Cart';
 import Contact from '../pages/Contact';
 import About from '../pages/About';
 import AddPets from '../pages/AddPets';
@@ -45,7 +45,7 @@ function Router() {
                     <Route path="/profile" element={<Layout><UserProfile /></Layout>} />
                     <Route path="/add-pet" element={<Layout><AddPets /></Layout>} />
                     {/* <Route path="/users" element={<Layout><UsersPage /></Layout>} /> */}
-                    {/* <Route path="/cart" element={<Layout><Cart /></Layout>} /> */}
+                    <Route path="/cart" element={<Layout><Cart /></Layout>} />
                     <Route path="/contact" element={<Layout><Contact /></Layout>} />
                     <Route path="/about" element={<Layout><About /></Layout>} />
                     <Route path="*" element={<Layout><NotFound /></Layout>} />
