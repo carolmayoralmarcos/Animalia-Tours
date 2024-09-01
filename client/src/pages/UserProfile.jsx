@@ -40,6 +40,88 @@ const UserProfile = () => {
 
         loadUserProfile();
     }, [token, navigate]);
+    const updateUser = async (userId, updateData) => {
+        try {
+            const result = await Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Seguro que quieres actualizar la información del usuario?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, actualizar!',
+                cancelButtonText: 'No, cancelar!',
+                reverseButtons: true
+            });
+
+            if (result.isConfirmed) {
+                const response = await fetch(`http://localhost:5000/api/users/update/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(updateData),
+                });
+
+                const data = await response.json();
+                if (!data.success) {
+                    throw new Error(data.data || 'Failed to update user');
+                }
+
+                Swal.fire({
+                    title: 'Usuario actualizado',
+                    text: `La información del usuario ha sido actualizada con éxito.`,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+
+                setProfile(data.data);
+
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    title: 'Cancelado',
+                    text: 'La información del usuario no ha sido actualizada.',
+                    icon: 'info',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: `No se pudo actualizar la información del usuario: ${error.message}`,
+                confirmButtonText: 'Aceptar'
+            });
+        }
+    };
+
+    const handleModifyUserInfo = () => {
+        Swal.fire({
+            title: 'Modificar Información del Usuario',
+            html: `
+                <input type="text" id="userName" class="swal2-input" placeholder="Nombre" value="${profile.name}">
+                <input type="email" id="userEmail" class="swal2-input" placeholder="Email" value="${profile.email}">
+                <input type="password" id="userPassword" class="swal2-input" placeholder="Contraseña">
+            `,
+            confirmButtonText: 'Guardar',
+            focusConfirm: false,
+            preConfirm: () => {
+                const name = Swal.getPopup().querySelector('#userName').value;
+                const email = Swal.getPopup().querySelector('#userEmail').value;
+                const password = Swal.getPopup().querySelector('#userPassword').value;
+
+                if (!name || !email) {
+                    Swal.showValidationMessage('Por favor, ingresa el nombre y el email');
+                }
+
+                return { name, email, password };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateUser(profile._id, result.value);
+            }
+        });
+    };
     const cancelReservation = async (reservationId) => {
         try {
             const result = await Swal.fire({
@@ -250,6 +332,12 @@ const UserProfile = () => {
     return (
         <div className="d-flex align-items-left justify-content-center min-vh-100">
             <div className="UserProfile p-4 rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
+                <button
+                    className="btn btn-primary mb-4"
+                    onClick={handleModifyUserInfo}
+                >
+                    Modificar Información de Usuario
+                </button>
                 <div className="Profile">
                     <div className="card-header">
                         <h1 className="text-left mb-4">Perfil de {profile.name}</h1>
