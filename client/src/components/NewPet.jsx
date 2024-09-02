@@ -14,6 +14,8 @@ const NewPet = () => {
     const [namePet, setName] = useState('');
     const [typePet, setType] = useState('');
 
+
+
     const createElement = (ev) => {
         ev.preventDefault();
 

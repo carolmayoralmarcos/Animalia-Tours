@@ -158,7 +158,7 @@ const NewActivity = () => {
                     <label>Ciudad</label>
                     <select
                         name="city_id"
-                        value={activity.city_id || (cities.length > 0 ? cities[0]._id : "")}
+                        value={activity.city_id || (cities.find(city => city.name === "Bangkok")?._id || "")}
                         onChange={handleChange}
                         className="form-select"
                         required
