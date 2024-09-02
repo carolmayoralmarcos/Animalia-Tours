@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -37,7 +38,7 @@ const Register = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: formData.username,
+                    name: formData.name,
                     email: formData.email,
                     password: formData.password
                 })
@@ -45,8 +46,33 @@ const Register = () => {
 
             const data = await response.json();
             if (response.ok) {
+                if (!response.success) {
+                    throw new Error(response.data);
+                }
                 setSuccess(true);
-                navigate('/login');
+                Swal.fire({
+                    title: "¡Usuario creado correctamente!",
+                    text: "Logeate para disfrutar al 100% de la web ;)",
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
+                    denyButtonColor: "#d33",
+                    confirmButtonText: "OK"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate(`/login`);
+                    } else if (result.isDenied) {
+                        navigate('/login');
+                    }
+                })
+                    .catch(err => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "¡Algo ha ido mal!",
+                            footer: err.hasOwnProperty("message") ? err.message : err
+                        });
+                        console.log('There was an error', err);
+                    })
             } else {
                 setError(data.message || 'Error en el registro');
             }
@@ -66,13 +92,13 @@ const Register = () => {
                         {success && <div className="alert alert-success">¡Se ha registrado correctamente! Redirigiendo al login...</div>}
                         <form onSubmit={handleSubmit}>
                             <div className="form-group m-3">
-                                <label htmlFor="username">Nombre</label>
+                                <label htmlFor="name">Nombre</label>
                                 <input
                                     type="text"
-                                    id="username"
-                                    name="username"
+                                    id="name"
+                                    name="name"
                                     className="form-control "
-                                    value={formData.username}
+                                    value={formData.name}
                                     onChange={handleChange}
                                     required
                                 />
@@ -113,7 +139,7 @@ const Register = () => {
                                     required
                                 />
                             </div>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <button type="submit" className="btn btn-custom align-self-center">Registrarse</button>
                             </div>
                         </form>

@@ -41,7 +41,7 @@ const newUser = async (req, res) => {
             return res.status(201).json({ success: false, data: 'Ya existe un usuario con ese email.' })
         }
     } catch (error) {
-        console.error("Error in newReservation:", error.message, error); 
+        console.error("Error in newReservation:", error.message, error);
         return res.status(400).json({ success: false, data: error.message });
     }
 };
@@ -70,6 +70,7 @@ const updateUser = async (req, res) => {
         const { id } = req.params;
         const updateBody = req.body;
         if (id) {
+            updateBody.password = bcrypt.hashSync(updateBody.password, 10);
             const updatedUser = await User.findByIdAndUpdate(id, updateBody, { new: true });
             if (!updatedUser) {
                 return res.status(202).json({ success: false, data: 'Ese ID no existe.' });
