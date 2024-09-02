@@ -46,33 +46,8 @@ const Register = () => {
 
             const data = await response.json();
             if (response.ok) {
-                if (!response.success) {
-                    throw new Error(response.data);
-                }
                 setSuccess(true);
-                Swal.fire({
-                    title: "¡Usuario creado correctamente!",
-                    text: "Logeate para disfrutar al 100% de la web ;)",
-                    icon: "success",
-                    confirmButtonColor: "#3085d6",
-                    denyButtonColor: "#d33",
-                    confirmButtonText: "OK"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        navigate(`/login`);
-                    } else if (result.isDenied) {
-                        navigate('/login');
-                    }
-                })
-                    .catch(err => {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "¡Algo ha ido mal!",
-                            footer: err.hasOwnProperty("message") ? err.message : err
-                        });
-                        console.log('There was an error', err);
-                    })
+                navigate('/login');
             } else {
                 setError(data.message || 'Error en el registro');
             }
