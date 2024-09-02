@@ -2,42 +2,77 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import Logo from "../Animaliatour.png"
 import '../styles/styles.css'
+import '../styles/header.css'
 import { Link } from 'react-router-dom'
-import LogoutIcon from './Logout';
+import { FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
 
 
 function Header() {
-    return (
-        <Navbar bg="warning p-2 text-dark bg-opacity-25" expand="lg">
-            <Navbar.Brand href="/home">
-                <img
-                    src={Logo}
-                    width="90"
-                    height="90"
-                    className="logo"
-                    alt=""
 
-                />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mx-auto">
+    const token = localStorage.getItem("token");
 
-                    <Nav.Link as={Link} to="/">Inicio</Nav.Link>
-                    <Nav.Link as={Link} to="/about">Sobre Nosotros</Nav.Link>
-                    <Nav.Link as={Link} to="/activities">Actividades</Nav.Link>
-                    <Nav.Link as={Link} to="/cities">Ciudades</Nav.Link>
-                    <Nav.Link as={Link} to="/contact">Contacto</Nav.Link>
-                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                    <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
-                    <Nav.Link as={Link} to="/cart">Carrito</Nav.Link>
-                    <LogoutIcon style={{ display: 'flex', listStyle: 'none' }} />
+    const returnedHeader = (token === null) ? (
+        <div className="header">
+            <Navbar className="container-header" expand="lg">
+                <Navbar.Brand href="/">
+                    <img
+                        src={Logo}
+                        className="logo"
+                        height="50"
+                        alt="Logo Animalia Tours"
 
+                    />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mx-auto">
 
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+                        <Nav.Link as={Link} to="/">Inicio</Nav.Link>
+                        <Nav.Link as={Link} to="/about">Sobre Nosotros</Nav.Link>
+                        <Nav.Link as={Link} to="/activities">Actividades</Nav.Link>
+                        <Nav.Link as={Link} to="/cities">Ciudades</Nav.Link>
+                        <Nav.Link as={Link} to="/contact">Contacto</Nav.Link>
+                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                        <Nav.Link as={Link} to="/cart"><FaShoppingCart className="logos-header" /></Nav.Link>
+                        <Nav.Link as={Link} to="/logout"><FaSignOutAlt className="logos-header" /></Nav.Link>
+
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </div>
+    ) : (
+        <div className="header">
+            <Navbar className="container-header" expand="lg">
+                <Navbar.Brand href="/">
+                    <img
+                        src={Logo}
+                        className="logo"
+                        height="50"
+                        alt="Logo Animalia Tours"
+
+                    />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mx-auto main-nav">
+
+                        <Nav.Link className="main-nav-item" as={Link} to="/">Inicio</Nav.Link>
+                        <Nav.Link className="main-nav-item" as={Link} to="/about">Sobre Nosotros</Nav.Link>
+                        <Nav.Link className="main-nav-item" as={Link} to="/activities">Actividades</Nav.Link>
+                        <Nav.Link className="main-nav-item" as={Link} to="/cities">Ciudades</Nav.Link>
+                        <Nav.Link className="main-nav-item" as={Link} to="/contact">Contacto</Nav.Link>
+                        <Nav.Link className="main-nav-item" as={Link} to="/profile">Perfil</Nav.Link>
+                    </Nav>
+                    <Nav className="nav-icons">
+                        <Nav.Link as={Link} to="/cart"><FaShoppingCart className="logos-header" /></Nav.Link>
+                        <Nav.Link as={Link} to="/logout"><FaSignOutAlt className="logos-header" /></Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </div>
     );
+
+    return returnedHeader;
 }
 
 export default Header;
