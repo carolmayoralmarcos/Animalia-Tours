@@ -83,7 +83,11 @@ quick quentions
 - [x] 12. City images are not being deleted when city is deleted.
 - [x] 13. Home responsive
 - [] 14. New Activity: Error of Name and Descritpion in Mongo Db and Error in number of maximum clients
-  Delete Activity ?¿?
+  Delete Activity I can not delete
+  Modify Activity I can not change de image
+  Modify Activity City_id Select with name
+  Create Activity Navigate to vew details
+  Format Activity Create vs Modify
 
 ## EXTRAS
 
