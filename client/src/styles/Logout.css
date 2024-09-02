@@ -1,0 +1,33 @@
+/* Estilos generales para el botón de logout */
+.logout-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.1);
+}
+
+.logout-icon {
+    color: #f7eeee;
+    font-size: 18px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 576px) {
+    .logout-button {
+        padding: 6px;
+    }
+
+    .logout-icon {
+        font-size: 16px;
+    }
+}

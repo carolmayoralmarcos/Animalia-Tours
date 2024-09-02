@@ -148,7 +148,7 @@ export default function Cart() {
           return (
             <li className="carro"
               key={index}>
-              {item.name} - {item.quantity} x ${item.price} = ${item.quantity * item.price}
+              {item.name} - {item.quantity} x {item.price}€ = {item.quantity * item.price}€
               <button className="btn-remove" onClick={() => removeFromCart(index)}>
                 Eliminar <FaTrashAlt />
               </button>

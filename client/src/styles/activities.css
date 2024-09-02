@@ -1,3 +1,4 @@
+css activities
 /* Activities */
 /* Container and layout styles */
 
@@ -155,7 +156,7 @@
     gap: 0.5rem;
     /* Espacio entre botones */
     align-items: center;
-    /* Centra verticalmente los botones en la misma línea */
+    /* Centra verticalmente los botones en la misma lÃ­nea */
 }
 
 .activity-actions a {

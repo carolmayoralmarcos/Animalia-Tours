@@ -69,7 +69,7 @@ function Activities() {
                                     <h5 className="activity-title">{activity.name}</h5>
                                     <p className="activity-description">{activity.description}</p>
                                     <p className="activity-status">Estado: {activity.status}</p>
-                                    <p className="activity-price">Precio: ${activity.price}</p>
+                                    <p className="activity-price">Precio: {activity.price}€</p>
                                     <p className="activity-users">Máximo de Usuarios: {activity.max_users}</p>
 
                                     <div className="activity-actions mt-auto d-flex justify-content-between">
