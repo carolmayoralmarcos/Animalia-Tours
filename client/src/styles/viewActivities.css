@@ -1,57 +1,94 @@
-.container.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 77vh;
-
+.container-fluid {
+    padding: 0 20px;
 }
 
+/* Estilo de la tarjeta de carrito */
 .card-viewActivities {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
 }
 
 .card-header-view {
-    color: black;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
     padding: 10px;
-    border-radius: 10px 10px 0 0;
+    border-radius: 8px 8px 0 0;
 }
 
 .list-group-viewActivities {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 10px;
 }
 
-.list-group-viewActivities .list-group-item {
+.list-group-item {
     border: none;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
+    padding: 8px 16px;
 }
 
-.card-body-view-activities {
-    margin-top: 20px;
+.btn-remove {
+    background-color: transparent;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
 }
 
+.card-body-view {
+    padding: 10px;
+}
 
-btn-view {
+.btn-view {
     background-color: #ff91a4;
-    /* Color de fondo del botón */
-    color: #fff;
-    /* Color del texto del botón */
+    color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 5px;
-    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: block;
-    margin: 20px auto;
 }
 
 .btn-view:hover {
     background-color: #e88191;
-    /* Color de fondo al pasar el mouse */
+}
+
+/* Estilo de la imagen y botón de la tarjeta de actividad */
+.col-md-6 img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.col-md-6 .btn-view {
+    margin-top: 20px;
+}
+
+/* Estilo del cuerpo de la tarjeta de descripción */
+.card-body {
+    padding: 20px;
+}
+
+.card-body h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.card-body h3 {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+}
+
+.card-body p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.card-body a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.card-body a:hover {
+    text-decoration: underline;
 }
