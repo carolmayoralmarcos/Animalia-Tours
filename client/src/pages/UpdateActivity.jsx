@@ -1,52 +1,72 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Swal from 'sweetalert2';
 import getElementbyId from '../utils/getElementbyId';
 
 const UpdateActivity = () => {
 
-    const { id } = useParams();  
-    const collection = 'activities';       
+    const { id } = useParams();
+    const collection = 'activities';
     const navigate = useNavigate();
     const [updatedActivity, setActivityData] = useState({
         name: '',
         description: '',
         status: 'open',
-        max_users: 3,
+        max_users: 10,
         date: '',
         price: 0,
         city_id: ''
     });
 
-    useEffect(() => {
-        if (id) {                     
-        const fetchData = async () => {
-            try {
-                const info = await getElementbyId(id, collection); 
-                if (info && info.data) {
-                    const { _v, ...rest } = info.data; 
-                    setActivityData(rest);
-                }
-            } catch (error) {
-                console.error(`Could not get data: ${error}`);
-            }
-        };
+    const [cities, setCities] = useState([]);
+    const [message, setMessage] = useState('');
 
-        fetchData();
+    useEffect(() => {
+        if (id) {
+            const fetchData = async () => {
+                try {
+                    const info = await getElementbyId(id, collection);
+                    if (info && info.data) {
+                        const { _v, ...rest } = info.data;
+                        setActivityData(rest);
+                    }
+                } catch (error) {
+                    console.error(`Could not get data: ${error}`);
+                }
+            };
+
+            fetchData();
 
         } else {
             console.error('Missing id parameter');
         }
 
-    }, [id]);             
+    }, [id]);
+
+    useEffect(() => {
+        const fetchCities = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/cities/all');
+                const data = await response.json();
+                if (data.success) {
+                    setCities(data.data);
+                } else {
+                    setMessage('No se pudieron cargar las ciudades');
+                }
+            } catch (error) {
+                setMessage('Error al obtener las ciudades');
+            }
+        };
+
+        fetchCities();
+    }, []);
+
+
 
     const updateElement = (ev) => {
         ev.preventDefault();
-        fetch(`http://localhost:5000/api/activities/update/${id}`, {         
+        console.log('Datos enviados:', updatedActivity);
+        fetch(`http://localhost:5000/api/activities/update/${id}`, {
             method: "PUT",
             body: JSON.stringify(updatedActivity),
             headers: {
@@ -70,7 +90,7 @@ const UpdateActivity = () => {
                     confirmButtonText: "Yes, please."
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        navigate(`/view/activities/${updatedID}`);          //${updatedID}
+                        navigate(`/view/activities/${updatedID}`);          
                     } else if (result.isDenied) {
                         navigate('/activities');
                     }
@@ -89,49 +109,102 @@ const UpdateActivity = () => {
     };
 
     const handleChange = (e) => {
-        const key = e.target.id;
+        const key = e.target.name;
         const value = e.target.value;
         setActivityData({ ...updatedActivity, [key]: value })
     }
 
     return (
-        <div className="content">
-            <h1 className="mb-5">Actualizando Actividad: {updatedActivity.name}</h1>
-            <Form method="get" onSubmit={updateElement} onChange={handleChange}>
-                <Row className="mb-3">
-                    <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control id="name" type="text" value={updatedActivity.name} onChange={handleChange} required />
-                    </Form.Group> 
-                    <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control id="description" type="text" value={updatedActivity.description} onChange={handleChange} required />
-                    </Form.Group>
-                    <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Status</Form.Label>
-                        <Form.Control id="status" type="text" value={updatedActivity.status} onChange={handleChange} required />
-                    </Form.Group>
-                    <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Max_users</Form.Label>
-                        <Form.Control id="max_users" type="number" value={updatedActivity.max_users} onChange={handleChange} required />
-                    </Form.Group>
-                    <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Date</Form.Label>
-                        <Form.Control id="date" type="date" value={updatedActivity.date} onChange={handleChange} required />
-                    </Form.Group>
-                    <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>Price</Form.Label>
-                        <Form.Control id="price" type="number" value={updatedActivity.price} onChange={handleChange} required />
-                    </Form.Group>
-                    <Form.Group as={Col} className="mb-3" >
-                        <Form.Label>City_id</Form.Label>
-                        <Form.Control id="city_id" type="text" value={updatedActivity.city_id} onChange={handleChange} required />
-                    </Form.Group>
-                </Row>
-                <Button variant="primary" type="submit">
-                    Actualizar datos
-                </Button>
-            </Form>
+        <div className="containerNewActivity mt-5 mb-5">
+            <h1 className="mb-4">Modificando Actividad: {updatedActivity.name}</h1>
+            <form method="get" onSubmit={updateElement} onChange={handleChange} className="needs-validation" noValidate>
+                <div className="form-group mb-3">
+                        <label>Nombre</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={updatedActivity.name} 
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                        />
+                </div>
+                <div className="form-group mb-3">
+                    <label>Descripción</label>
+                    <textarea
+                        name="description"
+                        value={updatedActivity.description} 
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label>Estado</label>
+                    <select
+                        name="status"
+                        value={updatedActivity.status}
+                        onChange={handleChange}
+                        className="form-select"
+                    >
+                        <option value="open">Abierta</option>
+                        <option value="closed">Cerrada</option>
+                        <option value="full">Llena</option>
+                    </select>
+                </div>
+                <div className="form-group mb-3">
+                    <label>Usuarios Máximos</label>
+                    <input
+                        type="number"
+                        name="max_users"
+                        value={updatedActivity.max_users}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label>Fecha</label>
+                    <input
+                        type="date"
+                        name="date"
+                        value={updatedActivity.date}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label>Precio</label>
+                    <input
+                        type="number"
+                        name="price"
+                        value={updatedActivity.price}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group mb-4">
+                    <label>Ciudad</label>
+                    <select
+                        name="city_id"
+                        value={updatedActivity.city_id || (cities.length > 0 ? cities[0]._id : "")}
+                        onChange={handleChange}
+                        className="form-select"
+                        required
+                    >
+                        <option value="">Selecciona una ciudad</option>
+                        {cities.map((city) => (
+                            <option key={city._id} value={city._id}>
+                                {city.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <button type="submit" className="btn btn-primary">Modificar Actividad</button>
+            </form>
+            {message && <div className="alert alert-info mt-4">{message}</div>}
         </div>
     )
 };

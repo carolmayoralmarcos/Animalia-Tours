@@ -43,11 +43,16 @@ const Register = () => {
                     password: formData.password
                 })
             });
-
             const data = await response.json();
             if (response.ok) {
-                setSuccess(true);
-                navigate('/login');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registro exitoso',
+                    text: '¡Te has registrado correctamente!',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    navigate('/login');
+                });
             } else {
                 setError(data.message || 'Error en el registro');
             }
@@ -60,11 +65,9 @@ const Register = () => {
         <div className="d-flex align-items-center justify-content-center min-vh-100">
             <div className="contact p-4  rounded shadow-sm" style={{ maxWidth: '600px', width: '100%' }}>
                 <div className="register">
-
                     <div className="card-body-register">
                         <h2 className="text-center mb-3">Crea tu usuario</h2>
                         {error && <div className="alert alert-danger">{error}</div>}
-                        {success && <div className="alert alert-success">¡Se ha registrado correctamente! Redirigiendo al login...</div>}
                         <form onSubmit={handleSubmit}>
                             <div className="form-group m-3">
                                 <label htmlFor="name">Nombre</label>
@@ -72,13 +75,13 @@ const Register = () => {
                                     type="text"
                                     id="name"
                                     name="name"
-                                    className="form-control "
+                                    className="form-control"
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="form-group m-3 ">
+                            <div className="form-group m-3">
                                 <label htmlFor="email">E-mail</label>
                                 <input
                                     type="email"
@@ -108,7 +111,7 @@ const Register = () => {
                                     type="password"
                                     id="confirmPassword"
                                     name="confirmPassword"
-                                    className="form-control "
+                                    className="form-control"
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
                                     required
@@ -122,7 +125,6 @@ const Register = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 

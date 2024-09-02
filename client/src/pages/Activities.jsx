@@ -77,11 +77,11 @@ function Activities() {
                                             className="btn-custom me-2"
                                             onClick={() => addToCart(activity)}
                                         >
-                                            carrito
+                                            +carrito
                                         </Button>
                                         <ActionButton className="w-100 me-2" text="Ver detalles" path={'/view/activities/' + activity._id} />
                                         <ActionButton className="w-100 me-2" text="Modificar" path={'/update/activities/' + activity._id} />
-                                        <ActionButton className="w-100" text=" actividad" path={'/new/activity/'} />
+                                        <ActionButton className="w-100" text="+actividad" path={'/new/activity/'} />
                                     </div>
                                 </div>
                             </div>

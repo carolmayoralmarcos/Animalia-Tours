@@ -126,6 +126,7 @@ export default function Cart() {
           text: "¡Todas las reservas se han confirmado con éxito!",
         }).then(() => {
           navigate("/profile");
+          window.location.reload(false);
         });
       } else {
         console.error("Failed to create any reservations.");
