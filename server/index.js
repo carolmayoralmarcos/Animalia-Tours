@@ -14,7 +14,12 @@ cloudinary.config({
 })
 
 connectDB();
-server.use(cors());
+server.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 server.use(express.json());
 
 const routePet = require('./src/api/routes/pet.routes');

@@ -6,7 +6,6 @@ import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { getprofile } from "../utils/getprofile";
 import Swal from 'sweetalert2';
-import "../styles/cart.css"
 
 
 export default function Cart() {
@@ -42,14 +41,14 @@ export default function Cart() {
         title: "Not Logged In",
         text: "Please log in to confirm your reservation.",
       }).then(() => {
-        navigate("/login");
+        navigate("/login"); 
       });
       return;
     }
 
     const token = localStorage.getItem("token");
 
-    const userData = await getprofile(token);
+    const userData= await getprofile(token);
     console.log("User Data:", userData);
 
     if (!userData.success) {
@@ -58,16 +57,16 @@ export default function Cart() {
         icon: "error",
         title: "Oops...",
         text: "Failed to get user profile.",
-      });
+    });
       return;
-    }
-
+    } 
+    
     const userId = userData.data._id;
     console.log("User ID:", userId);
 
     const reservationPromises = cart.map((item) => {    //const reservationData
       const reservationData = {
-        name: `Reservation for ${item.name}`,
+        // name: `Reservation for ${item.name}`,
         status: "confirmed",
         user: userId,
         activity: item._id
@@ -81,7 +80,7 @@ export default function Cart() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(reservationData),
-      })
+     })
         .then(response => {
           console.log("API response:", response);
           if (!response.ok) {
@@ -90,8 +89,6 @@ export default function Cart() {
           return response.json();
         })
         .then(data => {
-          console.log(data);
-          
           if (!data.success) {
             console.error("Error creating reservation:", data.data);
             Swal.fire({
@@ -146,14 +143,14 @@ export default function Cart() {
         <FaShoppingCart />
       </h2>
 
-      <ul className="CartPage">
+      <ul>
         {cart.map((item, index) => {
 
           return (
-            <li className="carro"
+            <li
               key={index}>
               {item.name} - {item.quantity} x ${item.price} = ${item.quantity * item.price}
-              <button className="btn-remove" onClick={() => removeFromCart(index)}>
+              <button className="btn btn-danger" onClick={() => removeFromCart(index)}>
                 Eliminar <FaTrashAlt />
               </button>
             </li>
@@ -161,13 +158,13 @@ export default function Cart() {
         })}
       </ul>
       <div>
-        <CalculateTotal cart={cart} />
+      <CalculateTotal cart={cart} />
       </div>
       <div>
-        <button className="btn-cart" onClick={handleConfirmReservations}>
-          confirmar reserva
+        <button className="btn btn-primary" onClick={handleConfirmReservations}>
+          Reserva Confirmada
         </button>
       </div>
-    </div>
+      </div>
   );
 }
