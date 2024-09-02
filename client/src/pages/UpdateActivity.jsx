@@ -75,8 +75,8 @@ const UpdateActivity = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
     const updateElement = (ev) => {
         ev.preventDefault();
@@ -139,7 +139,8 @@ const UpdateActivity = () => {
     return (
         <div className="containerNewActivity mt-5 mb-5">
             <h1 className="mb-4">Actualizar Actividad</h1>
-            <form onSubmit={updateElement} className="needs-validation" noValidate>
+            <form onSubmit={updateElement}
+            className="needs-validation" noValidate>
                 <div className="form-group mb-3">
                     <label>Nombre</label>
                     <input
@@ -239,7 +240,7 @@ const UpdateActivity = () => {
             {message && <div className="alert alert-info mt-4">{message}</div>}
         </div>
     );
-}
+    };
 
 export default UpdateActivity;
 
