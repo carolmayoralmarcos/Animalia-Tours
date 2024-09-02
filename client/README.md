@@ -20,11 +20,10 @@
 
 quick quentions
 
-- [MONI] 1. I have removed the name of the reservations model, but the database still keeps historical information.
+- [Mx] 1. I have removed the name of the reservations model, but the database still keeps historical information.
 - [DISEÑO] 3. The quantity in the cart no longer increases (=1) when clicking multiple times on "add activity," . Decide whether we should remove the control.
 - [MONI CONFIRMAR QUE ESTA OK] 4. AddPets -> The view element is not working. Please let me know if I need to check this myself: http://localhost:3000/view/pets/66d44fb0d334e697d028ca21 error
 - [CAROL] 6. In the profile, I don't see the option to edit pets to view the data and modify it if necessary.
-- [] 7. AddPet should request also de image
 
 ### Daniela
 
@@ -83,6 +82,7 @@ quick quentions
 - [CAROL] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
 - [x] 12. City images are not being deleted when city is deleted.
 - [HARITZ] 13. Home
+- [HARITZ] 14. Footer
 
 ## EXTRAS
 

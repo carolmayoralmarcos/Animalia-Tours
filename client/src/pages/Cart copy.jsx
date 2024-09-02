@@ -66,7 +66,7 @@ export default function Cart() {
 
     const reservationPromises = cart.map((item) => {    //const reservationData
       const reservationData = {
-        name: `Reservation for ${item.name}`,
+        // name: `Reservation for ${item.name}`,
         status: "confirmed",
         user: userId,
         activity: item._id
@@ -89,8 +89,6 @@ export default function Cart() {
           return response.json();
         })
         .then(data => {
-          console.log(data);
-          
           if (!data.success) {
             console.error("Error creating reservation:", data.data);
             Swal.fire({
