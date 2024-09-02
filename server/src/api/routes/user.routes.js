@@ -4,8 +4,8 @@ const { isAuth, isAdmin } = require('../../middleware/auth');
 
 const routeUser = express.Router();
 
-routeUser.get('/all', getAllUser);
-routeUser.get('/:id', getUserbyId);
+routeUser.get('/all', [isAdmin], getAllUser);
+routeUser.get('/:id', [isAdmin], getUserbyId);
 routeUser.post('/new', newUser);
 routeUser.delete('/delete/:id', [isAdmin], deleteUser);
 routeUser.put('/update/:id', updateUser);
