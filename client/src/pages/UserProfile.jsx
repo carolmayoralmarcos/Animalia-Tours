@@ -139,11 +139,13 @@ const UserProfile = () => {
             });
 
             if (result.isConfirmed) {
-                const response = await fetch(`http://localhost:5000/api/reservations/cancel/${reservationId}`, {
+                const response = await fetch(`http://localhost:5000/api/reservations/update/${reservationId}`, {
                     method: 'PUT',
                     headers: {
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`,
                     },
+                    body: JSON.stringify({ status: 'cancelled' })
                 });
 
                 const data = await response.json();
@@ -157,8 +159,15 @@ const UserProfile = () => {
                     icon: 'success',
                     confirmButtonText: 'Aceptar'
                 });
+                setReservations(prevReservations =>
+                    prevReservations.map(reservation =>
+                        reservation._id === reservationId
+                            ? { ...reservation, status: 'cancelled' }
+                            : reservation
+                    )
+                );
 
-                setReservations(reservations.filter(reservation => reservation._id !== reservationId));
+
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire({
                     title: 'Cancelado',
