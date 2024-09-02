@@ -1,0 +1,66 @@
+/* viewActivities.css */
+
+/* Estilo para centrar la tarjeta */
+.container.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 77vh;
+    /* Ajusta la altura mínima para centrar mejor el contenido */
+}
+
+.card-viewActivities {
+    background-color: #f0f0f0;
+    /* Fondo de la tarjeta */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header-view {
+    color: black;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.list-group-viewActivities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-group-viewActivities .list-group-item {
+    border: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-body-view-activities {
+    margin-top: 20px;
+}
+
+/* Estilo para los botones */
+.btn-primary {
+    background-color: #ff91a4;
+    /* Color de fondo del botón */
+    color: #fff;
+    /* Color del texto del botón */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #e88191;
+    /* Color de fondo al pasar el mouse */
+}
+
+.btn-danger {
+    background-color: #ff91a4;
+    /* Color de fondo del botón de eliminar */
+    color: #fff;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #e88191;
+    /* Color de fondo al pasar el mouse */
+}

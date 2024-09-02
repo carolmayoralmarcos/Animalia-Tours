@@ -4,6 +4,7 @@ import getElementbyId from '../utils/getElementbyId';
 import Spinner from 'react-bootstrap/Spinner';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
 import { CartContext } from '../context/CartContext';
+import '../styles/viewActivities.css'
 
 function ViewActivity() {
     const { id } = useParams();
@@ -49,11 +50,11 @@ function ViewActivity() {
         <div className="container-fluid ">
             {/* Sticky Cart */}
             <div className="position-fixed bottom-0 end-0 p-3" style={{ width: '300px', zIndex: 1050 }}>
-                <div className="card">
-                    <div className="card-header text-center">
+                <div className="card-viewActivities">
+                    <div className="card-header-view text-center">
                         <h5 className="mb-0">Carrito <FaShoppingCart /></h5>
                     </div>
-                    <ul className="list-group list-group-flush">
+                    <ul className="list-group-viewActivities list-group-flush">
                         {cart.length > 0 ? (
                             cart.map((item, index) => (
                                 <li key={item._id} className="list-group-item d-flex justify-content-between align-items-center">
@@ -67,7 +68,7 @@ function ViewActivity() {
                             <li className="list-group-item">El carrito está vacío.</li>
                         )}
                     </ul>
-                    <div className=" card-body text-center">
+                    <div className=" card-body-view text-center">
                         <button className="btn btn-primary" onClick={goToShop}> Ir a carrito
                         </button>
                     </div>
