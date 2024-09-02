@@ -89,9 +89,9 @@ function ViewActivity() {
                             <p>{data.description}</p>
                             <br></br>
                             <p><b>Fecha</b>: {new Date(data.date).toLocaleDateString()}</p>
-                            <p><b>Status</b>: {data.status}</p>
-                            <p><b>Max number of participants</b>: {data.max_users}</p>
-                            <p><b>Current number of participants</b>: {data.current_users}</p>
+                            <p><b>Estado</b>: {data.status}</p>
+                            <p><b>Número máximo de participantes</b>: {data.max_users}</p>
+                            <p><b>Número actual de participantes</b>: {data.current_users}</p>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,11 @@
 footer {
     background-color: #6d6d80;
-    padding: 3rem 5rem;
+    padding: 0 5rem;
 }
 
 .footer-div {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     color: white;
@@ -16,6 +17,7 @@ footer {
 .social-icons {
     font-size: 30px;
     display: flex;
+    flex-wrap: wrap;
     gap: 25px;
     justify-content: space-between;
     align-items: center;
@@ -40,12 +42,30 @@ footer {
     gap: 25px;
 }
 
+.nav-footer ul li {
+    background-color: transparent;
+    box-shadow: none;
+    color: white;
+    text-decoration: none;
+}
+
 .nav-footer-link {
     text-decoration: none;
-    color: #6D6D80;
+    color: white;
 
     &:hover {
         color: black;
         cursor: pointer;
     }
 }
+
+/* Media Queries */
+@media (max-width: 768px) {
+
+    .footer-div div {
+        margin-top: 50px;
+    }
+
+}
+
+@media (max-width: 480px) {}
