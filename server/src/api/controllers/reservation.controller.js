@@ -26,25 +26,10 @@ const getReservationbyId = async (req, res) => {
 const newReservation = async (req, res) => {
     try {
         console.log("Request body:", req.body);
-        
         const newReservation = new Reservation(req.body);    
-        const { user, activity} = req.body;
-
-        // console.log("User ID:", user);
-        // console.log("Activity ID:", activity);
-       
-
-        const findReservation = await Reservation.find ({ user: user, activity: activity});
-        
-        if (findReservation.length === 0) {
-            const reserva = newReservation
-            const createdReservation = await reserva.save();
-            console.log('holaaaa', createdReservation); 
-                
-            return res.status(201).json({ success: true, data: createdReservation });
-        } else {
-            return res.status(200).json({ success: false, data: 'Esta reserva ya existe :(' });
-        }
+        const reserva = newReservation
+        const createdReservation = await reserva.save();
+        return res.status(201).json({ success: true, data: createdReservation });
     } catch (error) {
         return res.status(400).json({ success: false, data: error.message });
     }
