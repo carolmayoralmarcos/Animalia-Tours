@@ -135,7 +135,7 @@ const ViewElement = () => {
                     <div className="card-body ms-5">
                         <h1>Reserva #{data._id}</h1>
                         <br></br>
-                        <h3>{data.name}</h3>
+                        <h3>{data.activity.name}</h3>
                         <br></br>
                         <p><b>Estado:</b> {data.status}</p>
                     </div>
