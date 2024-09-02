@@ -73,7 +73,7 @@ const NewActivity = () => {
     };
 
     return (
-        <div className="container mt-5 mb-5">
+        <div className="containerNewActivity mt-5 mb-5">
             <h1 className="mb-4">Crear Nueva Actividad</h1>
             <form onSubmit={handleSubmit} className="needs-validation" noValidate>
                 <div className="form-group mb-3">

@@ -1,110 +1,85 @@
-/* Estilos generales */
+/* cart.css */
+
+/* Contenedor principal del carrito en forma de card */
+.cart-card {
+    background-color: #FFF9E3;
+    /* Fondo de la card */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    /* Centra la card horizontalmente */
+    max-width: 600px;
+    /* Ancho máximo de la card */
+}
 
 /* Contenedor del carrito */
 .cart {
-    max-width: 800px;
-    margin: 2rem auto;
-    /* Centra horizontalmente y añade un margen vertical */
-    padding: 2rem;
-    background-color: #f5e8e8;
-    /* Fondo suave para la sección del carrito */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    /* Asegura que los elementos internos se alineen en columna */
-    justify-content: center;
-    align-items: center;
-}
-
-/* Título del carrito */
-.carrito {
-    font-size: 2rem;
-    color: #e67e93;
-    /* Color del texto */
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-/* Lista de items en el carrito */
-ul {
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
-    /* Asegura que la lista ocupe todo el ancho disponible del contenedor */
-}
-
-li {
-    background-color: #fff;
-    /* Fondo de cada item */
-    margin: 1rem 0;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Botones */
-button.btn {
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Botón eliminar */
-button.btn.btn-danger {
-    background-color: #ff91a4;
-    /* Color de fondo para botón eliminar */
-    color: white;
-}
-
-button.btn.btn-danger:hover {
-    background-color: #e67e93;
-    /* Color al hacer hover */
-}
-
-/* Botón confirmar reserva */
-button.btn.btn-primary {
-    background-color: #e67e93;
-    /* Color de fondo para botón confirmar */
-    color: white;
-    margin-top: 1rem;
-}
-
-button.btn.btn-primary:hover {
-    background-color: #ff91a4;
-    /* Color al hacer hover */
-}
-
-/* Caja de cálculo total */
-.calculate-total {
-    margin-top: 1.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    text-align: right;
-    width: 100%;
-    /* Asegura que el total se alinee a la derecha ocupando todo el ancho */
-}
-
-/* Estilo para el contenedor de la página para centrar el contenido */
-.page-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Estilo para el footer fijo en la parte inferior */
-.footer {
-    margin-top: auto;
-    /* Empuja el footer hacia la parte inferior */
-    background-color: #f1f1f1;
-    padding: 1rem;
+/* Contenido del carrito: asegura que crezca y ocupe el espacio disponible */
+.CartPage {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Fondo de las tarjetas (productos) */
+.carro {
+    background-color: #FFF9E3;
+    /* Fondo de la tarjeta */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+/* Estilo para el título del carrito */
+.carrito {
     text-align: center;
-    border-top: 1px solid #ddd;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #6B6B7E;
+}
+
+/* Estilo para los botones */
+.btn-cart {
+    background-color: #ff91a4;
+    /* Color de fondo del botón */
+    color: #fff;
+    /* Color del texto del botón */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+.btn-cart:hover {
+    background-color: #e88191;
+    /* Color de fondo al pasar el mouse */
+}
+
+/* Estilo para el botón de eliminar */
+.btn-remove {
+    background-color: #6B6B7E;
+    /* Color de fondo del botón de eliminar */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remove:hover {
+    background-color: #5a5a6b;
+    /* Color de fondo al pasar el mouse */
 }
