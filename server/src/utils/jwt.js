@@ -1,11 +1,15 @@
 const jwt = require('jsonwebtoken');
 
 const generateToken = (loggedUser) => {
-    return jwt.sign(loggedUser, process.env.JWT_KEY, { expiresIn: '1h' });
+    return jwt.sign(loggedUser, process.env.JWT_KEY, { expiresIn: '1m' });
 };
 
 const verifyToken = (token) => {
-    return jwt.verify(token, process.env.JWT_KEY)
+    try {
+        return { success: true, data: jwt.verify(token, process.env.JWT_KEY) };
+    } catch (error) {
+        return { success: false, error: error };
+    }
 };
 
 module.exports = { generateToken, verifyToken }

@@ -9,6 +9,8 @@ function Logout() {
     useEffect(() => {
         setTimeout(() => {
             localStorage.removeItem('token');
+            // Actualiza la página para eliminar el CartContext
+            window.location.reload(false);
             navigate("/login");
         }, 1000);
     }, [navigate]);
