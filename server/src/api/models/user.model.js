@@ -6,7 +6,7 @@ const userSchema = new Schema({
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
     pets: { type: [Schema.Types.ObjectId], ref: 'pets' },
-    role: { type: String, require: true, enum: ['admin', 'user'], default: 'user' }
+    role: { type: String, require: true, enum: ['admin', 'user', 'provider'], default: 'user' }
 },
     {
         collection: 'users',

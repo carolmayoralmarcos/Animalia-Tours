@@ -43,6 +43,7 @@ const UserProfile = () => {
         loadUserProfile();
     }, [token, navigate]);
     const updateUser = async (userId, updateData) => {
+
         try {
             const result = await Swal.fire({
                 title: '¿Estás seguro?',
@@ -77,6 +78,7 @@ const UserProfile = () => {
                 });
 
                 setProfile(data.data);
+                navigate('/logout');
 
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire({

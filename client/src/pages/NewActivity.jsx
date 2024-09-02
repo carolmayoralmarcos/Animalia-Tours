@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createactivity } from '../utils/createActivity';
+import '../styles/NewActivity.css'
 
 const NewActivity = () => {
     const [activity, setActivity] = useState({
@@ -72,7 +73,7 @@ const NewActivity = () => {
     };
 
     return (
-        <div className="container mt-5 mb-5">
+        <div className="containerNewActivity mt-5 mb-5">
             <h1 className="mb-4">Crear Nueva Actividad</h1>
             <form onSubmit={handleSubmit} className="needs-validation" noValidate>
                 <div className="form-group mb-3">
@@ -157,7 +158,7 @@ const NewActivity = () => {
                     <label>Ciudad</label>
                     <select
                         name="city_id"
-                        value={activity.city_id}
+                        value={activity.city_id || (cities.length > 0 ? cities[0]._id : "")}
                         onChange={handleChange}
                         className="form-select"
                         required

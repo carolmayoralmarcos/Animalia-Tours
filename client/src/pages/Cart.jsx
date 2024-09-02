@@ -12,7 +12,7 @@ import "../styles/cart.css"
 export default function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
 
 
@@ -91,7 +91,7 @@ export default function Cart() {
         })
         .then(data => {
           console.log(data);
-          
+
           if (!data.success) {
             console.error("Error creating reservation:", data.data);
             Swal.fire({
@@ -140,7 +140,7 @@ export default function Cart() {
 
 
   return (
-    <div className="cart">
+    <div className="cart-card">
 
       <h2 className="carrito">
         <FaShoppingCart />

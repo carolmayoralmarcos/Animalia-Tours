@@ -10,12 +10,28 @@ import getAllElements from '../utils/getAllElements';
 import deleteElement from '../utils/deleteElement';
 import SearchBar from '../components/SearchBar';
 import "../styles/cities.css"
+import { getprofile } from '../utils/getProfile';
 
 function Cities() {
     const collection = 'cities';
     const [cities, setCities] = useState([]);
     const [OGcities, setOGCities] = useState([]);
     const [cityNames, setCityNames] = useState([]);
+    const [userRole, setUserRole] = useState(null);
+
+    const token = localStorage.getItem("token");
+
+    useEffect(() => {
+        if (token !== null) {
+            var res = getprofile(token);
+            res.then((info) => {
+                setUserRole(info.data.role);
+            })
+                .catch((error) => {
+                    console.error(`Could not get data: ${error}`);
+                })
+        }
+    }, [token])
 
     const navigate = useNavigate();
 
@@ -71,7 +87,7 @@ function Cities() {
         console.log(filteredCity);
     }
 
-    return (
+    const returnedDiv = (userRole === 'admin') ? (
         <div className="container">
             <div className="d-flex flex-column align-items-left my-5">
                 <Form method="get" onSubmit={handleSearch} className="d-flex justify-content-left">
@@ -113,7 +129,35 @@ function Cities() {
                 })}
             </div>
         </div>
-    );
+    ) : (
+        <div className="container">
+            <div className="d-flex flex-column align-items-left my-5">
+                <Form method="get" onSubmit={handleSearch} className="d-flex justify-content-left">
+                    <SearchBar suggestions={cityNames} />
+                    <div class="input-group-append">
+                        <Button variant="btn btn-custom" type="submit" className="ml-2">Buscar</Button>
+                    </div>
+                </Form>
+            </div>
+
+            <div className="d-flex flex-wrap">
+                {cities.map((city, index) => {
+                    return (
+                        <Card className="my-4 mx-4" key={index} style={{ width: '35rem' }}>
+                            <Card.Img variant="top" src={city.image} style={{ maxHeight: '1000px' }} />
+                            <Card.Body>
+                                <Card.Title>{city.name}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">{city.description.substring(0, 100) + "..."}</Card.Subtitle>
+                                <ActionButton text="Ver detalles" path={'/view/cities/' + city._id} delay={0} type="primary" />
+                            </Card.Body>
+                        </Card>
+                    )
+                })}
+            </div>
+        </div>
+    )
+
+    return returnedDiv;
 };
 
 export default Cities;

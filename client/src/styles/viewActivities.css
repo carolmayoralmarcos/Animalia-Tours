@@ -1,17 +1,13 @@
-/* viewActivities.css */
-
-/* Estilo para centrar la tarjeta */
 .container.content {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 77vh;
-    /* Ajusta la altura mínima para centrar mejor el contenido */
+
 }
 
 .card-viewActivities {
     background-color: #f0f0f0;
-    /* Fondo de la tarjeta */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -39,28 +35,23 @@
     margin-top: 20px;
 }
 
-/* Estilo para los botones */
-.btn-primary {
+
+btn-view {
     background-color: #ff91a4;
     /* Color de fondo del botón */
     color: #fff;
     /* Color del texto del botón */
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
 }
 
-.btn-primary:hover {
-    background-color: #e88191;
-    /* Color de fondo al pasar el mouse */
-}
-
-.btn-danger {
-    background-color: #ff91a4;
-    /* Color de fondo del botón de eliminar */
-    color: #fff;
-    border: none;
-}
-
-.btn-danger:hover {
+.btn-view:hover {
     background-color: #e88191;
     /* Color de fondo al pasar el mouse */
 }
