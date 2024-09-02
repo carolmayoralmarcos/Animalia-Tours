@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Swal from 'sweetalert2';
 import getElementbyId from '../utils/getElementbyId';
 
@@ -118,15 +114,6 @@ const UpdateActivity = () => {
         setActivityData({ ...updatedActivity, [key]: value })
     }
 
-    const handleImageChange = (e) => {
-        setActivityData({
-            ...updatedActivity,
-            image: e.target.files[0]
-        });
-    };
-
-
-
     return (
         <div className="containerNewActivity mt-5 mb-5">
             <h1 className="mb-4">Modificando Actividad: {updatedActivity.name}</h1>
@@ -141,17 +128,6 @@ const UpdateActivity = () => {
                             className="form-control"
                             required
                         />
-                </div>
-                <div className="form-group mb-3">
-                    <label>Imagen</label>
-                    <input
-                        type="file"
-                        name="image"
-                        onChange={handleImageChange}
-                        accept="image/*"
-                        className="form-control"
-                        required
-                    />
                 </div>
                 <div className="form-group mb-3">
                     <label>Descripción</label>
