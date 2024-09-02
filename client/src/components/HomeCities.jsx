@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import getAllElements from "../utils/getAllElements";
 import { Link } from "react-router-dom";
 
-function HomeActivities() {
-    const collection = 'activities';
-    const [activities, setActivities] = useState([]);
+function HomeCities() {
+    const collection = 'cities';
+    const [cities, setCities] = useState([]);
 
     useEffect(() => {
         getAllElements(collection)
             .then((info) => {
-                setActivities(info.data);
+                setCities(info.data);
             })
             .catch((error) => {
                 console.error(`Could not get data: ${error}`);
@@ -19,21 +19,21 @@ function HomeActivities() {
     return (
         <div className="container-home">
             <div className="activities-home">
-                <h2 className="activities-title-home">Actividades más nuevas disponibles</h2>
+                <h2 className="activities-title-home">Las ciudades más visitadas</h2>
                 <hr></hr>
                 <div className="activities-grid-home">
-                    {Array.isArray(activities) && activities.length > 0 ? (
-                        activities.map((activity, index) => {
-                            if (index > activities.length - 4) {
+                    {Array.isArray(cities) && cities.length > 0 ? (
+                        cities.map((city, index) => {
+                            if (index < 3) {
                                 return (
-                                    <Link className="no-decoration link" to={`/view/activities/${activity._id}`}>
-                                        <div key={activity._id} className="activity-card-home">
+                                    <Link className="no-decoration link" to={`/view/cities/${city._id}`}>
+                                        <div key={city._id} className="activity-card-home">
 
-                                            <img src={activity.image} alt={activity.name} className="activity-image-home" />
+                                            <img src={city.image} alt={city.name} className="activity-image-home" />
 
                                             <div className="activity-details d-flex flex-column">
-                                                <h3 className="activity-title">{activity.name}</h3>
-                                                <p className="activity-description">{activity.description}</p>
+                                                <h3 className="activity-title">{city.name}</h3>
+                                                <p className="activity-description">{city.description}</p>
                                             </div>
 
                                             <div className="overlay">
@@ -46,7 +46,7 @@ function HomeActivities() {
                             }
                         })
                     ) : (
-                        <p className="no-activities">No hay actividades disponibles.</p>
+                        <p className="no-activities">No hay ciudades disponibles.</p>
                     )}
                 </div>
             </div>
@@ -54,4 +54,4 @@ function HomeActivities() {
     );
 }
 
-export default HomeActivities;
+export default HomeCities;

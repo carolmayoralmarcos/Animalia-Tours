@@ -1,0 +1,210 @@
+/* Activities */
+/* Container and layout styles */
+
+
+.container {
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+}
+
+.activities {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.activities-title {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Sticky cart styles */
+.sticky-cart {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+    width: 300px;
+    z-index: 1050;
+}
+
+.cart-card {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.cart-header {
+    color: #333;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item.empty {
+    text-align: center;
+}
+
+.remove-button {
+    background-color: transparent;
+    border: none;
+    color: #d9534f;
+    cursor: pointer;
+}
+
+.view-cart-button {
+    display: block;
+    text-align: center;
+    background-color: #ff91a4;
+    color: #fff;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Activities grid styles */
+.activities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+.activity-card {
+    background-color: #FFF9E3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+.activity-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.activity-details {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.activity-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.activity-description {
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.activity-status,
+.activity-price,
+.activity-users {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+
+
+
+
+
+.add-to-cart-button {
+    background-color: #f5e8e8;
+    border-color: #f5e8e8;
+    color: black;
+    height: 2rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
+    margin-bottom: 1rem;
+    align-self: center;
+}
+
+.add-to-cart-button:hover {
+    background-color: #e67e93;
+    border-color: #e67e93;
+}
+
+.activity-actions {
+    display: flex;
+    gap: 0.5rem;
+    /* Espacio entre botones */
+    align-items: center;
+    /* Centra verticalmente los botones en la misma línea */
+}
+
+.activity-actions a {
+    background-color: #FDB988;
+    color: #fff;
+    padding: 0.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+.activity-actions a:last-child {
+    margin-right: 0;
+}
+
+.no-activities {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .add-to-cart-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .activities-title {
+        font-size: 1.5rem;
+    }
+
+    .activity-title {
+        font-size: 1rem;
+    }
+
+    .activity-description {
+        font-size: 0.9rem;
+    }
+
+    .add-to-cart-button {
+        font-size: 0.9rem;
+    }
+
+    .activity-actions a {
+        font-size: 0.9rem;
+    }
+}

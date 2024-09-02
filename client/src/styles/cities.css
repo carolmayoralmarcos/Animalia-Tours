@@ -1,0 +1,79 @@
+/* cities */
+
+.accordion-button {
+    background-color: #f5e8e8;
+}
+
+.accordion-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilo general para las cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.card {
+    width: 23%;
+    /* Aproximadamente 4 cards por fila */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilo para la imagen dentro de la card */
+.card img {
+    width: 100%;
+    height: 200px;
+    /* Altura fija */
+    object-fit: cover;
+    /* Escala la imagen para llenar el espacio, recortando si es necesario */
+}
+
+/* Estilo para el contenido de la card */
+.card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+/* Asegurarse de que las cards se adapten bien en pantallas pequeñas */
+@media (max-width: 768px) {
+    .card {
+        width: 48%;
+        /* Dos cards por fila en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+        /* Una card por fila en pantallas muy pequeñas */
+    }
+
+}

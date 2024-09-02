@@ -5,6 +5,7 @@ import { CartContext } from '../context/CartContext';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
 import { ActionButton } from '../components/ActionButton';
 import Button from 'react-bootstrap/Button';
+import "../styles/activities.css"
 
 function Activities() {
     const collection = 'activities';
@@ -76,11 +77,11 @@ function Activities() {
                                             className="btn-custom me-2"
                                             onClick={() => addToCart(activity)}
                                         >
-                                            Añadir al carrito
+                                            + carrito
                                         </Button>
                                         <ActionButton className="w-100 me-2" text="Ver detalles" path={'/view/activities/' + activity._id} />
                                         <ActionButton className="w-100 me-2" text="Modificar" path={'/update/activities/' + activity._id} />
-                                        <ActionButton className="w-100" text="Añadir actividad" path={'/new/activity/'} />
+                                        <ActionButton className="w-100" text="+ actividad" path={'/new/activity/'} />
                                     </div>
                                 </div>
                             </div>
