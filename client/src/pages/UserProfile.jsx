@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { getprofile } from '../utils/getprofile';
+import { getprofile } from '../utils/getProfile';
 import "../styles/profile.css"
 
 const UserProfile = () => {

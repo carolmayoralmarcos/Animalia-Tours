@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createactivity } from '../utils/createactivity';
+import { createactivity } from '../utils/createActivity';
 
 const NewActivity = () => {
     const [activity, setActivity] = useState({

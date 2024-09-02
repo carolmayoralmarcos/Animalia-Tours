@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Swal from 'sweetalert2';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getprofile } from '../utils/getprofile';
+import { getprofile } from '../utils/getProfile';
 
 const NewPet = () => {
 
@@ -35,11 +35,11 @@ const NewPet = () => {
             });
             return;
         }
-            
+
         const userId = result.data._id;
 
         console.log(userId)
-           
+
         const petData = {
             name: namePet,
             type: typePet,
@@ -48,11 +48,11 @@ const NewPet = () => {
         try {
 
             const petResponse = await fetch(`http://localhost:5000/api/pets/new`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(petData),
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(petData),
             });
 
             const petDataResponse = await petResponse.json();
@@ -64,12 +64,12 @@ const NewPet = () => {
             const petId = petDataResponse.data._id;
 
             const userResponse = await fetch(`http://localhost:5000/api/users/addPet/${userId}/${petId}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-       
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
 
             const userData = await userResponse.json();
 
@@ -85,18 +85,18 @@ const NewPet = () => {
                 confirmButtonColor: "#3085d6",
                 denyButtonColor: "#d33",
                 confirmButtonText: "Sí, por favor."
-                })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    if (petId) {
-                        navigate(`/view/pets/${petId}`);
-                    } else {
-                        console.error("Pet ID is undefined");
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        if (petId) {
+                            navigate(`/view/pets/${petId}`);
+                        } else {
+                            console.error("Pet ID is undefined");
                         }
-                } else if (result.isDenied) {
-                    navigate('/profile');
-                }
-             });
+                    } else if (result.isDenied) {
+                        navigate('/profile');
+                    }
+                });
 
         } catch (err) {
             Swal.fire({

@@ -4,7 +4,7 @@ import { FaShoppingCart, FaTrashAlt } from "react-icons/fa";
 import CalculateTotal from "../components/CalculateTotal";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-import { getprofile } from "../utils/getprofile";
+import { getprofile } from "../utils/getProfile";
 import Swal from 'sweetalert2';
 import "../styles/cart.css"
 

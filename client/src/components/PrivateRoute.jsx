@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/styles.css';
 import { useNavigate } from 'react-router-dom';
-import { getprofile } from '../utils/getprofile';
+import { getprofile } from '../utils/getProfile';
 import Spinner from 'react-bootstrap/Spinner';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
