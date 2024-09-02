@@ -1,7 +1,7 @@
 /* NewActivity.css */
 
 /* Contenedor general centrado y con márgenes para mantener el diseño */
-.container {
+.containerNewActivity {
     background-color: #FFF9E3;
     /* Fondo de la tarjeta */
     padding: 20px;
@@ -9,6 +9,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: 0 auto;
+
     min-height: 77vh;
 }
 
