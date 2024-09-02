@@ -1,0 +1,18 @@
+/* CONTACTO */
+.contact {
+    background-color: #fbdbdb;
+}
+
+.btn-custom {
+    background-color: #f5e8e8;
+    border-color: #f5e8e8;
+    color: black;
+    height: 2rem;
+
+
+}
+
+.btn-custom:hover {
+    background-color: #e67e93;
+    border-color: #e67e93;
+}
