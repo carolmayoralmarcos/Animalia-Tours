@@ -9,8 +9,8 @@ import getElementbyId from '../utils/getElementbyId';
 
 const UpdateActivity = () => {
 
-    const { id } = useParams();
-    const collection = 'activities';
+    const { id } = useParams();  
+    const collection = 'activities';       
     const navigate = useNavigate();
     const [updatedActivity, setActivityData] = useState({
         name: '',
@@ -23,30 +23,30 @@ const UpdateActivity = () => {
     });
 
     useEffect(() => {
-        if (id) {
-            const fetchData = async () => {
-                try {
-                    const info = await getElementbyId(id, collection);
-                    if (info && info.data) {
-                        const { _v, ...rest } = info.data;
-                        setActivityData(rest);
-                    }
-                } catch (error) {
-                    console.error(`Could not get data: ${error}`);
+        if (id) {                     
+        const fetchData = async () => {
+            try {
+                const info = await getElementbyId(id, collection); 
+                if (info && info.data) {
+                    const { _v, ...rest } = info.data; 
+                    setActivityData(rest);
                 }
-            };
+            } catch (error) {
+                console.error(`Could not get data: ${error}`);
+            }
+        };
 
-            fetchData();
+        fetchData();
 
         } else {
             console.error('Missing id parameter');
         }
 
-    }, [id]);
+    }, [id]);             
 
     const updateElement = (ev) => {
         ev.preventDefault();
-        fetch(`http://localhost:5000/api/activities/update/${id}`, {
+        fetch(`http://localhost:5000/api/activities/update/${id}`, {         
             method: "PUT",
             body: JSON.stringify(updatedActivity),
             headers: {
@@ -61,8 +61,8 @@ const UpdateActivity = () => {
                 var updatedID = info.data._id;
 
                 Swal.fire({
-                    title: "Activity updated successfully!",
-                    text: "Do you want to see the result?",
+                    title: "¡Actividad actualizada con éxito!",
+                    text: "¿Quieres ver el resultado?",
                     icon: "success",
                     showDenyButton: true,
                     confirmButtonColor: "#3085d6",
@@ -102,7 +102,7 @@ const UpdateActivity = () => {
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Name</Form.Label>
                         <Form.Control id="name" type="text" value={updatedActivity.name} onChange={handleChange} required />
-                    </Form.Group>
+                    </Form.Group> 
                     <Form.Group as={Col} className="mb-3" >
                         <Form.Label>Description</Form.Label>
                         <Form.Control id="description" type="text" value={updatedActivity.description} onChange={handleChange} required />
