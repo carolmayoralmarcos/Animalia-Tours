@@ -39,8 +39,8 @@ export default function Cart() {
       console.error("No user found. Please log in.");
       Swal.fire({
         icon: "warning",
-        title: "Not Logged In",
-        text: "Please log in to confirm your reservation.",
+        title: "No has iniciado sesión",
+        text: "Por favor, inicia sesión para confirmar tu reserva.",
       }).then(() => {
         navigate("/login");
       });
@@ -57,7 +57,7 @@ export default function Cart() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to get user profile.",
+        text: "Hubo un problema al obtener tu perfil de usuario.",
       });
       return;
     }
@@ -122,8 +122,8 @@ export default function Cart() {
         console.log("All reservations confirmed:", successfulReservations);
         Swal.fire({
           icon: "success",
-          title: "Reservations Confirmed",
-          text: "All reservations have been successfully confirmed!",
+          title: "Reservas Confirmadas",
+          text: "¡Todas las reservas se han confirmado con éxito!",
         }).then(() => {
           navigate("/profile");
         });
@@ -131,8 +131,8 @@ export default function Cart() {
         console.error("Failed to create any reservations.");
         Swal.fire({
           icon: "error",
-          title: "Failed",
-          text: "Failed to create any reservations. Please try again.",
+          title: "Error",
+          text: "No se pudo crear ninguna reserva. Por favor, inténtalo de nuevo.",
         });
       }
     });
