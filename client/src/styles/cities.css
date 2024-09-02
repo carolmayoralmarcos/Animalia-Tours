@@ -33,7 +33,7 @@
 /* Estilo para la imagen dentro de la card */
 .card img {
     width: 100%;
-    height: 200px;
+    height: 500px;
     /* Altura fija */
     object-fit: cover;
     /* Escala la imagen para llenar el espacio, recortando si es necesario */
