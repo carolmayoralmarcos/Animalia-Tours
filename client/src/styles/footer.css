@@ -42,7 +42,7 @@ footer {
 
 .nav-footer-link {
     text-decoration: none;
-    color: white;
+    color: #6D6D80;
 
     &:hover {
         color: black;
