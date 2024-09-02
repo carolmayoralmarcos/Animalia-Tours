@@ -25,6 +25,7 @@ const UserProfile = () => {
             }
 
             const result = await getprofile(token);
+            console.log(result);
             if (result.success) {
                 setProfile(result.data);
 
@@ -277,6 +278,7 @@ const UserProfile = () => {
                 confirmButtonText: 'Sí, eliminarla!',
                 cancelButtonText: 'No, cancelar!',
                 reverseButtons: true
+
             });
 
             if (result.isConfirmed) {
@@ -373,10 +375,10 @@ const UserProfile = () => {
                                     <p>No tienes mascotas registradas.</p>
                                 )}
                             </ul>
-                            <hr></hr>
+
 
                             <button className="btn btn-custom mb-3" onClick={() => navigate('/add-pet')}>Añadir Mascota</button>
-
+                            <hr></hr>
                             <h2>Reservas</h2>
                             <div>
                                 {reservations.length > 0 ? (

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import getAllElements from '../utils/getAllElements';
 import deleteElement from '../utils/deleteElement';
 import SearchBar from '../components/SearchBar';
+import "../styles/cities.css"
 
 function Cities() {
     const collection = 'cities';
