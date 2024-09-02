@@ -25,9 +25,8 @@ const getReservationbyId = async (req, res) => {
 
 const newReservation = async (req, res) => {
     try {
-        console.log("Request body:", req.body);
-        const newReservation = new Reservation(req.body);    
-        const reserva = newReservation
+        const newReservation = new Reservation(req.body);
+        const reserva = newReservation;
         const createdReservation = await reserva.save();
         return res.status(201).json({ success: true, data: createdReservation });
     } catch (error) {
