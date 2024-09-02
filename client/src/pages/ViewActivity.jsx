@@ -59,7 +59,7 @@ function ViewActivity() {
                             cart.map((item, index) => (
                                 <li key={item._id} className="list-group-item d-flex justify-content-between align-items-center">
                                     {item.name}
-                                    <button className="btn btn-danger btn-sm" onClick={() => removeStickyCart(index)}>
+                                    <button className="btn-remove btn-sm" onClick={() => removeStickyCart(index)}>
                                         <FaTrash />
                                     </button>
                                 </li>
@@ -69,7 +69,7 @@ function ViewActivity() {
                         )}
                     </ul>
                     <div className=" card-body-view text-center">
-                        <button className="btn btn-primary" onClick={goToShop}> Ir a carrito
+                        <button className="btn-view" onClick={goToShop}> Ir a carrito
                         </button>
                     </div>
                 </div>
@@ -78,7 +78,7 @@ function ViewActivity() {
                 <div className="row g-0">
                     <div className="col-md-6">
                         <img src={data.image} className="rounded" alt="Element" style={{ maxHeight: '400px', maxWidth: '500px' }} />
-                        <button className="btn btn-primary me-2 mt-5" onClick={() => addToCart(data)}>Añadir al Carrito</button>
+                        <button className="btn-view me-2 mt-5" onClick={() => addToCart(data)}>Añadir al Carrito</button>
                     </div>
                     <div className="col-md-6">
                         <div className="card-body ms-5">

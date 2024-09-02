@@ -36,24 +36,22 @@
 }
 
 
-.btn-primary {
+btn-view {
     background-color: #ff91a4;
+    /* Color de fondo del botón */
     color: #fff;
+    /* Color del texto del botón */
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
 }
 
-.btn-primary:hover {
+.btn-view:hover {
     background-color: #e88191;
-
-}
-
-.btn-danger {
-    background-color: #ff91a4;
-    color: #fff;
-    border: none;
-}
-
-.btn-danger:hover {
-    background-color: #e88191;
-
+    /* Color de fondo al pasar el mouse */
 }
