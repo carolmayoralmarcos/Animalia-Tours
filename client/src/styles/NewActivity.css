@@ -37,7 +37,7 @@ label {
 
 /* Estilo de los botones */
 .btn-primary {
-    background-color: #6b6b7e;
+    background-color: #ff91a4;
     /* Color de fondo del botón */
     color: #FFF9E3;
     /* Color del texto del botón */
@@ -48,7 +48,7 @@ label {
 }
 
 .btn-primary:hover {
-    background-color: #56566b;
+    background-color: #e88191;
     /* Color de fondo del botón al pasar el mouse */
 }
 
