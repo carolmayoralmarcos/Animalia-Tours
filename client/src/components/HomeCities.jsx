@@ -36,8 +36,8 @@ function HomeCities() {
                                                 <p className="activity-description">{city.description}</p>
                                             </div>
 
-                                            <div class="overlay">
-                                                <div class="detail-text">Ver detalle</div>
+                                            <div className="overlay">
+                                                <div className="detail-text">Ver detalle</div>
                                             </div>
 
                                         </div>
