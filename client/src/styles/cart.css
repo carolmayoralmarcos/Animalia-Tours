@@ -68,7 +68,7 @@
 
 /* Estilo para el botón de eliminar */
 .btn-remove {
-    background-color: #6B6B7E;
+    background-color: #ff6b6b;
     /* Color de fondo del botón de eliminar */
     color: #fff;
     border: none;
@@ -80,6 +80,6 @@
 }
 
 .btn-remove:hover {
-    background-color: #5a5a6b;
+    background-color: #f32020;
     /* Color de fondo al pasar el mouse */
 }
