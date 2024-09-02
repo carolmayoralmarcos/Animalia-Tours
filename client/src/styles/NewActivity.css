@@ -1,0 +1,69 @@
+/* NewActivity.css */
+
+/* Contenedor general centrado y con márgenes para mantener el diseño */
+.container {
+    background-color: #FFF9E3;
+    /* Fondo de la tarjeta */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 77vh;
+}
+
+/* Estilo del formulario y los elementos dentro */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* Estilo de los botones */
+.btn-primary {
+    background-color: #6b6b7e;
+    /* Color de fondo del botón */
+    color: #FFF9E3;
+    /* Color del texto del botón */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #56566b;
+    /* Color de fondo del botón al pasar el mouse */
+}
+
+.alert {
+    background-color: #fffae6;
+    /* Color de fondo de la alerta */
+    color: #333;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+/* Responsividad: Mantener la tarjeta bien adaptada en dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}

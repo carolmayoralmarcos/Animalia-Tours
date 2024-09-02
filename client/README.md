@@ -82,6 +82,8 @@ quick quentions
 - [CAROL] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
 - [x] 12. City images are not being deleted when city is deleted.
 - [x] 13. Home responsive
+- [] 14. New Activity: Error of Name and Descritpion in Mongo Db and Error in number of maximum clients
+  Delete Activity ?¿?
 
 ## EXTRAS
 
