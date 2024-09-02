@@ -81,7 +81,7 @@ const UpdateActivity = () => {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "¡Algo salió mal!",
+                    text: "Something went wrong!",
                     footer: err.hasOwnProperty("message") ? err.message : err
                 });
                 console.log('There was an error', err);
