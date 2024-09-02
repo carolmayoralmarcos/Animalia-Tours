@@ -19,7 +19,7 @@ function HomeActivities() {
     return (
         <div className="container-home">
             <div className="activities-home">
-                <h2 className="activities-title-home">Actividades nuevas disponibles</h2>
+                <h2 className="activities-title-home">Actividades Populares</h2>
                 <hr></hr>
                 <div className="activities-grid-home">
                     {Array.isArray(activities) && activities.length > 0 ? (
