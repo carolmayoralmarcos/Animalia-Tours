@@ -85,12 +85,12 @@ const UpdateActivity = () => {
 
                 Swal.fire({
                     title: "¡Actividad modifcada correctamente!",
-                    text: "¿quieres ver el resultado?",
+                    text: "¿Quieres ver el resultado?",
                     icon: "success",
                     showDenyButton: true,
                     confirmButtonColor: "#3085d6",
                     denyButtonColor: "#d33",
-                    confirmButtonText: "Yes, please."
+                    confirmButtonText: "Sí, por favor."
                 }).then((result) => {
                     if (result.isConfirmed) {
                         navigate(`/view/activities/${updatedID}`);          
