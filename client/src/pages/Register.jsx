@@ -44,7 +44,6 @@ const Register = () => {
             const data = await response.json();
             if (response.ok) {
                 if (!data.success) {
-                    console.log(data)
                     throw new Error(data.data);
                 }
                 Swal.fire({
