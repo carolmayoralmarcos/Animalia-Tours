@@ -28,6 +28,7 @@ const UpdateActivity = () => {
                     const info = await getElementbyId(id, collection);
                     if (info && info.data) {
                         const { _v, ...rest } = info.data;
+                        console.log("verificar los datos de rest", rest)
                         setActivityData(rest);
                     }
                 } catch (error) {
