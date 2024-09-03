@@ -85,10 +85,12 @@
 }
 
 .card-body a {
-    color: #007bff;
+    color: #E88191;
     text-decoration: none;
 }
 
 .card-body a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #dc3545;
+    border: 1px solid #dc3545
 }
