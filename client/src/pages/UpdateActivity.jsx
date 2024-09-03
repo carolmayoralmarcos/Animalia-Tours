@@ -81,8 +81,8 @@ const UpdateActivity = () => {
                 var updatedID = info.data._id;
 
                 Swal.fire({
-                    title: "Activity updated successfully!",
-                    text: "Do you want to see the result?",
+                    title: "¡Actividad modifcada correctamente!",
+                    text: "¿quieres ver el resultado?",
                     icon: "success",
                     showDenyButton: true,
                     confirmButtonColor: "#3085d6",
