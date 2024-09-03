@@ -21,7 +21,7 @@ const NewPet = () => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Usuario no encontrado. Por favor haga login.",
+                text: "No user found. Please log in.",
             });
             return;
         }
@@ -31,7 +31,7 @@ const NewPet = () => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Fallo al obtener la información del usuario.",
+                text: "Failed to get user profile.",
             });
             return;
         }
