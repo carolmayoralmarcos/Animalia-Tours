@@ -166,7 +166,7 @@ export default function Cart() {
       </div>
       <div>
         <button className="btn-cart" onClick={handleConfirmReservations}>
-          confirmar reserva
+          Confirmar reserva
         </button>
       </div>
     </div>

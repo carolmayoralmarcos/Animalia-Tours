@@ -2,7 +2,7 @@
 
 ## MVP
 
-### Mónica código manejoError pruebasBack pruebasFront develop
+### Mónica
 
 - [x] 1. Hero (carrusel)
 - [x] 2. hook getrandomactivities
@@ -16,13 +16,15 @@
 - [x] 9. Home Carrusel: Not random. Yes 3 fixed images
 - [x] 10. Cart: GetProfile to be used instead of User Context (decode) to get userId from token
 - [x] 11. Link New Pet with user
-- [] 12. Cart control: Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
+- [x] 12. Cart control: Cart button "Confirmar reserva" only when user is logged in. If not, link to Login.
+- [x] 13. PopUp en Español
+- [x] 14. Activity Format and Navigate to vew details
 
 quick quentions
 
-- [Mx] 1. I have removed the name of the reservations model, but the database still keeps historical information.
+- [x] 1. I have removed the name of the reservations model, but the database still keeps historical information.
 - [DISEÑO] 3. The quantity in the cart no longer increases (=1) when clicking multiple times on "add activity," . Decide whether we should remove the control.
-- [MONI CONFIRMAR QUE ESTA OK] 4. AddPets -> The view element is not working. Please let me know if I need to check this myself: http://localhost:3000/view/pets/66d44fb0d334e697d028ca21 error
+- [x] 4. AddPets -> The view element is not working. Please let me know if I need to check this myself: http://localhost:3000/view/pets/66d44fb0d334e697d028ca21 error
 - [CAROL] 6. In the profile, I don't see the option to edit pets to view the data and modify it if necessary.
 
 ### Daniela
@@ -82,12 +84,9 @@ quick quentions
 - [CAROL] 11. User should be able to change his user information (name, email and password) in his profile page. Confirmation pop-up needed.
 - [x] 12. City images are not being deleted when city is deleted.
 - [x] 13. Home responsive
-- [] 14. New Activity: Error of Name and Descritpion in Mongo Db and Error in number of maximum clients
-  Delete Activity I can not delete
-  Modify Activity I can not change de image
-  Modify Activity City_id Select with name
-  Create Activity Navigate to vew details
-  Format Activity Create vs Modify
+- [x] 14. New Activity: Error of Name and Descritpion in Mongo Db and Error in number of maximum clients
+- [x] 15. Create and Update Activity Navigate to vew details
+- [x] 16. Format Activity Create vs Modify
 
 ## EXTRAS
 
