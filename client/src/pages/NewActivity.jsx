@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createactivity } from '../utils/createActivity';
 import '../styles/NewActivity.css'
+import Swal from 'sweetalert2';
 
 const NewActivity = () => {
     const [activity, setActivity] = useState({
@@ -66,12 +67,30 @@ const NewActivity = () => {
         const result = await createactivity(formData);
 
         if (result.success) {
-            setMessage(`Actividad creada con éxito: ${result.data.name}`);
+            Swal.fire({
+                title: 'Actividad Creada',
+                text: 'La actividad se ha creado con éxito. ¿Deseas ver el resultado?',
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'No'
+            }).then((response) => {
+                if (response.isConfirmed) {
+                    Swal.fire({
+                        title: `Actividad: ${result.data.name}`,
+                        text: `Descripción: ${result.data.description}\nPrecio: ${result.data.price}€\nFecha: ${result.data.date}`,
+                        icon: 'info'
+                    });
+                }
+            });
         } else {
-            setMessage(`Error: ${result.error}`);
+            Swal.fire({
+                title: 'Error',
+                text: `Error al crear la actividad: ${result.error}`,
+                icon: 'error'
+            });
         }
     };
-
     return (
         <div className="containerNewActivity mt-5 mb-5">
             <h1 className="mb-4">Crear Nueva Actividad</h1>
