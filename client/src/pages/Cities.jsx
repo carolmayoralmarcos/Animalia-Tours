@@ -84,7 +84,6 @@ function Cities() {
         } else {
             setCities(filteredCity);
         }
-        console.log(filteredCity);
     }
 
     const returnedDiv = (userRole === 'admin') ? (

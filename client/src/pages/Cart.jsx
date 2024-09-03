@@ -14,6 +14,8 @@ export default function Cart() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [removeQuantity, setRemoveQuantity] = useState({});
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -29,9 +31,13 @@ export default function Cart() {
     }
   }, []);
 
-  const handleConfirmReservations = async () => {
-    // const token = localStorage.getItem("token");
+  const handleQuantityChange = (index, value) => {
+    setRemoveQuantity({ ...removeQuantity, [index]: value });
+  };
 
+
+  const handleConfirmReservations = async () => {
+ 
     console.log("isLoggedIn:", isLoggedIn);
     if (!isLoggedIn) {
       console.error("No user found. Please log in.");
@@ -63,7 +69,7 @@ export default function Cart() {
     const userId = userData.data._id;
     console.log("User ID:", userId);
 
-    const reservationPromises = cart.map((item) => {    //const reservationData
+    const reservationPromises = cart.map((item) => {    
       const reservationData = {
         name: `Reservation for ${item.name}`,
         status: "confirmed",
@@ -152,7 +158,18 @@ export default function Cart() {
             <li className="carro"
               key={index}>
               {item.name} - {item.quantity} x {item.price}€ = {item.quantity * item.price}€
-              <button className="btn-remove" onClick={() => removeFromCart(index)}>
+              <input
+                type="number"
+                min="1"
+                max={item.quantity}
+                value={removeQuantity[index] || 1}
+                onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
+                className="quantity-input"
+              />
+              <button 
+                className="btn-remove" 
+                onClick={() => removeFromCart(index, removeQuantity[index] || 1)}
+                >
                 Eliminar <FaTrashAlt />
               </button>
             </li>
