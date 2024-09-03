@@ -29,7 +29,7 @@ const UpdateActivity = () => {
                     if (info && info.data) {
                         const { _v, date, ...rest } = info.data;
                         const formattedDate = date ? new Date(date).toISOString().split('T')[0] : '';
-                        const cityId = info.data.city_id ? info.data.city_id._id : ''; 
+                        const cityId = info.data.city_id ? info.data.city_id._id : '';
                         console.log("verificar los datos de rest", rest)
                         setActivityData({ ...rest, date: formattedDate, city_id: cityId });
                     }
@@ -84,7 +84,7 @@ const UpdateActivity = () => {
                 var updatedID = info.data._id;
 
                 Swal.fire({
-                    title: "¡Actividad modifcada correctamente!",
+                    title: "¡Actividad modificada correctamente!",
                     text: "¿Quieres ver el resultado?",
                     icon: "success",
                     showDenyButton: true,
@@ -93,7 +93,7 @@ const UpdateActivity = () => {
                     confirmButtonText: "Sí, por favor."
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        navigate(`/view/activities/${updatedID}`);          
+                        navigate(`/view/activities/${updatedID}`);
                     } else if (result.isDenied) {
                         navigate('/activities');
                     }
@@ -122,21 +122,21 @@ const UpdateActivity = () => {
             <h1 className="mb-4">Modificando Actividad: {updatedActivity.name}</h1>
             <form method="get" onSubmit={updateElement} onChange={handleChange} className="needs-validation" noValidate>
                 <div className="form-group mb-3">
-                        <label>Nombre</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={updatedActivity.name} 
-                            onChange={handleChange}
-                            className="form-control"
-                            required
-                        />
+                    <label>Nombre</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={updatedActivity.name}
+                        onChange={handleChange}
+                        className="form-control"
+                        required
+                    />
                 </div>
                 <div className="form-group mb-3">
                     <label>Descripción</label>
                     <textarea
                         name="description"
-                        value={updatedActivity.description} 
+                        value={updatedActivity.description}
                         onChange={handleChange}
                         className="form-control"
                         required
