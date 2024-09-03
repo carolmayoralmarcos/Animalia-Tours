@@ -18,8 +18,19 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeFromCart = (indexToRemove) => {
-    setCart(cart.filter((_, index) => index !== indexToRemove));
+  const removeFromCart = (indexToRemove, quantityToRemove = 1) => {
+    setCart((prevCart) => {
+      const newCart = [...prevCart];
+      const item = newCart[indexToRemove];
+
+      if (item.quantity > quantityToRemove) {
+        item.quantity -= quantityToRemove;
+      } else {
+        newCart.splice(indexToRemove, 1);
+      }
+
+      return newCart;
+    });
   };
 
   return (
