@@ -13,8 +13,6 @@ export default function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState(null);
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
