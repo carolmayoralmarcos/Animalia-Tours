@@ -28,10 +28,8 @@ const UpdateActivity = () => {
                     const info = await getElementbyId(id, collection);
                     if (info && info.data) {
                         const { _v, ...rest } = info.data;
-                        const cityId = info.data.city_id ? info.data.city_id._id : ''; // Extraer solo el ID de la ciudad
                         console.log("verificar los datos de rest", rest)
-                        // setActivityData(rest);
-                        setActivityData({ ...rest, city_id: cityId });
+                        setActivityData(rest);
                     }
                 } catch (error) {
                     console.error(`Could not get data: ${error}`);
@@ -192,8 +190,7 @@ const UpdateActivity = () => {
                     <label>Ciudad</label>
                     <select
                         name="city_id"
-                        // value={updatedActivity.city_id || (cities.length > 0 ? cities[0]._id : "")}
-                        value={updatedActivity.city_id || ''}
+                        value={updatedActivity.city_id || (cities.length > 0 ? cities[0]._id : "")}
                         onChange={handleChange}
                         className="form-select"
                         required
