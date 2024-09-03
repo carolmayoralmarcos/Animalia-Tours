@@ -36,9 +36,9 @@ const newUser = async (req, res) => {
             newUser.password = bcrypt.hashSync(newUser.password, 10);
 
             const createdUser = await newUser.save();
-            return res.status(200).json({ success: true, data: createdUser })
+            return res.status(201).json({ success: true, data: createdUser })
         } else {
-            return res.status(201).json({ success: false, data: 'Ya existe un usuario con ese email.' })
+            return res.status(200).json({ success: false, data: 'Ya existe un usuario con ese email.' })
         }
     } catch (error) {
         console.error("Error in newReservation:", error.message, error);
