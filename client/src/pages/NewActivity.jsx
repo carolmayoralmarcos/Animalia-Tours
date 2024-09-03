@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createactivity } from '../utils/createActivity';
 import '../styles/NewActivity.css'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const NewActivity = () => {
     const [activity, setActivity] = useState({
@@ -17,6 +18,7 @@ const NewActivity = () => {
 
     const [cities, setCities] = useState([]);
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCities = async () => {
@@ -76,11 +78,9 @@ const NewActivity = () => {
                 cancelButtonText: 'No'
             }).then((response) => {
                 if (response.isConfirmed) {
-                    Swal.fire({
-                        title: `Actividad: ${result.data.name}`,
-                        text: `Descripción: ${result.data.description}\nPrecio: ${result.data.price}€\nFecha: ${result.data.date}`,
-                        icon: 'info'
-                    });
+                    navigate(`/view/activities/${result.data._id}`);
+                } else {
+                    navigate('/activities');
                 }
             });
         } else {
