@@ -11,7 +11,6 @@ const Register = () => {
         confirmPassword: ''
     });
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -24,7 +23,6 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setSuccess(false);
 
         if (formData.password !== formData.confirmPassword) {
             setError('Las contraseñas no coinciden');
@@ -45,6 +43,10 @@ const Register = () => {
             });
             const data = await response.json();
             if (response.ok) {
+                if (!data.success) {
+                    console.log(data)
+                    throw new Error(data.data);
+                }
                 Swal.fire({
                     icon: 'success',
                     title: 'Registro exitoso',
@@ -58,6 +60,12 @@ const Register = () => {
             }
         } catch (error) {
             setError('Error al conectar con el servidor');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "¡Algo ha ido mal!",
+                footer: (error.hasOwnProperty("message")) ? error.message : error
+            });
         }
     };
 
